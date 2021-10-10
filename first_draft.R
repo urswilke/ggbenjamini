@@ -1,6 +1,7 @@
 library(tidyverse)
 library(ggforce)
 library(minisvg)
+library(zeallot)
 
 points_df <- tibble(
   x = c(10, 30, 40, 43),
@@ -50,34 +51,67 @@ p <- ggplot(bezier_df) +
 
 
 # minisvg -----------------------------------------------------------------
-doc <- SVGDocument$new(width = 64, height = 100)
+doc <- SVGDocument$new(width = 640, height = 640)
 
-path_str <- bezier_df %>%
-  filter(!str_detect(i, "r")) %>%
-  group_by(i) %>%
-  slice(-1) %>%
-  summarise(cb = paste(x, y, sep = ",", collapse = " ")) %>%
-  pull(cb) %>%
-  paste("C", ., collapse = " ") %>% paste("Z") %>% paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
 
-path_str2 <- bezier_df %>%
-  filter(str_detect(i, "r")) %>%
-  group_by(i) %>%
-  slice(-1) %>%
-  summarise(cb = paste(x, y, sep = ",", collapse = " ")) %>%
-  pull(cb) %>%
-  paste("C", ., collapse = " ") %>% paste("Z") %>% paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
+get_svg_bezier_string <- function(bezier_df) {
+  bezier_df %>%
+    group_by(i) %>%
+    slice(-1) %>%
+    summarise(cb = paste(x, y, sep = ",", collapse = " ")) %>%
+    pull(cb) %>%
+    paste("C", ., collapse = " ") %>% paste("Z") %>% paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
+}
+get_both_bezier_strings <- function(bezier_df) {
+  path_str <- bezier_df %>%
+    filter(!str_detect(i, "r")) %>%
+    get_svg_bezier_string()
 
-doc$append(
-  stag$path(
-    d = path_str,
-    fill="green",
-    fill_opacity="1"
-  ),
-  stag$path(
-    d = path_str2,
-    fill="darkgreen",
-    fill_opacity="1"
+  path_str2 <- bezier_df %>%
+    filter(str_detect(i, "r")) %>%
+    get_svg_bezier_string()
+  list(path_str, path_str2)
+}
+
+
+
+
+# from here: https://stackoverflow.com/a/15464420
+rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = 50, yrot = 50) {
+
+  rotm <- matrix(c(cos(alpha),sin(alpha),-sin(alpha),cos(alpha)),ncol=2)
+  #shift, rotate, shift back
+
+  M <- bezier_df %>% select(-i) %>% as.matrix()
+  t(rotm %*% (t(M) - c(xrot, yrot)) + c(xrot, yrot)) %>%
+    as_tibble() %>%
+    set_names(c("x", "y")) %>%
+    mutate(i = bezier_df$i)
+}
+M2 <- rotate_bezier_df(bezier_df)
+# c(path_str, path_str2) %<-% get_both_bezier_strings(bezier_df)
+c(path_str, path_str2) %<-% get_both_bezier_strings(M2)
+
+
+append_leaf <- function(doc, path_str, path_str2) {
+  doc$append(
+    stag$path(
+      d = path_str,
+      fill="green",
+      fill_opacity="1"
+    ),
+    stag$path(
+      d = path_str2,
+      fill="darkgreen",
+      fill_opacity="1"
+    )
   )
-)
+}
+append_leaf(doc, path_str, path_str2)
+(seq(0, 360, by = 30) / 90 * pi / 2) %>%
+  map(~rotate_bezier_df(bezier_df, alpha = .x, xrot = 100, yrot = 100)) %>%
+  map(get_both_bezier_strings) %>%
+  walk(~append_leaf(doc, .x[[1]], .x[[2]]))
+
+
 doc$show()
