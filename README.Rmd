@@ -20,7 +20,9 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/benjaminileaves)](https://CRAN.R-project.org/package=benjaminileaves)
 <!-- badges: end -->
 
-The goal of benjaminileaves is to ...
+The goal of this package is to generate shapes in the form of ficus benjamina leaves ([weeping fig](https://en.wikipedia.org/wiki/Ficus_benjamina))
+with bezier curves. To demonstrate it we'll first load some packages:
+
 
 ## Installation
 
@@ -35,8 +37,6 @@ remotes::install_github("urswilke/benjaminileaves")
 
 ## Generate benjamini leaves with bezier curves
 
-This package is just to generate shapes in the form of ficus benjamina leaves
-with bezier curves. To demonstrate we'll first load some packages:
 
 ```{r loadlibs, message=FALSE}
 library(benjaminileaves)

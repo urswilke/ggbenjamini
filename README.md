@@ -11,7 +11,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/benjaminileaves)](https://CRAN.R-project.org/package=benjaminileaves)
 <!-- badges: end -->
 
-The goal of benjaminileaves is to …
+The goal of this package is to generate shapes in the form of ficus
+benjamina leaves ([weeping
+fig](https://en.wikipedia.org/wiki/Ficus_benjamina)) with bezier curves.
+To demonstrate it we’ll first load some packages:
 
 ## Installation
 
@@ -26,10 +29,6 @@ remotes::install_github("urswilke/benjaminileaves")
 ```
 
 ## Generate benjamini leaves with bezier curves
-
-This package is just to generate shapes in the form of ficus benjamina
-leaves with bezier curves. To demonstrate we’ll first load some
-packages:
 
 ``` r
 library(benjaminileaves)
@@ -59,10 +58,10 @@ df
 #>  4 1        24  31  
 #>  5 2        24  31  
 #>  6 2        29  30.7
-#>  7 2        34  37.5
-#>  8 2        36  38.1
-#>  9 3        36  38.1
-#> 10 3        38  38.6
+#>  7 2        34  37.8
+#>  8 2        36  38.4
+#>  9 3        36  38.4
+#> 10 3        38  38.9
 #> # … with 22 more rows
 ```
 
