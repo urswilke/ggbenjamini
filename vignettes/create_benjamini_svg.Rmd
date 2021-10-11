@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+Let's have a look how the benjamini leaves can be integrated in svg files. First we'll load some libraries.
+
 ```{r setup, message=FALSE}
 library(benjaminileaves)
 library(dplyr)
@@ -24,6 +26,14 @@ library(minisvg)
 
 set.seed(123)
 ```
+
+We'll then create a svg document  object:
+```{r}
+doc <- SVGDocument$new(width = 750, height = 750)
+
+```
+
+Next we'll define some helper functions to define the "d" element of [svg path strings](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
 
 ```{r}
 get_svg_bezier_string <- function(bezier_df) {
@@ -44,14 +54,11 @@ get_both_bezier_strings <- function(bezier_df) {
     get_svg_bezier_string()
   list(path_str, path_str2)
 }
+```
 
+This is another helper function to append pathes to the svg:
 
-
-
-# use root coordinates of the leaf of x = 30  y = 50:
-bezier_df <- benjamini_leaf(gen_benjamini_points(30, 50))
-
-
+```{r}
 append_leaf <- function(doc, path_str, path_str2) {
   doc$append(
     stag$path(
@@ -66,7 +73,12 @@ append_leaf <- function(doc, path_str, path_str2) {
     )
   )
 }
+# For one single leaf, 
 # append_leaf(doc, path_str, path_str2)
+```
+
+In order to have some more realistic texture, we'll define gradients for the leaves:
+```{r}
 g3 <- stag$radialGradient(
   id = "RadialGradient3", cx="0.35", cy="0.63", r="0.7",
   stag$stop(offset = "0%", stop_color = "#00FF00"),
@@ -77,22 +89,33 @@ g4 <- stag$radialGradient(
   stag$stop(offset = "0%", stop_color = "#40DD40"),
   stag$stop(offset = "100%", stop_color = "#208020")
 )
+```
 
-doc <- SVGDocument$new(width = 750, height = 750)
-
+...and append them to the document:
+```{r}
 doc$append(g3, g4)
-
-
-(seq(0, 330, by = 30) / 90 * pi / 2) %>%
-    map(~benjamini_leaf(omega = .x, xrot = 75, yrot = 75) %>% mutate_at(c("x", "y"), ~ . * 5)) %>%
-  map(get_both_bezier_strings) %>%
-  walk(~append_leaf(doc, .x[[1]], .x[[2]]))
 ```
 
 
+Now we can finally call our `benjamini_leaf()` function for multiple rotation angles
+
+```{r}
+rotation_angles <- (seq(0, 330, by = 30) / 90 * pi / 2)
+rotation_angles %>%
+    map(
+      ~ benjamini_leaf(omega = .x, xrot = 75, yrot = 75) %>% 
+        # we'll increase the size of the leaves:
+        mutate_at(c("x", "y"), ~ . * 5)) %>%
+  # we'll generate the svg pathes of the 2 halves of each leaf:
+  map(get_both_bezier_strings) %>%
+  # and append all them to the svg object:
+  walk(~append_leaf(doc, .x[[1]], .x[[2]]))
+```
+
+Et voilà
+
 ```{r, eval=FALSE}
 doc$show()
-
 ```
 
 ```{r, echo=FALSE}
