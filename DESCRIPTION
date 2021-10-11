@@ -1,12 +1,12 @@
 Package: benjaminileaves
-Title: What the Package Does (One Line, Title Case)
+Title: Generate ficus benjamina leaf shapes with bezier curves
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Urs",
            family = "Wilke",
            role = c("aut", "cre"),
            email = "urs.wilke@gmail.com")
-Description: What the package does (one paragraph).
+Description: This package can be used to generate shapes in the form of ficus benjamina (weeping fig) leaves with bezier curves. The main output of the package is a dataframe containing all the information of these bezier curves.
 License: MIT + file LICENSE
 Suggests: 
     knitr,
