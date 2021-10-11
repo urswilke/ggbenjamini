@@ -34,23 +34,52 @@ install.packages("benjaminileaves")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r loadlibs}
 library(benjaminileaves)
-## basic example code
+library(purrr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
-summary(cars)
+```{r plotbenjamini}
+l_points <- expand_grid(
+  x = seq(0, 200, 50),
+  y = seq(30, 120, 30)
+) %>%
+  transpose() %>%
+  map(~gen_benjamini_points(.x$x, .x$y))
+l_slopes <-
+  1:20 %>%
+  map(~gen_benjamini_slopes())
+
+dfb <- map2_dfr(
+  l_points,
+  l_slopes,
+  get_bezier_df,
+  .id = "leaf"
+) %>%
+  unite(i, i, leaf)
+dfbr <- map2_dfr(
+  l_points %>% map(rev_points),
+  l_slopes %>% map(~.x %>% mutate(y = -y)),
+  get_bezier_df,
+  .id = "leaf"
+) %>%
+  unite(i, i, leaf) %>%
+  mutate(i = paste0(i, "r"))
+
+bezier_df <- bind_rows(
+  dfb,
+  dfbr
+)
+
+p <- ggplot(bezier_df) +
+  ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
+  geom_point(data = l_points %>% bind_rows(), aes(x = x, y = y), color = "red") +
+  coord_equal()
+p
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

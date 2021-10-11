@@ -1,3 +1,18 @@
+#' Title
+#'
+#' @param x1
+#' @param y1
+#' @param dx21
+#' @param dy21
+#' @param dx32
+#' @param dy32
+#' @param dx43
+#' @param dy43
+#'
+#' @return
+#' @export
+#'
+#' @examples
 gen_benjamini_points <- function(
   x1 = 10,
   y1 = 40,
@@ -21,6 +36,21 @@ gen_benjamini_points <- function(
   )
 }
 
+#' Title
+#'
+#' @param sx1
+#' @param sx2
+#' @param sx3
+#' @param sx4
+#' @param sy1
+#' @param sy2
+#' @param sy3
+#' @param sy4
+#'
+#' @return
+#' @export
+#'
+#' @examples
 gen_benjamini_slopes <- function(
   sx1 = sample(1:3, 1),
   sx2 = sample(4:6, 1),
@@ -37,6 +67,17 @@ gen_benjamini_slopes <- function(
   )
 }
 
+#' Title
+#'
+#' @param sx1
+#' @param sx2
+#' @param sy1
+#' @param sy2
+#'
+#' @return
+#' @export
+#'
+#' @examples
 gen_middle_line_slopes <- function(
   sx1 = sample(-5:-15, 1),
   sx2 = sample(-5:-15, 1),
@@ -81,6 +122,15 @@ gen_middle_line_points <- function(points_df) {
 }
 
 
+#' Title
+#'
+#' @param points_df
+#' @param slopes_df
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_bezier_df <- function(points_df, slopes_df) {
   slopes_middle_df <- gen_middle_line_slopes()
 
@@ -91,6 +141,14 @@ get_bezier_df <- function(points_df, slopes_df) {
 }
 
 
+#' Title
+#'
+#' @param points_df
+#'
+#' @return
+#' @export
+#'
+#' @examples
 rev_points <- function(points_df) {
   points_df_rev <- points_df
   points_df_rev$y[-1] <- - points_df_rev$y[-1] + points_df_rev$y[1] + points_df_rev$y[1]
