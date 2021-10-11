@@ -36,3 +36,64 @@ gen_benjamini_slopes <- function(
     y = c(sy1, sy2, sy3, sy4)
   )
 }
+
+gen_middle_line_slopes <- function(
+  sx1 = sample(-5:-15, 1),
+  sx2 = sample(-5:-15, 1),
+  sy1 = runif(1, -1, 1),
+  sy2 = runif(1, -1, 1)
+)
+  {
+  tibble(
+    x = c(sx1, sx2),
+    y = c(sy1, sy2)
+  )
+}
+
+#' Title
+#'
+#' @param i
+#' @param points_df
+#' @param slopes_df
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' set.seed(123)
+#' points_df <- gen_benjamini_points()
+#' slopes_df <- gen_benjamini_slopes()
+#' get_one_bezier(1, points_df, slopes_df)
+get_one_bezier <- function(i, points_df, slopes_df) {
+  bind_rows(
+    points_df %>% slice(i),
+    slopes_df %>% slice(i) + points_df %>% slice(i),
+    -slopes_df %>% slice(i + 1) + points_df %>% slice(i + 1),
+    points_df %>% slice(i + 1)
+  )
+}
+
+gen_middle_line_points <- function(points_df) {
+  bind_rows(
+    points_df %>% slice_tail(),
+    points_df %>% slice_head()
+  )
+}
+
+
+get_bezier_df <- function(points_df, slopes_df) {
+  slopes_middle_df <- gen_middle_line_slopes()
+
+  points_middle_df <- gen_middle_line_points(points_df)
+  middle_line_df <- get_one_bezier(1, points_middle_df, slopes_middle_df)
+  1:3 %>% map_dfr(~get_one_bezier(.x, points_df, slopes_df), .id = "i") %>%
+    bind_rows(middle_line_df %>% mutate(i = "4"))
+}
+
+
+rev_points <- function(points_df) {
+  points_df_rev <- points_df
+  points_df_rev$y[-1] <- - points_df_rev$y[-1] + points_df_rev$y[1] + points_df_rev$y[1]
+  points_df_rev
+}
+

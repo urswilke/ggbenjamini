@@ -2,51 +2,52 @@ library(tidyverse)
 library(ggforce)
 library(minisvg)
 library(zeallot)
+source("R/generate_data.R")
+# points_df <- tibble(
+#   x = c(10, 30, 40, 45),
+#   y = c(40, 30, 39, 40)
+# )
+# slopes_df <-
+#   tibble(
+#     x = c(4, 5, 3, 0),
+#     y = c(-10, 2, 1,  1)
+#   )
 
-points_df <- tibble(
-  x = c(10, 30, 40, 45),
-  y = c(40, 30, 39, 40)
-)
-slopes_df <-
-  tibble(
-    x = c(4, 5, 3, 0),
-    y = c(-10, 2, 1,  1)
-  )
 
-get_one_bezier <- function(i, points_df, slopes_df) {
-  bind_rows(
-    points_df %>% slice(i),
-    slopes_df %>% slice(i) + points_df %>% slice(i),
-    -slopes_df %>% slice(i + 1) + points_df %>% slice(i + 1),
-    points_df %>% slice(i + 1)
-  )
-}
-get_bezier_df <- function(points_df, slopes_df) {
-  slopes_middle_df <- tibble(
-    x = c(-10, -10),
-    y = c(-1, 1)
-  )
+l_points <- expand_grid(
+  x = seq(0, 200, 50),
+  y = seq(30, 120, 30)
+) %>%
+  transpose() %>%
+  map(~gen_benjamini_points(.x$x, .x$y))
+l_slopes <-
+  1:20 %>%
+  map(~gen_benjamini_slopes())
 
-  points_middle_df <- bind_rows(
-      points_df %>% slice_tail(),
-      points_df %>% slice_head()
-    )
-  middle_line_df <- get_one_bezier(1, points_middle_df, slopes_middle_df)
-  1:3 %>% map_dfr(~get_one_bezier(.x, points_df, slopes_df), .id = "i") %>%
-    bind_rows(middle_line_df %>% mutate(i = "4"))
-}
-points_df_rev <- points_df
-points_df_rev$y[-1] <- - points_df_rev$y[-1] + points_df_rev$y[1] + points_df_rev$y[1]
+dfb <- map2_dfr(
+  l_points,
+  l_slopes,
+  get_bezier_df,
+  .id = "leaf"
+) %>%
+  unite(i, i, leaf)
+dfbr <- map2_dfr(
+  l_points %>% map(rev_points),
+  l_slopes %>% map(~.x %>% mutate(y = -y)),
+  get_bezier_df,
+  .id = "leaf"
+) %>%
+  unite(i, i, leaf) %>%
+  mutate(i = paste0(i, "r"))
 
 bezier_df <- bind_rows(
-  get_bezier_df(points_df, slopes_df),
-  get_bezier_df(points_df_rev, slopes_df %>% mutate(y = -y)) %>% mutate(i = paste0(i, "r"))
+  dfb,
+  dfbr
 )
-
-
 
 p <- ggplot(bezier_df) +
   ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
+  geom_point(data = l_points %>% bind_rows(), aes(x = x, y = y), color = "red") +
   coord_equal()
 p
 
@@ -125,7 +126,7 @@ doc$append(g3, g4)
 
 
 (seq(0, 360, by = 15) / 90 * pi / 2) %>%
-  map(~rotate_bezier_df(bezier_df, alpha = .x, xrot = 100, yrot = 100)) %>%
+  map(~rotate_bezier_df(bezier_df %>% filter(str_detect(i, "[1-4]_1r?$")), alpha = .x, xrot = 100, yrot = 100)) %>%
   map(get_both_bezier_strings) %>%
   walk(~append_leaf(doc, .x[[1]], .x[[2]]))
 
