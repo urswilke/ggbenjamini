@@ -14,7 +14,7 @@ gen_benjamini_points <- function(
   dx21 = sample(12:20, 1),
   dy21 = sample(-4:-10, 1),
   dx32 = sample(10:18, 1),
-  dy32 = stats::runif(1, 0.88 * (-dy21 - 1), 0.92 * (-dy21 - 1)),
+  dy32 = stats::runif(1, 0.92 * (-dy21 - 1), 0.95 * (-dy21 - 1)),
   dx43 = sample(4:6, 1),
   dy43 = y1 + dy21 + dy32
 ) {
