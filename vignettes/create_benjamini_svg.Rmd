@@ -49,7 +49,7 @@ get_both_bezier_strings <- function(bezier_df) {
 
 
 # use root coordinates of the leaf of x = 30  y = 50:
-bezier_df <- get_bezier_df(gen_benjamini_points(30, 50))
+bezier_df <- benjamini_leaf(gen_benjamini_points(30, 50))
 
 
 append_leaf <- function(doc, path_str, path_str2) {
@@ -84,7 +84,7 @@ doc$append(g3, g4)
 
 
 (seq(0, 330, by = 30) / 90 * pi / 2) %>%
-    map(~get_bezier_df(omega = .x, xrot = 75, yrot = 75)) %>%
+    map(~benjamini_leaf(omega = .x, xrot = 75, yrot = 75)) %>%
   map(get_both_bezier_strings) %>%
   walk(~append_leaf(doc, .x[[1]], .x[[2]]))
 ```

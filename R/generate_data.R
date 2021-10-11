@@ -126,8 +126,8 @@ gen_middle_line_points <- function(points_df) {
 #' @export
 #' @importFrom rlang .data
 #' @examples
-#' get_bezier_df()
-get_bezier_df <- function(
+#' benjamini_leaf()
+benjamini_leaf <- function(
   points_df = gen_benjamini_points(),
   slopes_df = gen_benjamini_slopes(),
   slopes_middle_df = gen_middle_line_slopes(),
