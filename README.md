@@ -129,7 +129,7 @@ ggplot(dfb) +
   ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
   # geom_point(data = l_points %>% bind_rows(), aes(x = x, y = y), color = "red") +
   coord_equal() +
-  theme_bw()
+  theme_minimal()
 ```
 
 <img src="man/figures/README-plotlotsofbenjamini-1.png" width="100%" />
