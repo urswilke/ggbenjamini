@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_data.R
 \name{get_one_bezier}
 \alias{get_one_bezier}
-\title{Title}
+\title{Generate a dataframe of one bezier curve}
 \usage{
 get_one_bezier(i, points_df, slopes_df)
 }
@@ -19,7 +19,7 @@ example).}
 
 }
 \description{
-Title
+Generate a dataframe of one bezier curve
 }
 \examples{
 set.seed(123)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_data.R
 \name{gen_benjamini_slopes}
 \alias{gen_benjamini_slopes}
-\title{Title}
+\title{Generate bezier slopes coordinates}
 \usage{
 gen_benjamini_slopes(
   sx1 = sample(1:3, 1),
@@ -24,7 +24,7 @@ gen_benjamini_slopes(
 dataframe with sx1-4 in the x variable and sy1-4 in the y variable
 }
 \description{
-Title
+Generate bezier slopes coordinates
 }
 \examples{
 gen_benjamini_slopes()

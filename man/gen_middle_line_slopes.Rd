@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_data.R
 \name{gen_middle_line_slopes}
 \alias{gen_middle_line_slopes}
-\title{Title}
+\title{Generate bezier slopes of the line in the middle of the leaf}
 \usage{
 gen_middle_line_slopes(
   sx1 = sample(-5:-15, 1),
@@ -18,7 +18,7 @@ gen_middle_line_slopes(
 
 }
 \description{
-Title
+Generate bezier slopes of the line in the middle of the leaf
 }
 \examples{
 gen_middle_line_slopes()

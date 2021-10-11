@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_data.R
 \name{get_bezier_df}
 \alias{get_bezier_df}
-\title{Title}
+\title{Generate bezier curve coordinates of a benjamini leaf}
 \usage{
 get_bezier_df(
   points_df = gen_benjamini_points(),
@@ -35,7 +35,7 @@ example).}
 
 }
 \description{
-Title
+Generate bezier curve coordinates of a benjamini leaf
 }
 \examples{
 get_bezier_df()

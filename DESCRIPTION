@@ -25,4 +25,11 @@ Imports:
     purrr,
     tidyr,
     ggforce,
-    magrittr
+    magrittr,
+    tibble,
+    rlang,
+    zeallot,
+    rsvg,
+    minisvg
+Remotes:
+    coolbutuseless/minisvg

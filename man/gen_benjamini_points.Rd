@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_data.R
 \name{gen_benjamini_points}
 \alias{gen_benjamini_points}
-\title{Title}
+\title{Generate bezier end points}
 \usage{
 gen_benjamini_points(
   x1 = 10,
@@ -24,7 +24,7 @@ gen_benjamini_points(
 tibble with absolute coordinates
 }
 \description{
-Title
+Generate bezier end points
 }
 \examples{
 gen_benjamini_points()
