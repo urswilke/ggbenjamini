@@ -42,7 +42,9 @@ get_svg_bezier_string <- function(bezier_df) {
     slice(-1) %>%
     summarise(cb = paste(x, y, sep = ",", collapse = " ")) %>%
     pull(cb) %>%
-    paste("C", ., collapse = " ") %>% paste("Z") %>% paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
+    paste("C", ., collapse = " ") %>% 
+    paste("Z") %>% 
+    paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
 }
 get_both_bezier_strings <- function(bezier_df) {
   path_str <- bezier_df %>%
@@ -102,10 +104,12 @@ Now we can finally call our `benjamini_leaf()` function for multiple rotation an
 ```{r}
 rotation_angles <- (seq(0, 330, by = 30) / 90 * pi / 2)
 rotation_angles %>%
-    map(
-      ~ benjamini_leaf(omega = .x, xrot = 75, yrot = 75) %>% 
-        # we'll increase the size of the leaves:
-        mutate_at(c("x", "y"), ~ . * 5)) %>%
+  map(
+    # We'll rotate around the point (75, 75):
+    ~ benjamini_leaf(omega = .x, xrot = 75, yrot = 75) %>% 
+      # we'll increase the size of the leaves:
+      mutate_at(c("x", "y"), ~ . * 5)
+  ) %>%
   # we'll generate the svg pathes of the 2 halves of each leaf:
   map(get_both_bezier_strings) %>%
   # and append all them to the svg object:
