@@ -4,13 +4,13 @@ library(minisvg)
 library(zeallot)
 
 points_df <- tibble(
-  x = c(10, 30, 40, 43),
-  y = c(40, 30, 38, 40)
+  x = c(10, 30, 40, 45),
+  y = c(40, 30, 39, 40)
 )
 slopes_df <-
   tibble(
-    x = c(2, 10, 3, 0),
-    y = c(-10, 2, 0,  1)
+    x = c(4, 5, 3, 0),
+    y = c(-10, 2, 1,  1)
   )
 
 get_one_bezier <- function(i, points_df, slopes_df) {
@@ -48,10 +48,9 @@ bezier_df <- bind_rows(
 p <- ggplot(bezier_df) +
   ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
   coord_equal()
-
+p
 
 # minisvg -----------------------------------------------------------------
-doc <- SVGDocument$new(width = 640, height = 640)
 
 
 get_svg_bezier_string <- function(bezier_df) {
@@ -77,7 +76,7 @@ get_both_bezier_strings <- function(bezier_df) {
 
 
 # from here: https://stackoverflow.com/a/15464420
-rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = 50, yrot = 50, precision = 0) {
+rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = 50, yrot = 50, precision = 2) {
 
   rotm <- matrix(c(cos(alpha),sin(alpha),-sin(alpha),cos(alpha)),ncol=2)
   #shift, rotate, shift back
@@ -108,17 +107,20 @@ append_leaf <- function(doc, path_str, path_str2) {
     )
   )
 }
-append_leaf(doc, path_str, path_str2)
+# append_leaf(doc, path_str, path_str2)
 g3 <- stag$radialGradient(
-  id = "RadialGradient3", cx="0.75", cy="0.63", r="0.7",
+  id = "RadialGradient3", cx="0.35", cy="0.63", r="0.7",
   stag$stop(offset = "0%", stop_color = "#00FF00"),
   stag$stop(offset = "100%", stop_color = "#008000")
 )
 g4 <- stag$radialGradient(
-  id = "RadialGradient4", cx="0.5", cy="0.73", r="0.7",
-  stag$stop(offset = "0%", stop_color = "#40FF40"),
-  stag$stop(offset = "100%", stop_color = "#408040")
+  id = "RadialGradient4", cx="0.5", cy="0.5", r="0.5",
+  stag$stop(offset = "0%", stop_color = "#40DD40"),
+  stag$stop(offset = "100%", stop_color = "#208020")
 )
+
+doc <- SVGDocument$new(width = 640, height = 640)
+
 doc$append(g3, g4)
 
 
