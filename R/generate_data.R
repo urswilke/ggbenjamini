@@ -49,7 +49,7 @@ gen_benjamini_slopes <- function(
   sy1 = sample(-4:-6, 1),
   sy2 = stats::runif(1, -0.5, 0.5),
   sy3 = stats::runif(1, 0.5, 1.5),
-  sy4 = stats::runif(1, 0.5, 1.5)
+  sy4 = stats::runif(1, 0.2, 0.7)
 ) {
   tibble::tibble(
     x = c(sx1, sx2, sx3, sx4),
