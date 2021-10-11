@@ -7,16 +7,19 @@
 gen_middle_line_slopes(
   sx1 = sample(-5:-15, 1),
   sx2 = sample(-5:-15, 1),
-  sy1 = runif(1, -1, 1),
-  sy2 = runif(1, -1, 1)
+  sy1 = stats::runif(1, -1, 1),
+  sy2 = stats::runif(1, -1, 1)
 )
 }
 \arguments{
-\item{sy2}{}
+\item{sx1, sx2, sy1, sy2}{x & y coordinates of the middle line bezier curve of the benjamini leaf}
 }
 \value{
 
 }
 \description{
 Title
+}
+\examples{
+gen_middle_line_slopes()
 }

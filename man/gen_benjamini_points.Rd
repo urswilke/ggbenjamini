@@ -10,17 +10,22 @@ gen_benjamini_points(
   dx21 = sample(12:20, 1),
   dy21 = sample(-4:-10, 1),
   dx32 = sample(10:18, 1),
-  dy32 = runif(1, 0.88 * (-dy21 - 1), 0.92 * (-dy21 - 1)),
+  dy32 = stats::runif(1, 0.88 * (-dy21 - 1), 0.92 * (-dy21 - 1)),
   dx43 = sample(4:6, 1),
   dy43 = y1 + dy21 + dy32
 )
 }
 \arguments{
-\item{dy43}{}
+\item{x1, y1}{coordinates of the leaf origin}
+
+\item{dx21, dy21, dx32, dy32, dx43, dy43}{coordinates of the other control points (relative to the origin)}
 }
 \value{
-
+tibble with absolute coordinates
 }
 \description{
 Title
+}
+\examples{
+gen_benjamini_points()
 }

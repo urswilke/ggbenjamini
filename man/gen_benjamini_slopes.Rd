@@ -8,19 +8,24 @@ gen_benjamini_slopes(
   sx1 = sample(1:3, 1),
   sx2 = sample(4:6, 1),
   sx3 = sample(2:4, 1),
-  sx4 = runif(1, 0, 0.2),
+  sx4 = stats::runif(1, 0, 0.2),
   sy1 = sample(-4:-6, 1),
-  sy2 = runif(1, -0.5, 0.5),
-  sy3 = runif(1, 0.5, 1.5),
-  sy4 = runif(1, 0.5, 1.5)
+  sy2 = stats::runif(1, -0.5, 0.5),
+  sy3 = stats::runif(1, 0.5, 1.5),
+  sy4 = stats::runif(1, 0.5, 1.5)
 )
 }
 \arguments{
-\item{sy4}{}
+\item{sx1, sx2, sx3, sx4}{x coordinates of the slopes of the bezier curves of the benjamini leaf}
+
+\item{sy1, sy2, sy3, sy4}{y coordinates of the slopes of the bezier curves of the benjamini leaf}
 }
 \value{
-
+dataframe with sx1-4 in the x variable and sy1-4 in the y variable
 }
 \description{
 Title
+}
+\examples{
+gen_benjamini_slopes()
 }

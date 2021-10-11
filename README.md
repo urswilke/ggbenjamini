@@ -48,12 +48,12 @@ You can include R chunks like so:
 ``` r
 l_points <- expand_grid(
   x = seq(0, 200, 50),
-  y = seq(30, 120, 30)
+  y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
   map(~gen_benjamini_points(.x$x, .x$y))
 l_slopes <-
-  1:20 %>%
+  1:25 %>%
   map(~gen_benjamini_slopes())
 
 dfb <- map2_dfr(
@@ -63,25 +63,12 @@ dfb <- map2_dfr(
   .id = "leaf"
 ) %>%
   unite(i, i, leaf)
-dfbr <- map2_dfr(
-  l_points %>% map(rev_points),
-  l_slopes %>% map(~.x %>% mutate(y = -y)),
-  get_bezier_df,
-  .id = "leaf"
-) %>%
-  unite(i, i, leaf) %>%
-  mutate(i = paste0(i, "r"))
 
-bezier_df <- bind_rows(
-  dfb,
-  dfbr
-)
-
-p <- ggplot(bezier_df) +
+ggplot(dfb) +
   ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
   geom_point(data = l_points %>% bind_rows(), aes(x = x, y = y), color = "red") +
-  coord_equal()
-p
+  coord_equal() +
+  theme_bw()
 ```
 
 <img src="man/figures/README-plotbenjamini-1.png" width="100%" />

@@ -1,0 +1,103 @@
+---
+title: "Create an svg file with benjamini leaves"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create an svg file with benjamini leaves}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE}
+library(benjaminileaves)
+library(dplyr)
+library(purrr)
+library(zeallot)
+library(stringr)
+library(minisvg)
+
+set.seed(123)
+```
+
+```{r}
+get_svg_bezier_string <- function(bezier_df) {
+  bezier_df %>%
+    group_by(i) %>%
+    slice(-1) %>%
+    summarise(cb = paste(x, y, sep = ",", collapse = " ")) %>%
+    pull(cb) %>%
+    paste("C", ., collapse = " ") %>% paste("Z") %>% paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
+}
+get_both_bezier_strings <- function(bezier_df) {
+  path_str <- bezier_df %>%
+    filter(!str_detect(i, "r")) %>%
+    get_svg_bezier_string()
+
+  path_str2 <- bezier_df %>%
+    filter(str_detect(i, "r")) %>%
+    get_svg_bezier_string()
+  list(path_str, path_str2)
+}
+
+
+
+
+# use root coordinates of the leaf of x = 30  y = 50:
+bezier_df <- get_bezier_df(gen_benjamini_points(30, 50))
+
+
+append_leaf <- function(doc, path_str, path_str2) {
+  doc$append(
+    stag$path(
+      d = path_str,
+      fill="url(#RadialGradient3)",
+      fill_opacity="1"
+    ),
+    stag$path(
+      d = path_str2,
+      fill="url(#RadialGradient4)",
+      fill_opacity="1"
+    )
+  )
+}
+# append_leaf(doc, path_str, path_str2)
+g3 <- stag$radialGradient(
+  id = "RadialGradient3", cx="0.35", cy="0.63", r="0.7",
+  stag$stop(offset = "0%", stop_color = "#00FF00"),
+  stag$stop(offset = "100%", stop_color = "#008000")
+)
+g4 <- stag$radialGradient(
+  id = "RadialGradient4", cx="0.5", cy="0.5", r="0.5",
+  stag$stop(offset = "0%", stop_color = "#40DD40"),
+  stag$stop(offset = "100%", stop_color = "#208020")
+)
+
+doc <- SVGDocument$new(width = 200, height = 200)
+
+doc$append(g3, g4)
+
+
+(seq(0, 330, by = 30) / 90 * pi / 2) %>%
+    map(~get_bezier_df(omega = .x, xrot = 75, yrot = 75)) %>%
+  map(get_both_bezier_strings) %>%
+  walk(~append_leaf(doc, .x[[1]], .x[[2]]))
+```
+
+
+```{r, eval=FALSE}
+doc$show()
+
+```
+
+```{r, echo=FALSE}
+doc$save("test.svg")
+rsvg::rsvg_png("test.svg", "test.png")
+knitr::include_graphics("test.png")
+```
+
