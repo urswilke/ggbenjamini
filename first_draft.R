@@ -77,13 +77,14 @@ get_both_bezier_strings <- function(bezier_df) {
 
 
 # from here: https://stackoverflow.com/a/15464420
-rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = 50, yrot = 50) {
+rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = 50, yrot = 50, precision = 0) {
 
   rotm <- matrix(c(cos(alpha),sin(alpha),-sin(alpha),cos(alpha)),ncol=2)
   #shift, rotate, shift back
 
   M <- bezier_df %>% select(-i) %>% as.matrix()
   t(rotm %*% (t(M) - c(xrot, yrot)) + c(xrot, yrot)) %>%
+    round(precision) %>%
     as_tibble() %>%
     set_names(c("x", "y")) %>%
     mutate(i = bezier_df$i)
