@@ -78,13 +78,13 @@ g4 <- stag$radialGradient(
   stag$stop(offset = "100%", stop_color = "#208020")
 )
 
-doc <- SVGDocument$new(width = 200, height = 200)
+doc <- SVGDocument$new(width = 750, height = 750)
 
 doc$append(g3, g4)
 
 
 (seq(0, 330, by = 30) / 90 * pi / 2) %>%
-    map(~benjamini_leaf(omega = .x, xrot = 75, yrot = 75)) %>%
+    map(~benjamini_leaf(omega = .x, xrot = 75, yrot = 75) %>% mutate_at(c("x", "y"), ~ . * 5)) %>%
   map(get_both_bezier_strings) %>%
   walk(~append_leaf(doc, .x[[1]], .x[[2]]))
 ```
