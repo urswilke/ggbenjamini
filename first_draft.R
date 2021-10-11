@@ -98,18 +98,31 @@ append_leaf <- function(doc, path_str, path_str2) {
   doc$append(
     stag$path(
       d = path_str,
-      fill="green",
+      fill="url(#RadialGradient3)",
       fill_opacity="1"
     ),
     stag$path(
       d = path_str2,
-      fill="darkgreen",
+      fill="url(#RadialGradient4)",
       fill_opacity="1"
     )
   )
 }
 append_leaf(doc, path_str, path_str2)
-(seq(0, 360, by = 30) / 90 * pi / 2) %>%
+g3 <- stag$radialGradient(
+  id = "RadialGradient3", cx="0.75", cy="0.63", r="0.7",
+  stag$stop(offset = "0%", stop_color = "#00FF00"),
+  stag$stop(offset = "100%", stop_color = "#008000")
+)
+g4 <- stag$radialGradient(
+  id = "RadialGradient4", cx="0.5", cy="0.73", r="0.7",
+  stag$stop(offset = "0%", stop_color = "#40FF40"),
+  stag$stop(offset = "100%", stop_color = "#408040")
+)
+doc$append(g3, g4)
+
+
+(seq(0, 360, by = 15) / 90 * pi / 2) %>%
   map(~rotate_bezier_df(bezier_df, alpha = .x, xrot = 100, yrot = 100)) %>%
   map(get_both_bezier_strings) %>%
   walk(~append_leaf(doc, .x[[1]], .x[[2]]))
