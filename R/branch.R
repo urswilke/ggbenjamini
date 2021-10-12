@@ -13,10 +13,10 @@
 #' benjamini_branch() %>%
 #'   ggplot2::ggplot(ggplot2::aes(x = x1, y = y1, xend = x2, yend = y2)) +
 #'   ggplot2::geom_segment() +
-#'   ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
+#'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i)) +
 #'   ggplot2::coord_equal()
 benjamini_branch <- function(
-  df_branch = tibble(x1 = 0, x2 = 100, y1 = 40, y2 = 40),
+  df_branch = tibble::tibble(x1 = 0, x2 = 100, y1 = 40, y2 = 40),
   leaf_dist_approx = 20, leaf_angle = 45,
   first_dir = sample(0:1, 1),
   stalk_len = 15
@@ -57,7 +57,7 @@ benjamini_branch <- function(
   yends[pos_positions] <- y_leaves[pos_positions] + dy_stalk_pos
   yends[neg_positions] <- y_leaves[neg_positions] + dy_stalk_neg
 
-  leaf_stalks <- tibble(
+  leaf_stalks <- tibble::tibble(
     x1 = x_leaves,
     y1 = y_leaves,
     x2 = xends,
@@ -65,21 +65,21 @@ benjamini_branch <- function(
     type = "leaf_stalk"
   )
 
-  l_leaf_bases <- leaf_stalks %>% select(x1 = x2, y1 = y2) %>% transpose()
+  l_leaf_bases <- leaf_stalks %>% dplyr::select(x1 = x2, y1 = y2) %>% purrr::transpose()
   leaf_angles <- vector("numeric", n_leaves)
   leaf_angles[pos_positions] <- stalk_angle_pos
   leaf_angles[neg_positions] <- stalk_angle_neg
 
-  leaves <- map2_dfr(
+  leaves <- purrr::map2_dfr(
     l_leaf_bases,
     leaf_angles,
     ~benjamini_leaf(gen_benjamini_points(.x$x, .x$y), omega = .y),
     .id = "leaf"
   ) %>%
-    mutate(type = "leaf_bezier") %>%
-    unite(i, i, leaf)
+    dplyr::mutate(type = "leaf_bezier") %>%
+    tidyr::unite("i", .data$i, .data$leaf)
 
-  bind_rows(
+  dplyr::bind_rows(
     df_branch,
     leaf_stalks,
     leaves

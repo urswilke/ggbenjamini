@@ -5,7 +5,7 @@
 \title{Title}
 \usage{
 benjamini_branch(
-  df_branch = tibble(x1 = 0, x2 = 100, y1 = 40, y2 = 40),
+  df_branch = tibble::tibble(x1 = 0, x2 = 100, y1 = 40, y2 = 40),
   leaf_dist_approx = 20,
   leaf_angle = 45,
   first_dir = sample(0:1, 1),
@@ -33,6 +33,6 @@ Title
 benjamini_branch() \%>\%
   ggplot2::ggplot(ggplot2::aes(x = x1, y = y1, xend = x2, yend = y2)) +
   ggplot2::geom_segment() +
-  ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i)) +
   ggplot2::coord_equal()
 }
