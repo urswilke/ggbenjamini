@@ -24,7 +24,7 @@ benjamini_branch <- function(
   x1 <- df_branch$x1
   x2 <- df_branch$x2
   y1 <- df_branch$y1
-  y2 <- df_branch$y1
+  y2 <- df_branch$y2
 
   dx <- x2 - x1
   dy <- y2 - y1
