@@ -99,10 +99,14 @@ gen_middle_line_slopes <- function(
 #' ggplot2::ggplot(df_bezier, ggplot2::aes(x = x, y = y)) + ggforce::geom_bezier()
 get_one_bezier <- function(i, points_df, slopes_df) {
   dplyr::bind_rows(
-    points_df %>% dplyr::slice(i),
-    slopes_df %>% dplyr::slice(i) + points_df %>% dplyr::slice(i),
-    -slopes_df %>% dplyr::slice(i + 1) + points_df %>% dplyr::slice(i + 1),
-    points_df %>% dplyr::slice(i + 1)
+    # points_df %>% dplyr::slice(i),
+    points_df[i, ],
+    # slopes_df %>% dplyr::slice(i) + points_df %>% dplyr::slice(i),
+    slopes_df[i, ] + points_df[i, ],
+    # -slopes_df %>% dplyr::slice(i + 1) + points_df %>% dplyr::slice(i + 1),
+    -slopes_df[i + 1, ] + points_df[i + 1, ],
+    # points_df %>% dplyr::slice(i + 1)
+    points_df[i + 1, ]
   )
 }
 
