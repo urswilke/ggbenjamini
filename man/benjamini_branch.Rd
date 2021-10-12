@@ -5,7 +5,7 @@
 \title{Generate a branch of benjamini leaves}
 \usage{
 benjamini_branch(
-  df_branch = tibble::tibble(x1 = 0, x2 = 100, y1 = 40, y2 = 40),
+  df_bezier = tibble::tibble(x = c(70, 84, 126, 168), y = c(280, 245, 217, 217)),
   leaf_dist_approx = 20,
   leaf_angle = 45,
   first_dir = sample(0:1, 1),
@@ -13,8 +13,6 @@ benjamini_branch(
 )
 }
 \arguments{
-\item{df_branch}{dataframe containing the x & y coordinates of a branch}
-
 \item{leaf_dist_approx}{approximate distance of two leaves}
 
 \item{leaf_angle}{angle between the leaf stalks and the branch}
@@ -22,6 +20,8 @@ benjamini_branch(
 \item{first_dir}{direction of the first leaf in the branch (0 for right; 1 for left)}
 
 \item{stalk_len}{length of a stalk}
+
+\item{df_branch}{dataframe containing the x & y coordinates of a branch}
 }
 \value{
 A dataframe conaining the data for leaves on a branch (see example).
