@@ -172,7 +172,8 @@ rev_points <- function(points_df) {
 # from here: https://stackoverflow.com/a/15464420
 rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = bezier_df$x[1], yrot = bezier_df$y[1], precision = 2) {
 
-  rotm <- matrix(c(cos(alpha),sin(alpha),-sin(alpha),cos(alpha)),ncol=2)
+  alpha_rad <- alpha / 90 * pi / 2
+  rotm <- matrix(c(cos(alpha_rad),sin(alpha_rad),-sin(alpha_rad),cos(alpha_rad)),ncol=2)
   #shift, rotate, shift back
 
   M <- bezier_df %>% dplyr::select(-.data$i) %>% as.matrix()
