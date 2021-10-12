@@ -31,7 +31,8 @@ Imports:
     ggforce,
     magrittr,
     tibble,
-    rlang
+    rlang,
+    grid
 Remotes:
     coolbutuseless/minisvg
     djnavarro/flametree
