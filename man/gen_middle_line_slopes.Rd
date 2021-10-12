@@ -15,7 +15,8 @@ gen_middle_line_slopes(
 \item{sx1, sx2, sy1, sy2}{x & y coordinates of the middle line bezier curve of the benjamini leaf}
 }
 \value{
-
+A dataframe containing the coordinates of the two control points of
+the bezier curve defining the midvein of the leaf.
 }
 \description{
 Generate bezier slopes of the line in the middle of the leaf

@@ -16,7 +16,7 @@ example).}
 example).}
 }
 \value{
-
+A dataframe containing the information for one bezier curve in the format as needed by \code{ggforce::geom_bezier}.
 }
 \description{
 Generate a dataframe of one bezier curve

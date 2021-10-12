@@ -32,11 +32,14 @@ example).}
 \item{precision}{numeric precision of the output}
 }
 \value{
-
+A dataframe conaining the data for the bezier curves of a leaf (see example).
 }
 \description{
 Generate bezier curve coordinates of a benjamini leaf
 }
 \examples{
-benjamini_leaf()
+df <- benjamini_leaf()
+df
+ggplot2::ggplot(df) +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i))
 }
