@@ -1,4 +1,4 @@
-# generated bezier dataframe still the same
+# generated bezier leaf dataframe still the same
 
     Code
       benjamini_leaf()
