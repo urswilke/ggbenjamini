@@ -1,0 +1,76 @@
+---
+title: "Create a tree with benjamini leaves"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create a tree with benjamini leaves}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(benjaminileaves)
+library(dplyr)
+library(tidyr)
+library(purrr)
+# see here: https://github.com/djnavarro/flametree/
+library(flametree)
+library(ggplot2)
+```
+
+```{r}
+ft <- flametree_grow(
+    seed = 21, 
+    trees = 1, 
+    time = 3, 
+    angle = c(-30, -15, 15,  30), 
+    split = 3
+  ) %>% 
+  mutate_at(c("coord_x", "coord_y"), ~ . * 400)
+p <- flametree_plot(ft, background = "white")
+p
+```
+
+```{r}
+df_branches <- ft %>% 
+  filter(id_time == max(id_time)) %>% 
+  group_by(id_path) %>% 
+  slice(-2) %>% 
+  mutate(temp = row_number()) %>% 
+  ungroup() %>% 
+  select(temp, id_path, x = coord_x, y = coord_y) %>% 
+  pivot_wider(names_from = temp, values_from = c(x, y), names_sep = "")
+
+df_leaves <- df_branches %>% 
+  rowwise() %>% 
+  group_split() %>%
+  map_dfr(benjamini_branch, .id = "branch") %>% 
+  unite(i, i, branch) %>%
+  drop_na(type)
+```
+
+
+```{r, fig.width=7, fig.height=7}
+p +
+  geom_segment(
+    data = df_leaves %>% drop_na(y1), 
+    aes(x = x1, y = y1, xend = x2, yend = y2), 
+    inherit.aes = FALSE,
+    color = "brown"
+  ) + 
+  ggforce::geom_bezier(
+    data = df_leaves %>% drop_na(x), 
+    aes(x = x, y = y, group = i), 
+    inherit.aes = FALSE,
+    alpha = 0.5,
+    color = "green"
+  )
+  
+```
+
