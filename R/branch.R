@@ -1,4 +1,4 @@
-#' Title
+#' Generate a branch of benjamini leaves
 #'
 #' @param df_branch dataframe containing the x & y coordinates of a branch
 #' @param leaf_dist_approx approximate distance of two leaves
@@ -6,7 +6,7 @@
 #' @param first_dir direction of the first leaf in the branch (0 for right; 1 for left)
 #' @param stalk_len length of a stalk
 #'
-#' @return
+#' @return A dataframe conaining the data for leaves on a branch (see example).
 #' @export
 #'
 #' @examples

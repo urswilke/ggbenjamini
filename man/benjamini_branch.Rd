@@ -2,7 +2,7 @@
 % Please edit documentation in R/branch.R
 \name{benjamini_branch}
 \alias{benjamini_branch}
-\title{Title}
+\title{Generate a branch of benjamini leaves}
 \usage{
 benjamini_branch(
   df_branch = tibble::tibble(x1 = 0, x2 = 100, y1 = 40, y2 = 40),
@@ -24,10 +24,10 @@ benjamini_branch(
 \item{stalk_len}{length of a stalk}
 }
 \value{
-
+A dataframe conaining the data for leaves on a branch (see example).
 }
 \description{
-Title
+Generate a branch of benjamini leaves
 }
 \examples{
 benjamini_branch() \%>\%
