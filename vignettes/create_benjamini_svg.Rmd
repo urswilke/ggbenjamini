@@ -102,7 +102,7 @@ doc$append(g3, g4)
 Now we can finally call our `benjamini_leaf()` function for multiple rotation angles
 
 ```{r}
-rotation_angles <- (seq(0, 330, by = 30) / 90 * pi / 2)
+rotation_angles <- seq(0, 330, by = 30)
 rotation_angles %>%
   map(
     # We'll rotate around the point (75, 75):
