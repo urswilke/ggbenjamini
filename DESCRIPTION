@@ -9,6 +9,10 @@ Authors@R:
 Description: This package can be used to generate shapes in the form of ficus benjamina (weeping fig) leaves with bezier curves. The main output of the package is a dataframe containing all the information of these bezier curves.
 License: MIT + file LICENSE
 Suggests: 
+    flametree,
+    zeallot,
+    rsvg,
+    minisvg,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
@@ -27,9 +31,7 @@ Imports:
     ggforce,
     magrittr,
     tibble,
-    rlang,
-    zeallot,
-    rsvg,
-    minisvg
+    rlang
 Remotes:
     coolbutuseless/minisvg
+    djnavarro/flametree
