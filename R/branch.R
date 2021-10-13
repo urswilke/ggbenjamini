@@ -80,7 +80,7 @@ benjamini_branch <- function(
   leaves <- purrr::map2_dfr(
     l_leaf_bases,
     leaf_angles,
-    ~benjamini_leaf(gen_benjamini_points(.x$x, .x$y), omega = .y + 180),
+    ~benjamini_leaf(gen_leaf_parameters(x1 = .x$x, y1 = .x$y), omega = .y + 180),
     .id = "leaf"
   ) %>%
     dplyr::mutate(type = "leaf_bezier") %>%
