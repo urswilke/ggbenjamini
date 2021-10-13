@@ -57,15 +57,15 @@ df
 #>    i         x     y
 #>    <chr> <dbl> <dbl>
 #>  1 1        10  40  
-#>  2 1        12  34  
-#>  3 1        19  31.3
+#>  2 1        12  35  
+#>  3 1        18  30.8
 #>  4 1        24  31  
 #>  5 2        24  31  
-#>  6 2        29  30.7
-#>  7 2        34  37.8
+#>  6 2        30  31.2
+#>  7 2        34  37.3
 #>  8 2        36  38.4
 #>  9 3        36  38.4
-#> 10 3        38  38.9
+#> 10 3        38  39.4
 #> # … with 22 more rows
 ```
 
@@ -125,7 +125,7 @@ dfb <- expand_grid(
     y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
-  map_dfr(~benjamini_leaf(gen_benjamini_points(.x$x, .x$y)), .id = "leaf") %>%
+  map_dfr(~benjamini_leaf(gen_leaf_parameters(.x$x, .x$y)), .id = "leaf") %>%
   unite(i, i, leaf)
 
 ggplot(dfb) +
