@@ -239,3 +239,9 @@ rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = bezier_df$x[1], yrot 
     purrr::set_names(c("x", "y")) %>%
     dplyr::mutate(i = bezier_df$i)
 }
+
+resize_leaf_params <- function(leaf_params, multiplicator) {
+  leaf_params[-c(1:2)] <- leaf_params[-c(1:2)] %>%
+    purrr::map(~.x * multiplicator)
+  leaf_params
+}

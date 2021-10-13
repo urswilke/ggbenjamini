@@ -77,10 +77,17 @@ benjamini_branch <- function(
   leaf_angles[pos_positions] <- stalk_angle_pos[pos_positions]
   leaf_angles[neg_positions] <- stalk_angle_neg[neg_positions]
 
-  leaves <- purrr::map2_dfr(
-    l_leaf_bases,
-    leaf_angles,
-    ~benjamini_leaf(gen_leaf_parameters(x1 = .x$x, y1 = .x$y), omega = .y + 180),
+  dist_multiplicator <- dpois(1:n_leaves, 4)
+  dist_multiplicator <- dist_multiplicator/max(dist_multiplicator)
+
+
+  leaves <- purrr::pmap_dfr(
+    list(
+      l_leaf_bases,
+      leaf_angles,
+      dist_multiplicator
+    ),
+    function(x, y, z) benjamini_leaf(gen_leaf_parameters(x1 = x$x, y1 = x$y) %>% resize_leaf_params(z), omega = y + 180),
     .id = "leaf"
   ) %>%
     dplyr::mutate(type = "leaf_bezier") %>%
