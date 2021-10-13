@@ -1,3 +1,33 @@
+gen_leaf_parameters <- function(
+  # starting point (absolute coordinates)
+  x1 = 10,
+  y1 = 40,
+  # distances to starting point (relative coordinates)
+  dx21 = sample(12:20, 1),
+  dy21 = sample(-4:-10, 1),
+  dx32 = sample(10:18, 1),
+  dy32 = stats::runif(1, 0.92 * (-dy21 - 1), 0.95 * (-dy21 - 1)),
+  dx43 = sample(4:6, 1),
+  dy43 = y1 + dy21 + dy32,
+  # slopes
+  sx1 = sample(1:3, 1),
+  sx2 = sample(4:6, 1),
+  sx3 = sample(2:4, 1),
+  sx4 = stats::runif(1, 0, 0.2),
+  sy1 = sample(-4:-6, 1),
+  sy2 = stats::runif(1, -0.5, 0.5),
+  sy3 = stats::runif(1, 0.5, 1.5),
+  sy4 = stats::runif(1, 0.2, 0.7),
+  # middle vein slopes:
+  smx1 = sample(-5:-15, 1),
+  smx2 = sample(-5:-15, 1),
+  smy1 = stats::runif(1, -1, 1),
+  smy2 = stats::runif(1, -1, 1)
+) {
+  tibble::lst(
+    x1, y1, dx21,  dy21, dx32, dy32, dx43, dy43, sx1, sx2, sx3, sx4, sy1, sy2, sy3, sy4, smx1, smx2, smy1, smy2)
+}
+
 #' Generate bezier end points
 #'
 #' @param x1,y1 coordinates of the leaf origin
@@ -9,15 +39,17 @@
 #' @examples
 #' gen_benjamini_points()
 gen_benjamini_points <- function(
-  x1 = 10,
-  y1 = 40,
-  dx21 = sample(12:20, 1),
-  dy21 = sample(-4:-10, 1),
-  dx32 = sample(10:18, 1),
-  dy32 = stats::runif(1, 0.92 * (-dy21 - 1), 0.95 * (-dy21 - 1)),
-  dx43 = sample(4:6, 1),
-  dy43 = y1 + dy21 + dy32
+  leaf_params
 ) {
+  x1 = leaf_params$x1
+  y1 = leaf_params$y1
+  dx21 = leaf_params$dx21
+  dy21 = leaf_params$dy21
+  dx32 = leaf_params$dx32
+  dy32 = leaf_params$dy32
+  dx43 = leaf_params$dx43
+  dy43 = leaf_params$dy43
+
   x2 <- x1 + dx21
   y2 <- y1 + dy21
   x3 <- x2 + dx32
@@ -42,15 +74,17 @@ gen_benjamini_points <- function(
 #' @examples
 #' gen_benjamini_slopes()
 gen_benjamini_slopes <- function(
-  sx1 = sample(1:3, 1),
-  sx2 = sample(4:6, 1),
-  sx3 = sample(2:4, 1),
-  sx4 = stats::runif(1, 0, 0.2),
-  sy1 = sample(-4:-6, 1),
-  sy2 = stats::runif(1, -0.5, 0.5),
-  sy3 = stats::runif(1, 0.5, 1.5),
-  sy4 = stats::runif(1, 0.2, 0.7)
+  leaf_params
 ) {
+  sx1 = leaf_params$sx1
+  sx2 = leaf_params$sx2
+  sx3 = leaf_params$sx3
+  sx4 = leaf_params$sx4
+  sy1 = leaf_params$sy1
+  sy2 = leaf_params$sy2
+  sy3 = leaf_params$sy3
+  sy4 = leaf_params$sy4
+
   tibble::tibble(
     x = c(sx1, sx2, sx3, sx4),
     y = c(sy1, sy2, sy3, sy4)
@@ -68,15 +102,16 @@ gen_benjamini_slopes <- function(
 #' @examples
 #' gen_middle_line_slopes()
 gen_middle_line_slopes <- function(
-  sx1 = sample(-5:-15, 1),
-  sx2 = sample(-5:-15, 1),
-  sy1 = stats::runif(1, -1, 1),
-  sy2 = stats::runif(1, -1, 1)
+  leaf_params
 )
   {
+  smx1 = leaf_params$smx1
+  smx2 = leaf_params$smx2
+  smy1 = leaf_params$smy1
+  smy2 = leaf_params$smy2
   tibble::tibble(
-    x = c(sx1, sx2),
-    y = c(sy1, sy2)
+    x = c(smx1, smx2),
+    y = c(smy1, smy2)
   )
 }
 
@@ -93,6 +128,7 @@ gen_middle_line_slopes <- function(
 #'
 #' @examples
 #' set.seed(123)
+#' leaf_params <- gen_leaf_parameters()
 #' points_df <- gen_benjamini_points()
 #' slopes_df <- gen_benjamini_slopes()
 #' df_bezier <- get_one_bezier(1, points_df, slopes_df)
@@ -136,11 +172,12 @@ gen_middle_line_points <- function(points_df) {
 #' ggplot2::ggplot(df) +
 #'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i))
 benjamini_leaf <- function(
-  points_df = gen_benjamini_points(),
-  slopes_df = gen_benjamini_slopes(),
-  slopes_middle_df = gen_middle_line_slopes(),
+  leaf_params = gen_leaf_parameters(),
   omega = 0, xrot = points_df$x[1], yrot = points_df$y[1], precision = 2
   ) {
+  points_df = gen_benjamini_points(leaf_params)
+  slopes_df = gen_benjamini_slopes(leaf_params)
+  slopes_middle_df = gen_middle_line_slopes(leaf_params)
   points_middle_df = gen_middle_line_points(points_df)
   middle_line_df <- get_one_bezier(1, points_middle_df, slopes_middle_df)
   upper_half <- 1:3 %>%
