@@ -13,6 +13,8 @@ benjamini_leaf(
 )
 }
 \arguments{
+\item{leaf_params}{parameter that control the leaf shape}
+
 \item{omega}{rotation angle of the leaf}
 
 \item{xrot}{rotation x coordinate}
@@ -20,8 +22,6 @@ benjamini_leaf(
 \item{yrot}{rotation y coordinate}
 
 \item{precision}{numeric precision of the output}
-
-\item{slopes_middle_df}{slopes of the bezier curve separating the leaf in the middle}
 }
 \value{
 A dataframe conaining the data for the bezier curves of a leaf (see example).

@@ -37,9 +37,9 @@ gen_leaf_parameters(
 \item{dx10, dy10, dx21, dy21, dx32, dy32, dx43, dy43}{coordinates of the other
 control points (relative to the origin)}
 
-\item{sx1, sx2, sx3, sx4}{x coordinates of the control points}
+\item{sx0, sx1, sx2, sx3, sx4}{x coordinates of the control points}
 
-\item{sy1, sy2, sy3, sy4}{y coordinates of the control points}
+\item{sy0, sy1, sy2, sy3, sy4}{y coordinates of the control points}
 
 \item{smx1, smx2, smy1, smy2}{x & y coordinates of the middle vein control points}
 }

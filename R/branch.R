@@ -16,7 +16,7 @@
 #'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i)) +
 #'   ggplot2::coord_equal()
 benjamini_branch <- function(
-  df_bezier = tibble::tibble(
+  df_branch = tibble::tibble(
     x = c(70, 84, 126, 168),
     y = c(280, 245, 217, 217)
   ),
@@ -26,7 +26,7 @@ benjamini_branch <- function(
   # Idea from flametree::flametree_grow()
   leave_size_dist = spark_weibull(shape = 1.2, scale_factor = 0.5)
 ) {
-  df_coords <- gen_bezier_coords(df_bezier)
+  df_coords <- gen_bezier_coords(df_branch)
 
   n_points <- nrow(df_coords)
   dx <- df_coords$x[-n_points] - df_coords$x[-1]
@@ -72,7 +72,7 @@ benjamini_branch <- function(
     tidyr::unite("i", .data$i, .data$leaf)
 
   dplyr::bind_rows(
-    df_bezier,
+    df_branch,
     leaves
   )
 
@@ -102,7 +102,7 @@ get_leaf_indices <- function(dx, dy, leaf_mean_dist_approx, n_points) {
 #' This function returns a function which itself returns a numerical vector of
 #' length of the number of leaves on the branch.
 #'
-#' @param n_leaves The number of leaves on the branch
+#' @param shape,scale_factor Parameters passed to `stats::dweibull()`.
 #'
 #' @return dweibull() function with n_leaves as one of the arguments
 #' @export

@@ -3,8 +3,8 @@
 #' @param x0,y0 coordinates of the leaf origin
 #' @param dx10,dy10,dx21,dy21,dx32,dy32,dx43,dy43 coordinates of the other
 #'   control points (relative to the origin)
-#' @param sx1,sx2,sx3,sx4 x coordinates of the control points
-#' @param sy1,sy2,sy3,sy4 y coordinates of the control points
+#' @param sx0,sx1,sx2,sx3,sx4 x coordinates of the control points
+#' @param sy0,sy1,sy2,sy3,sy4 y coordinates of the control points
 #' @param smx1,smx2,smy1,smy2 x & y coordinates of the middle vein control points
 #'
 #' @return named list with all parameters
@@ -177,8 +177,7 @@ gen_middle_line_points <- function(points_df) {
 
 
 #' Generate bezier curve coordinates of a benjamini leaf
-#' @inheritParams get_one_bezier
-#' @param slopes_middle_df slopes of the bezier curve separating the leaf in the middle
+#' @param leaf_params parameter that control the leaf shape
 #' @param omega rotation angle of the leaf
 #' @param xrot rotation x coordinate
 #' @param yrot rotation y coordinate

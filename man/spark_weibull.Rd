@@ -7,7 +7,7 @@
 spark_weibull(shape = 1.2, scale_factor = 0.5)
 }
 \arguments{
-\item{n_leaves}{The number of leaves on the branch}
+\item{shape, scale_factor}{Parameters passed to \code{stats::dweibull()}.}
 }
 \value{
 dweibull() function with n_leaves as one of the arguments
