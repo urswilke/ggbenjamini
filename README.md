@@ -53,20 +53,20 @@ results in a dataframe where i denotes the id of the bezier curve, and x
 ``` r
 df <- benjamini_leaf()
 df
-#> # A tibble: 32 × 3
+#> # A tibble: 36 × 3
 #>    i         x     y
 #>    <chr> <dbl> <dbl>
-#>  1 1        10  40  
-#>  2 1        12  35  
-#>  3 1        18  30.8
-#>  4 1        24  31  
-#>  5 2        24  31  
-#>  6 2        30  31.2
-#>  7 2        34  37.3
-#>  8 2        36  38.4
-#>  9 3        36  38.4
-#> 10 3        38  39.4
-#> # … with 22 more rows
+#>  1 1        20  40  
+#>  2 1        21  34  
+#>  3 1        28  30.5
+#>  4 1        33  31  
+#>  5 2        33  31  
+#>  6 2        38  31.5
+#>  7 2        43  37.2
+#>  8 2        47  38.6
+#>  9 3        47  38.6
+#> 10 3        51  40.0
+#> # … with 26 more rows
 ```
 
 The meaning is best illustrated with a plot:

@@ -1,7 +1,8 @@
 #' Generate bezier coordinates of a leaf
 #'
-#' @param x1,y1 coordinates of the leaf origin
-#' @param dx21,dy21,dx32,dy32,dx43,dy43 coordinates of the other control points (relative to the origin)
+#' @param x0,y0 coordinates of the leaf origin
+#' @param dx10,dy10,dx21,dy21,dx32,dy32,dx43,dy43 coordinates of the other
+#'   control points (relative to the origin)
 #' @param sx1,sx2,sx3,sx4 x coordinates of the control points
 #' @param sy1,sy2,sy3,sy4 y coordinates of the control points
 #' @param smx1,smx2,smy1,smy2 x & y coordinates of the middle vein control points
@@ -13,20 +14,24 @@
 #' gen_leaf_parameters()
 gen_leaf_parameters <- function(
   # starting point (absolute coordinates)
-  x1 = 10,
-  y1 = 40,
+  x0 = 10,
+  y0 = 40,
   # distances to starting point (relative coordinates)
+  dx10 = sample(8:12, 1),
+  dy10 = sample(-2:2, 1),
   dx21 = sample(12:20, 1),
   dy21 = sample(-4:-10, 1),
   dx32 = sample(10:18, 1),
   dy32 = stats::runif(1, 0.92 * (-dy21 - 1), 0.95 * (-dy21 - 1)),
   dx43 = sample(4:6, 1),
-  dy43 = y1 + dy21 + dy32,
+  dy43 = y0 + dy10 + dy21 + dy32,
   # slopes
+  sx0 = stats::runif(1, 0, 0.1),
   sx1 = sample(1:3, 1),
   sx2 = sample(4:6, 1),
   sx3 = sample(2:4, 1),
   sx4 = stats::runif(1, 0, 0.2),
+  sy0 = stats::runif(1, 0.5, 1),
   sy1 = sample(-4:-6, 1),
   sy2 = stats::runif(1, -0.5, 0.5),
   sy3 = stats::runif(1, 0.5, 1.5),
@@ -38,7 +43,7 @@ gen_leaf_parameters <- function(
   smy2 = stats::runif(1, -1, 1)
 ) {
   tibble::lst(
-    x1, y1, dx21,  dy21, dx32, dy32, dx43, dy43, sx1, sx2, sx3, sx4, sy1, sy2, sy3, sy4, smx1, smx2, smy1, smy2)
+    x0, y0, dx10, dy10, dx21, dy21, dx32, dy32, dx43, dy43, sx0, sx1, sx2, sx3, sx4, sy0, sy1, sy2, sy3, sy4, smx1, smx2, smy1, smy2)
 }
 
 #' Generate bezier end points
@@ -53,8 +58,10 @@ gen_leaf_parameters <- function(
 gen_benjamini_points <- function(
   leaf_params = gen_leaf_parameters()
 ) {
-  x1 = leaf_params$x1
-  y1 = leaf_params$y1
+  x0   = leaf_params$x0
+  y0   = leaf_params$y0
+  dx10 = leaf_params$dx10
+  dy10 = leaf_params$dy10
   dx21 = leaf_params$dx21
   dy21 = leaf_params$dy21
   dx32 = leaf_params$dx32
@@ -62,16 +69,18 @@ gen_benjamini_points <- function(
   dx43 = leaf_params$dx43
   dy43 = leaf_params$dy43
 
+  x1 <- x0 + dx10
+  y1 <- y0 + dy10
   x2 <- x1 + dx21
   y2 <- y1 + dy21
   x3 <- x2 + dx32
   y3 <- y2 + dy32
   x4 <- x3 + dx43
-  y4 <- y1
+  y4 <- y0
 
   tibble::tibble(
-    x = c(x1, x2, x3, x4),
-    y = c(y1, y2, y3, y4)
+    x = c(x0, x1, x2, x3, x4),
+    y = c(y0, y1, y2, y3, y4)
   )
 }
 
@@ -87,18 +96,20 @@ gen_benjamini_points <- function(
 gen_benjamini_slopes <- function(
   leaf_params = gen_leaf_parameters()
 ) {
+  sx0 = leaf_params$sx0
   sx1 = leaf_params$sx1
   sx2 = leaf_params$sx2
   sx3 = leaf_params$sx3
   sx4 = leaf_params$sx4
+  sy0 = leaf_params$sy0
   sy1 = leaf_params$sy1
   sy2 = leaf_params$sy2
   sy3 = leaf_params$sy3
   sy4 = leaf_params$sy4
 
   tibble::tibble(
-    x = c(sx1, sx2, sx3, sx4),
-    y = c(sy1, sy2, sy3, sy4)
+    x = c(sx0, sx1, sx2, sx3, sx4),
+    y = c(sy0, sy1, sy2, sy3, sy4)
   )
 }
 
@@ -160,7 +171,7 @@ get_one_bezier <- function(i, points_df, slopes_df) {
 gen_middle_line_points <- function(points_df) {
   dplyr::bind_rows(
     points_df %>% dplyr::slice_tail(),
-    points_df %>% dplyr::slice_head()
+    points_df[2, ]
   )
 }
 
@@ -190,14 +201,17 @@ benjamini_leaf <- function(
   slopes_df = gen_benjamini_slopes(leaf_params)
   slopes_middle_df = gen_middle_line_slopes(leaf_params)
   points_middle_df = gen_middle_line_points(points_df)
+  stalk_df <- get_one_bezier(1, points_df[1:2, ], slopes_df[c(1, 5), ])
   middle_line_df <- get_one_bezier(1, points_middle_df, slopes_middle_df)
-  upper_half <- 1:3 %>%
+  upper_half <- 2:4 %>%
     purrr::map_dfr(
       ~get_one_bezier(.x, points_df, slopes_df),
       .id = "i"
     )  %>%
-    dplyr::bind_rows(middle_line_df %>% dplyr::mutate(i = "4"))
-  lower_half <-  1:3 %>%
+    dplyr::bind_rows(
+      stalk_df %>% dplyr::mutate(i = "stalk"),
+      middle_line_df %>% dplyr::mutate(i = "5"))
+  lower_half <-  2:4 %>%
     purrr::map_dfr(
       ~get_one_bezier(
         .x,
@@ -221,7 +235,7 @@ benjamini_leaf <- function(
 
 rev_points <- function(points_df) {
   points_df_rev <- points_df
-  points_df_rev$y[-1] <- - points_df_rev$y[-1] + points_df_rev$y[1] + points_df_rev$y[1]
+  points_df_rev$y[-c(1, 2, 5)] <- - points_df_rev$y[-c(1, 2, 5)] + 2 * points_df_rev$y[1]
   points_df_rev
 }
 

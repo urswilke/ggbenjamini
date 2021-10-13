@@ -5,18 +5,22 @@
 \title{Generate bezier coordinates of a leaf}
 \usage{
 gen_leaf_parameters(
-  x1 = 10,
-  y1 = 40,
+  x0 = 10,
+  y0 = 40,
+  dx10 = sample(8:12, 1),
+  dy10 = sample(-2:2, 1),
   dx21 = sample(12:20, 1),
   dy21 = sample(-4:-10, 1),
   dx32 = sample(10:18, 1),
   dy32 = stats::runif(1, 0.92 * (-dy21 - 1), 0.95 * (-dy21 - 1)),
   dx43 = sample(4:6, 1),
-  dy43 = y1 + dy21 + dy32,
+  dy43 = y0 + dy10 + dy21 + dy32,
+  sx0 = stats::runif(1, 0, 0.1),
   sx1 = sample(1:3, 1),
   sx2 = sample(4:6, 1),
   sx3 = sample(2:4, 1),
   sx4 = stats::runif(1, 0, 0.2),
+  sy0 = stats::runif(1, 0.5, 1),
   sy1 = sample(-4:-6, 1),
   sy2 = stats::runif(1, -0.5, 0.5),
   sy3 = stats::runif(1, 0.5, 1.5),
@@ -28,9 +32,10 @@ gen_leaf_parameters(
 )
 }
 \arguments{
-\item{x1, y1}{coordinates of the leaf origin}
+\item{x0, y0}{coordinates of the leaf origin}
 
-\item{dx21, dy21, dx32, dy32, dx43, dy43}{coordinates of the other control points (relative to the origin)}
+\item{dx10, dy10, dx21, dy21, dx32, dy32, dx43, dy43}{coordinates of the other
+control points (relative to the origin)}
 
 \item{sx1, sx2, sx3, sx4}{x coordinates of the control points}
 

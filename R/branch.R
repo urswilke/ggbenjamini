@@ -12,8 +12,7 @@
 #'
 #' @examples
 #' benjamini_branch() %>%
-#'   ggplot2::ggplot(ggplot2::aes(x = x1, y = y1, xend = x2, yend = y2)) +
-#'   ggplot2::geom_segment() +
+#'   ggplot2::ggplot() +
 #'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i)) +
 #'   ggplot2::coord_equal()
 benjamini_branch <- function(
@@ -41,6 +40,7 @@ benjamini_branch <- function(
 
   x_leaves <- df_coords$x[leaf_indices + 1]
   y_leaves <- df_coords$y[leaf_indices + 1]
+  l_leaf_bases <- tibble::tibble(x = x_leaves, y = y_leaves) %>% purrr::transpose()
 
 
   stalk_angle_pos <- angle - leaf_angle
@@ -48,29 +48,9 @@ benjamini_branch <- function(
   stalk_angle_pos <- stalk_angle_pos[leaf_indices]
   stalk_angle_neg <- stalk_angle_neg[leaf_indices]
 
-  dx_stalk_pos <- cos(stalk_angle_pos/90*pi/2) * stalk_len
-  dy_stalk_pos <- sin(stalk_angle_pos/90*pi/2) * stalk_len
-  dx_stalk_neg <- cos(stalk_angle_neg/90*pi/2) * stalk_len
-  dy_stalk_neg <- sin(stalk_angle_neg/90*pi/2) * stalk_len
-
-  xends <- vector("numeric", n_leaves)
   pos_positions <- (1:n_leaves + first_dir) %% 2 == 1
   neg_positions <- (1:n_leaves + first_dir) %% 2 == 0
-  xends[pos_positions] <- x_leaves[pos_positions] - dx_stalk_pos[pos_positions]
-  xends[neg_positions] <- x_leaves[neg_positions] - dx_stalk_neg[neg_positions]
-  yends <- vector("numeric", n_leaves)
-  yends[pos_positions] <- y_leaves[pos_positions] - dy_stalk_pos[pos_positions]
-  yends[neg_positions] <- y_leaves[neg_positions] - dy_stalk_neg[neg_positions]
 
-  leaf_stalks <- tibble::tibble(
-    x1 = x_leaves,
-    y1 = y_leaves,
-    x2 = xends,
-    y2 = yends,
-    type = "leaf_stalk"
-  )
-
-  l_leaf_bases <- leaf_stalks %>% dplyr::select(x1 = x2, y1 = y2) %>% purrr::transpose()
   leaf_angles <- vector("numeric", n_leaves)
   leaf_angles[pos_positions] <- stalk_angle_pos[pos_positions]
   leaf_angles[neg_positions] <- stalk_angle_neg[neg_positions]
@@ -85,7 +65,7 @@ benjamini_branch <- function(
       leaf_angles,
       dist_multiplicator
     ),
-    function(x, y, z) benjamini_leaf(gen_leaf_parameters(x1 = x$x, y1 = x$y) %>% resize_leaf_params(z), omega = y + 180),
+    function(x, y, z) benjamini_leaf(gen_leaf_parameters(x0 = x$x, y0 = x$y) %>% resize_leaf_params(z), omega = y + 180),
     .id = "leaf"
   ) %>%
     dplyr::mutate(type = "leaf_bezier") %>%
@@ -93,7 +73,6 @@ benjamini_branch <- function(
 
   dplyr::bind_rows(
     df_bezier,
-    leaf_stalks,
     leaves
   )
 
@@ -132,6 +111,6 @@ get_leaf_indices <- function(dx, dy, leaf_mean_dist_approx, n_points) {
 #' spark_weibull()
 spark_weibull <- function(shape = 1.2, scale_factor = 0.5) {
   function(n_leaves) {
-    dweibull(1:n_leaves, shape, scale = n_leaves * scale_factor)
+    stats::dweibull(1:n_leaves, shape, scale = n_leaves * scale_factor)
   }
 }

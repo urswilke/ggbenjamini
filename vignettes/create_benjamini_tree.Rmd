@@ -74,12 +74,6 @@ p <- flametree_plot(
  
 p
 p +
-  geom_segment(
-    data = df_leaves %>% drop_na(y1), 
-    aes(x = x1, y = y1, xend = x2, yend = y2), 
-    inherit.aes = FALSE,
-    color = "brown"
-  ) + 
   ggforce::geom_bezier(
     data = df_leaves %>% drop_na(x), 
     aes(x = x, y = y, group = i), 

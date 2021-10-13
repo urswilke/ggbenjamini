@@ -34,8 +34,7 @@ Generate a branch of benjamini leaves
 }
 \examples{
 benjamini_branch() \%>\%
-  ggplot2::ggplot(ggplot2::aes(x = x1, y = y1, xend = x2, yend = y2)) +
-  ggplot2::geom_segment() +
+  ggplot2::ggplot() +
   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i)) +
   ggplot2::coord_equal()
 }

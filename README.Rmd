@@ -91,7 +91,6 @@ ggplot(df, aes(x = x, y = y)) +
   ) +
   coord_equal() +
   theme_minimal()
-
 ```
 
 The black point represents the leaf base. This and the blue points denote the
