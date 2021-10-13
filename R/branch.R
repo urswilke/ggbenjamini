@@ -31,14 +31,14 @@ benjamini_branch <- function(
   dy <- df_coords$y[-n_points] - df_coords$y[-1]
   angle <- atan2(dy, dx) / pi * 2 * 90
 
-  branch_length <- sqrt((dx)^2 + (dy)^2)
+  segment_lengths <- sqrt((dx)^2 + (dy)^2)
 
-  n_leaves <- round(sum(branch_length) / leaf_dist_approx)
+  n_leaves <- round(sum(segment_lengths) / leaf_dist_approx)
 
-  leaf_dist <- sum(branch_length) / (n_leaves + 1)
+  leaf_dist <- sum(segment_lengths) / (n_leaves + 1)
 
   leaf_indices <- (1:n_leaves * leaf_dist) %>%
-    purrr::map_int(~which.max(.x < cumsum(branch_length)))
+    purrr::map_int(~which.max(.x < cumsum(segment_lengths)))
   leaf_indices[length(leaf_indices)] <- n_points - 1
 
   x_leaves <- df_coords$x[leaf_indices + 1]
