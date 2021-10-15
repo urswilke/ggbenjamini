@@ -204,7 +204,11 @@ benjamini_leaf <- function(
   middle_line_df <- get_one_bezier(1, points_middle_df, slopes_middle_df)
   upper_half <- 2:4 %>%
     purrr::map_dfr(
-      ~get_one_bezier(.x, points_df, slopes_df),
+      ~get_one_bezier(
+        .x,
+        points_df,
+        slopes_df
+      ),
       .id = "i"
     )  %>%
     dplyr::bind_rows(
