@@ -209,7 +209,7 @@ benjamini_leaf <- function(
     )  %>%
     dplyr::bind_rows(
       stalk_df %>% dplyr::mutate(i = "stalk"),
-      middle_line_df %>% dplyr::mutate(i = "5"))
+      middle_line_df %>% dplyr::mutate(i = "4"))
   lower_half <-  2:4 %>%
     purrr::map_dfr(
       ~get_one_bezier(
