@@ -18,7 +18,7 @@ gen_leaf_parameters <- function(
   y0 = 40,
   # distances to starting point (relative coordinates)
   dx10 = sample(8:12, 1),
-  dy10 = 0,
+  dy10 = 0, #For "historic" reasons, because changing it breaks everything...
   dx21 = sample(12:20, 1),
   dy21 = sample(-4:-10, 1),
   dx32 = sample(10:18, 1),
