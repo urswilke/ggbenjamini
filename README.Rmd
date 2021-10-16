@@ -28,7 +28,7 @@ with bezier curves. To demonstrate it we'll first load some packages:
 
 ## Installation
 
-You can install the released version of benjaminileaves from [CRAN](https://CRAN.R-project.org) with:
+You can install the newest version of benjaminileaves from github with:
 
 ``` r
 # install.packages("remotes")
@@ -73,6 +73,8 @@ segments <- df %>%
   ) %>% 
   unnest(c(x_1, x_2, y_1, y_2))
 
+
+
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
   geom_point(data = df %>% group_by(i) %>% slice(c(1, 4)), color = "blue", size = 2) +
@@ -91,7 +93,6 @@ ggplot(df, aes(x = x, y = y)) +
   ) +
   coord_equal() +
   theme_minimal()
-
 ```
 
 The black point represents the leaf base. This and the blue points denote the
@@ -115,7 +116,7 @@ dfb <- expand_grid(
     y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
-  map_dfr(~benjamini_leaf(gen_benjamini_points(.x$x, .x$y)), .id = "leaf") %>%
+  map_dfr(~benjamini_leaf(gen_leaf_parameters(.x$x, .x$y)), .id = "leaf") %>%
   unite(i, i, leaf)
 
 ggplot(dfb) +

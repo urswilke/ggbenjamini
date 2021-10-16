@@ -23,6 +23,7 @@ Generate a dataframe of one bezier curve
 }
 \examples{
 set.seed(123)
+leaf_params <- gen_leaf_parameters()
 points_df <- gen_benjamini_points()
 slopes_df <- gen_benjamini_slopes()
 df_bezier <- get_one_bezier(1, points_df, slopes_df)

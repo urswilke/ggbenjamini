@@ -14,6 +14,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+Let's have a look how this package can be combined with the
+[flametree](https://github.com/djnavarro/flametree/) package. First we'll load
+some libraries.
+
 ```{r setup}
 library(benjaminileaves)
 library(dplyr)
@@ -24,56 +28,78 @@ library(flametree)
 library(ggplot2)
 ```
 
+To start, we'll first generate some flametrees and make some modifications:
+
 ```{r}
 ft <- flametree_grow(
+    seg_wid = spark_decay(time = 0.3, multiplier = 3, constant = 0.1),
     seed = 21, 
-    trees = 1, 
-    time = 3, 
-    angle = c(-30, -15, 15,  30), 
-    split = 3
-  ) %>% 
-  mutate_at(c("coord_x", "coord_y"), ~ . * 400)
-p <- flametree_plot(ft, background = "white")
+    trees = 5, 
+    time = 2, 
+    angle = seq(-45, 45, 30), 
+    split = 2
+  ) 
+
+# modifications:
+ft_mod <- ft
+# shorten tree stems:
+ft_mod[ft_mod$coord_y == 0, "coord_y"] <- c(0.8)
+ft_mod[ft_mod$coord_y == 0.5, "coord_y"] <- c(0.9)
+ft_mod <- ft_mod %>% 
+  # increase total size of trees:
+  mutate_at(c("coord_x", "coord_y"), ~ . * 200) %>%
+  # the following will yield a smooth change of the thickness & color:
+  group_by(coord_x, coord_y) %>%
+  mutate(n = n()) %>%
+  mutate(
+    seg_wid = ifelse(n > 1, min(seg_wid), seg_wid),
+    seg_col = ifelse(n > 1, max(seg_col), seg_col)
+    ) %>%
+  ungroup() %>%
+  select(-n)
+
+p <- flametree_plot(
+  ft_mod, 
+  background = "white",
+  palette = c("brown", "forestgreen"))
 p
 ```
 
-```{r}
-df_branches <- ft %>% 
-  filter(id_time == max(id_time)) %>% 
-  group_by(id_path) %>% 
-  slice(-2) %>% 
-  mutate(temp = row_number()) %>% 
-  ungroup() %>% 
-  select(temp, id_path, x = coord_x, y = coord_y) %>% 
-  pivot_wider(names_from = temp, values_from = c(x, y), names_sep = "")
+flametree uses quadratic beziers (made with 3 points). `benjamini_branch()` needs four points for each bezier. Therefore we duplicate the control point in the middle:
 
-df_leaves <- df_branches %>% 
-  rowwise() %>% 
+```{r}
+df_leaves <- ft_mod %>%
+  # Only apply to the top layer:
+  filter(id_time == max(id_time)) %>% 
+  group_by(id_pathtree) %>% 
+  summarise(tibble(x = coord_x[c(1, 2, 2, 3)], y = coord_y[c(1, 2, 2, 3)])) %>% 
   group_split() %>%
   map_dfr(benjamini_branch, .id = "branch") %>% 
   unite(i, i, branch)
 ```
 
+We'll remove the top layer of branches from the flametrees and recreate the plot from above.
 
 ```{r, fig.width=7, fig.height=7}
-p <- flametree_plot(ft %>% 
-  filter(id_time < max(id_time)), background = "white")
-p
+p <- flametree_plot(
+  ft_mod %>% 
+    # remove the upper layer:
+    filter(id_time != max(id_time)), 
+  background = "white"
+)
+```
 
+Now we can replace it with branches with
+leaves by just adding another layer to the ggplot2 object.
+
+```{r, fig.width=7, fig.height=7}
 p +
-  geom_segment(
-    data = df_leaves %>% drop_na(y1), 
-    aes(x = x1, y = y1, xend = x2, yend = y2), 
-    inherit.aes = FALSE,
-    color = "brown"
-  ) + 
   ggforce::geom_bezier(
     data = df_leaves %>% drop_na(x), 
     aes(x = x, y = y, group = i), 
     inherit.aes = FALSE,
     alpha = 0.5,
-    color = "green"
+    color = "forestgreen"
   )
   
 ```
-

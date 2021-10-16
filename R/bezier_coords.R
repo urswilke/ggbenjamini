@@ -1,19 +1,26 @@
-# from here: https://stackoverflow.com/a/46936532
-clean_units <- function(x){
-  attr(x,"units") <- NULL
-  class(x) <- dplyr::setdiff(class(x),"units")
-  x %>% as.numeric()
-}
+# this results in bezier curves quite different from those of ggforce:
+# # from here: https://stackoverflow.com/a/46936532
+# clean_units <- function(x){
+#   attr(x,"units") <- NULL
+#   class(x) <- dplyr::setdiff(class(x),"units")
+#   x %>% as.numeric()
+# }
+#
+# gen_bezier_coords <- function(df_bezier) {
+#   grid::xsplineGrob(
+#     # see ?grid::unit -> details -> "points" for multiplication factor 72.27
+#     df_bezier$x * 72.27,
+#     df_bezier$y * 72.27,
+#     default.units = "points"
+#   ) %>% grid::bezierPoints() %>%
+#     tibble::as_tibble() %>%
+#     dplyr::mutate_all(~clean_units(.x))
+# }
 
 gen_bezier_coords <- function(df_bezier) {
-  grid::xsplineGrob(
-    # see ?grid::unit -> details -> "points" for multiplication factor 72.27
-    df_bezier$x * 72.27,
-    df_bezier$y * 72.27,
-    default.units = "points"
-  ) %>% grid::bezierPoints() %>%
-    tibble::as_tibble() %>%
-    dplyr::mutate_all(~clean_units(.x))
+  ggforce:::bezierPath(df_bezier$x, df_bezier$y, 100) %>%
+    tibble::as_tibble(.name_repair = "minimal") %>%
+    purrr::set_names(c("x", "y"))
 }
 
 gen_leaf_half_bezier_coords <- function(df_benjamini_leaf_half) {

@@ -20,8 +20,7 @@ To demonstrate it we’ll first load some packages:
 
 ## Installation
 
-You can install the released version of benjaminileaves from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the newest version of benjaminileaves from github with:
 
 ``` r
 # install.packages("remotes")
@@ -53,20 +52,20 @@ results in a dataframe where i denotes the id of the bezier curve, and x
 ``` r
 df <- benjamini_leaf()
 df
-#> # A tibble: 32 × 3
-#>    i         x     y
-#>    <chr> <dbl> <dbl>
-#>  1 1        10  40  
-#>  2 1        12  34  
-#>  3 1        19  31.3
-#>  4 1        24  31  
-#>  5 2        24  31  
-#>  6 2        29  30.7
-#>  7 2        34  37.8
-#>  8 2        36  38.4
-#>  9 3        36  38.4
-#> 10 3        38  38.9
-#> # … with 22 more rows
+#> # A tibble: 36 × 3
+#>        x     y i    
+#>    <dbl> <dbl> <chr>
+#>  1  10    40   stalk
+#>  2  10.0  40.9 stalk
+#>  3  20.0  39.4 stalk
+#>  4  20    40   stalk
+#>  5  20    40   1    
+#>  6  22    36   1    
+#>  7  29    35.2 1    
+#>  8  34    35   1    
+#>  9  34    35   2    
+#> 10  39    34.8 2    
+#> # … with 26 more rows
 ```
 
 The meaning is best illustrated with a plot:
@@ -82,6 +81,8 @@ segments <- df %>%
     values_fn = list
   ) %>% 
   unnest(c(x_1, x_2, y_1, y_2))
+
+
 
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
@@ -125,7 +126,7 @@ dfb <- expand_grid(
     y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
-  map_dfr(~benjamini_leaf(gen_benjamini_points(.x$x, .x$y)), .id = "leaf") %>%
+  map_dfr(~benjamini_leaf(gen_leaf_parameters(.x$x, .x$y)), .id = "leaf") %>%
   unite(i, i, leaf)
 
 ggplot(dfb) +
