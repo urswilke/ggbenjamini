@@ -20,8 +20,7 @@ To demonstrate it we’ll first load some packages:
 
 ## Installation
 
-You can install the released version of benjaminileaves from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the newest version of benjaminileaves from github with:
 
 ``` r
 # install.packages("remotes")
