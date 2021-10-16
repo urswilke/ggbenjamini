@@ -54,18 +54,18 @@ results in a dataframe where i denotes the id of the bezier curve, and x
 df <- benjamini_leaf()
 df
 #> # A tibble: 36 × 3
-#>    i         x     y
-#>    <chr> <dbl> <dbl>
-#>  1 1        20  40  
-#>  2 1        22  36  
-#>  3 1        29  35.2
-#>  4 1        34  35  
-#>  5 2        34  35  
-#>  6 2        39  34.8
-#>  7 2        43  37.3
-#>  8 2        45  38.8
-#>  9 3        45  38.8
-#> 10 3        47  40.2
+#>        x     y i    
+#>    <dbl> <dbl> <chr>
+#>  1  10    40   stalk
+#>  2  10.0  40.9 stalk
+#>  3  20.0  39.4 stalk
+#>  4  20    40   stalk
+#>  5  20    40   1    
+#>  6  22    36   1    
+#>  7  29    35.2 1    
+#>  8  34    35   1    
+#>  9  34    35   2    
+#> 10  39    34.8 2    
 #> # … with 26 more rows
 ```
 
@@ -82,6 +82,7 @@ segments <- df %>%
     values_fn = list
   ) %>% 
   unnest(c(x_1, x_2, y_1, y_2))
+
 
 
 ggplot(df, aes(x = x, y = y)) + 

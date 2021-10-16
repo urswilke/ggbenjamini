@@ -212,7 +212,6 @@ benjamini_leaf <- function(
       .id = "i"
     )  %>%
     dplyr::bind_rows(
-      stalk_df %>% dplyr::mutate(i = "stalk"),
       middle_line_df %>% dplyr::mutate(i = "4"))
   lower_half <-  2:4 %>%
     purrr::map_dfr(
@@ -226,7 +225,11 @@ benjamini_leaf <- function(
     dplyr::mutate(i = paste0(.data$i, "r"))  %>%
     dplyr::bind_rows(middle_line_df %>% dplyr::mutate(i = "4r"))
 
-  df <- dplyr::bind_rows(upper_half, lower_half)
+  df <- dplyr::bind_rows(
+    stalk_df %>% dplyr::mutate(i = "stalk"),
+    upper_half,
+    lower_half
+  )
   if (omega %% 360 != 0) {
     return(
       rotate_bezier_df(df, alpha = omega, xrot = xrot, yrot = yrot, precision = precision)
