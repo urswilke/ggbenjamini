@@ -28,6 +28,8 @@ library(minisvg)
 set.seed(123)
 ```
 
+Now we'll define a structure of bezier curves that we'll use as the coordinates for branches:
+
 ```{r}
 size <- 160
 df_branches <- tibble(
@@ -37,6 +39,8 @@ df_branches <- tibble(
 )
 ```
 
+Now let's grow leaves on these branches:
+
 ```{r}
 df_branches_and_leaves <- df_branches %>% 
   group_split(bezier_idx) %>% 
@@ -44,17 +48,22 @@ df_branches_and_leaves <- df_branches %>%
     ~benjamini_branch(df_branch = .x[c("x", "y")]),
     .id = "bezier_idx"
   )
+```
 
+
+and plot this:
+
+```{r}
 df_branches_and_leaves %>%
   unite(idx, bezier_idx, i_branch, i_part, element, remove = FALSE) %>% 
   ggplot(aes(x = x, y = y, group = idx, color = factor(bezier_idx))) + 
-  ggforce::geom_bezier2(show.legend = FALSE) +
+  ggforce::geom_bezier(show.legend = FALSE) +
   scale_y_reverse() +
   theme_void()
 ```
 
 
-Next we'll define some helper functions to define the "d" element of [svg path strings](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
+Next we'll define a helper function to define the "d" element of [svg path strings](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
 
 ```{r}
 get_svg_bezier_string <- function(bezier_df) {
@@ -67,6 +76,7 @@ get_svg_bezier_string <- function(bezier_df) {
     # paste("Z") %>% 
     paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
 }
+
 df_svg <- df_branches_and_leaves %>% 
   group_by(bezier_idx, i_branch, element) %>% 
   summarise(path_str =  get_svg_bezier_string(tibble(x, y, i_part))) %>% 
@@ -77,10 +87,11 @@ df_svg <- df_branches_and_leaves %>%
     element == "branch"  ~ "brown"
   ))
   
+df_svg
 ```
 
 
-We'll then create a svg document  object:
+Now, we'll create a svg document object:
 ```{r}
 doc <- SVGDocument$new(width = size, height = size)
 ```
@@ -140,6 +151,8 @@ append_element <- function(type, path_str, fill_color) {
 
 ```
 
+Now we can finally append the branches with leaves to the svg:
+
 
 ```{r}
 pwalk(list(
@@ -154,8 +167,6 @@ pwalk(list(
 
 
 
-Now we can finally call our `benjamini_leaf()` function for multiple rotation angles
-
 
 Et voilà
 
@@ -163,7 +174,7 @@ Et voilà
 doc$show()
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width = "320px"}
 doc$save("svg_vignette_output.svg")
 rsvg::rsvg_png("svg_vignette_output.svg", "svg_vignette_output.png")
 knitr::include_graphics("svg_vignette_output.png")
