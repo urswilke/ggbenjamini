@@ -20,63 +20,69 @@ Let's have a look how the benjamini leaves can be integrated in svg files. First
 library(benjaminileaves)
 library(dplyr)
 library(purrr)
-library(zeallot)
+library(tidyr)
+library(ggplot2)
 library(stringr)
 library(minisvg)
 
 set.seed(123)
 ```
 
-We'll then create a svg document  object:
 ```{r}
-doc <- SVGDocument$new(width = 750, height = 750)
-
+size <- 160
+df_branches <- tibble(
+  x = sample(1:size, 20, replace = TRUE),
+  y = sample(1:size, 20, replace = TRUE),
+  bezier_idx = rep(1:5, each = 4)
+)
 ```
+
+```{r}
+df_branches_and_leaves <- df_branches %>% 
+  group_split(bezier_idx) %>% 
+  map_dfr(
+    ~benjamini_branch(df_branch = .x[c("x", "y")]),
+    .id = "bezier_idx"
+  )
+
+df_branches_and_leaves %>%
+  unite(idx, bezier_idx, i_branch, i_part, element, remove = FALSE) %>% 
+  ggplot(aes(x = x, y = y, group = idx, color = factor(bezier_idx))) + 
+  ggforce::geom_bezier2(show.legend = FALSE) +
+  scale_y_reverse() +
+  theme_void()
+```
+
 
 Next we'll define some helper functions to define the "d" element of [svg path strings](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
 
 ```{r}
 get_svg_bezier_string <- function(bezier_df) {
   bezier_df %>%
-    group_by(i) %>%
+    group_by(i_part) %>%
     slice(-1) %>%
     summarise(cb = paste(x, y, sep = ",", collapse = " ")) %>%
     pull(cb) %>%
     paste("C", ., collapse = " ") %>% 
-    paste("Z") %>% 
+    # paste("Z") %>% 
     paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
 }
-get_both_bezier_strings <- function(bezier_df) {
-  path_str <- bezier_df %>%
-    filter(!str_detect(i, "r")) %>%
-    get_svg_bezier_string()
-
-  path_str2 <- bezier_df %>%
-    filter(str_detect(i, "r")) %>%
-    get_svg_bezier_string()
-  list(path_str, path_str2)
-}
+df_svg <- df_branches_and_leaves %>% 
+  group_by(bezier_idx, i_branch, element) %>% 
+  summarise(path_str =  get_svg_bezier_string(tibble(x, y, i_part))) %>% 
+  mutate(fill_color = case_when(
+    element == "half 1" ~ "url(#RadialGradient3)",
+    element == "half 2" ~ "url(#RadialGradient4)",
+    element == "stalk"  ~ "sandybrown",
+    element == "branch"  ~ "brown"
+  ))
+  
 ```
 
-This is another helper function to append pathes to the svg:
 
+We'll then create a svg document  object:
 ```{r}
-append_leaf <- function(doc, path_str, path_str2) {
-  doc$append(
-    stag$path(
-      d = path_str,
-      fill="url(#RadialGradient3)",
-      fill_opacity="1"
-    ),
-    stag$path(
-      d = path_str2,
-      fill="url(#RadialGradient4)",
-      fill_opacity="1"
-    )
-  )
-}
-# For one single leaf, 
-# append_leaf(doc, path_str, path_str2)
+doc <- SVGDocument$new(width = size, height = size)
 ```
 
 In order to have some more realistic texture, we'll define gradients for the leaves:
@@ -98,23 +104,58 @@ g4 <- stag$radialGradient(
 doc$append(g3, g4)
 ```
 
+This is another helper function to append pathes to the svg:
+
+```{r}
+append_polygon <- function(doc, path_str, fill_color) {
+  doc$append(
+    stag$path(
+      d = path_str,
+      fill=fill_color,
+      fill_opacity="1"
+    )
+  )
+}
+append_line <- function(doc, path_str, fill_color) {
+  doc$append(
+    stag$path(
+      d = path_str,
+      stroke_width = "0.5",
+      fill = "none",
+      stroke=fill_color
+    )
+  )
+}
+append_element <- function(type, path_str, fill_color) {
+  switch (
+    type,
+    "half 1" = ,
+    "half 2" = append_polygon(doc, path_str, fill_color),
+    "branch" = ,
+    "stalk"  = append_line(doc, path_str, fill_color)
+  )
+  
+}
+
+
+```
+
+
+```{r}
+pwalk(list(
+    df_svg$element,
+    df_svg$path_str,
+    df_svg$fill_color
+  ),
+  function(x, y, z) append_element(x, y, z)
+)
+
+```
+
+
 
 Now we can finally call our `benjamini_leaf()` function for multiple rotation angles
 
-```{r}
-rotation_angles <- seq(0, 330, by = 30)
-rotation_angles %>%
-  map(
-    # We'll rotate around the point (75, 75):
-    ~ benjamini_leaf(omega = .x, xrot = 75, yrot = 75) %>% 
-      # we'll increase the size of the leaves:
-      mutate_at(c("x", "y"), ~ . * 5)
-  ) %>%
-  # we'll generate the svg pathes of the 2 halves of each leaf:
-  map(get_both_bezier_strings) %>%
-  # and append all them to the svg object:
-  walk(~append_leaf(doc, .x[[1]], .x[[2]]))
-```
 
 Et voilà
 
@@ -123,8 +164,8 @@ doc$show()
 ```
 
 ```{r, echo=FALSE}
-doc$save("test.svg")
-rsvg::rsvg_png("test.svg", "test.png")
-knitr::include_graphics("test.png")
+doc$save("svg_vignette_output.svg")
+rsvg::rsvg_png("svg_vignette_output.svg", "svg_vignette_output.png")
+knitr::include_graphics("svg_vignette_output.png")
 ```
 

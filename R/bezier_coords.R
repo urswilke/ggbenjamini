@@ -17,36 +17,35 @@
 #     dplyr::mutate_all(~clean_units(.x))
 # }
 
-gen_bezier_coords <- function(df_bezier) {
-  ggforce:::bezierPath(df_bezier$x, df_bezier$y, 100) %>%
+gen_bezier_coords <- function(df_bezier, n = 100) {
+  ggforce:::bezierPath(df_bezier$x, df_bezier$y, n) %>%
     tibble::as_tibble(.name_repair = "minimal") %>%
     purrr::set_names(c("x", "y"))
-}
-
-gen_leaf_half_bezier_coords <- function(df_benjamini_leaf_half) {
-  df_benjamini_leaf_half %>%
-    dplyr::group_split(.data$i) %>%
-    purrr::map_dfr(gen_bezier_coords)
 }
 
 #' Transform bezier dataframe to dataframe with path coordinates
 #'
 #' @param df_benjamini_leaf Dataframe returned by `benjamini_leaf()`
+#' @param n number of points per bezier
 #'
 #' @return Dataframe with the coordinates of the bezier curve interpolations.
 #' @export
 #'
 #' @examples
 #' df_coords <- benjamini_leaf() %>%
-#'   gen_leaf_bezier_coords()
+#'   tidyr::unite(b, i_part, element, remove = FALSE) %>%
+#'   gen_leaf_bezier_coords(b, i_part, element)
 #' df_coords
 #' df_coords %>%
-#'   ggplot2::ggplot(ggplot2::aes(x= x, y = y, fill = half)) +
-#'   ggplot2::geom_polygon()
-gen_leaf_bezier_coords <- function(df_benjamini_leaf) {
+#'   tidyr::unite(b, i_part, element, remove = FALSE) %>%
+#'   ggplot(aes(x = x, y = y, group = element, fill = element)) +
+#'   geom_polygon()
+gen_leaf_bezier_coords <- function(df_benjamini_leaf, ..., n = 100) {
+  group_variables <- rlang::enquos(...)
   df_benjamini_leaf %>%
-    dplyr::group_split(stringr::str_detect(.data$i, "r")) %>%
-    purrr::map_dfr(gen_leaf_half_bezier_coords, .id = "half")
+    dplyr::group_by(!!!group_variables) %>%
+    dplyr::summarise(gen_bezier_coords(dplyr::cur_data(), n)) %>%
+    dplyr::ungroup()
 }
 
 

@@ -4,10 +4,12 @@
 \alias{gen_leaf_bezier_coords}
 \title{Transform bezier dataframe to dataframe with path coordinates}
 \usage{
-gen_leaf_bezier_coords(df_benjamini_leaf)
+gen_leaf_bezier_coords(df_benjamini_leaf, ..., n = 100)
 }
 \arguments{
 \item{df_benjamini_leaf}{Dataframe returned by \code{benjamini_leaf()}}
+
+\item{n}{number of points per bezier}
 }
 \value{
 Dataframe with the coordinates of the bezier curve interpolations.
@@ -17,9 +19,11 @@ Transform bezier dataframe to dataframe with path coordinates
 }
 \examples{
 df_coords <- benjamini_leaf() \%>\%
-  gen_leaf_bezier_coords()
+  tidyr::unite(b, i_part, element, remove = FALSE) \%>\%
+  gen_leaf_bezier_coords(b, i_part, element)
 df_coords
 df_coords \%>\%
-  ggplot2::ggplot(ggplot2::aes(x= x, y = y, fill = half)) +
-  ggplot2::geom_polygon()
+  tidyr::unite(b, i_part, element, remove = FALSE) \%>\%
+  ggplot(aes(x = x, y = y, group = element, fill = element)) +
+  geom_polygon()
 }

@@ -52,19 +52,19 @@ results in a dataframe where i denotes the id of the bezier curve, and x
 ``` r
 df <- benjamini_leaf()
 df
-#> # A tibble: 36 × 3
-#>        x     y i    
-#>    <dbl> <dbl> <chr>
-#>  1  10    40   stalk
-#>  2  10.0  40.9 stalk
-#>  3  20.0  39.4 stalk
-#>  4  20    40   stalk
-#>  5  20    40   1    
-#>  6  22    36   1    
-#>  7  29    35.2 1    
-#>  8  34    35   1    
-#>  9  34    35   2    
-#> 10  39    34.8 2    
+#> # A tibble: 36 × 5
+#>        x     y param_type             i_part element
+#>    <dbl> <dbl> <chr>                   <dbl> <chr>  
+#>  1  10    40   bezier start point          0 stalk  
+#>  2  10.0  40.9 bezier control point 1      0 stalk  
+#>  3  20.0  39.4 bezier control point 2      0 stalk  
+#>  4  20    40   bezier end point            0 stalk  
+#>  5  20    40   bezier start point          1 half 2 
+#>  6  22    36   bezier control point 1      1 half 2 
+#>  7  29    35.2 bezier control point 2      1 half 2 
+#>  8  34    35   bezier end point            1 half 2 
+#>  9  34    35   bezier start point          2 half 2 
+#> 10  39    34.8 bezier control point 1      2 half 2 
 #> # … with 26 more rows
 ```
 
@@ -72,7 +72,7 @@ The meaning is best illustrated with a plot:
 
 ``` r
 segments <- df %>% 
-  group_by(i) %>% 
+  group_by(element, i_part) %>% 
   mutate(j = c(1, 2, 1, 2)) %>%
   ungroup() %>% 
   pivot_wider(
@@ -86,9 +86,9 @@ segments <- df %>%
 
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
-  geom_point(data = df %>% group_by(i) %>% slice(c(1, 4)), color = "blue", size = 2) +
+  geom_point(data = df %>% group_by(element, i_part) %>% slice(c(1, 4)), color = "blue", size = 2) +
   geom_point(data = df %>% slice(1), color = "black", size = 3) +
-  ggforce::geom_bezier(aes(group = i, color = i)) +
+  ggforce::geom_bezier(aes(group = interaction(element, i_part), color = factor(i_part))) +
   geom_segment(
     data = segments, 
     aes(
@@ -102,11 +102,12 @@ ggplot(df, aes(x = x, y = y)) +
   ) +
   coord_equal() +
   theme_minimal()
+#> Warning: Removed 36 rows containing missing values (geom_segment).
 ```
 
 <img src="man/figures/README-def-1.png" width="100%" />
 
-The black point represents the leaf base. This and the blue points
+The black point represents the leaf origin. This and the blue points
 denote the start/end points of the bezier curves, and the red dots the
 positions of the control points. The leaf is cut in two halves by the
 lines “4” and “4r” (which are the same and represent the midvein of the
@@ -118,7 +119,7 @@ numbers in certain ranges (see the definition of `benjamini_leaf()`).
 
 In order to show the variations of the `benjamini_leaf()` (if parameters
 are not explicitly specified), let’s only pass the position of the leaf
-bases and let the function randomly generate the rest of the shapes:
+origins and let the function randomly generate the rest of the shapes:
 
 ``` r
 dfb <- expand_grid(
@@ -126,8 +127,8 @@ dfb <- expand_grid(
     y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
-  map_dfr(~benjamini_leaf(gen_leaf_parameters(.x$x, .x$y)), .id = "leaf") %>%
-  unite(i, i, leaf)
+  map_dfr(~benjamini_leaf(gen_leaf_parameters(x0 = .x$x, y0 = .x$y)), .id = "i_leaf") %>%
+  unite(i, i_leaf, i_part, element, remove = FALSE)
 
 ggplot(dfb) +
   ggforce::geom_bezier(aes(x = x, y = y, group = i)) +

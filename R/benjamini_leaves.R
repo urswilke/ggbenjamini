@@ -165,7 +165,19 @@ get_one_bezier <- function(i, points_df, slopes_df) {
     -slopes_df[i + 1, ] + points_df[i + 1, ],
     # points_df %>% dplyr::slice(i + 1)
     points_df[i + 1, ]
-  )
+  ) %>%
+    add_bezier_point_type_column()
+
+}
+
+add_bezier_point_type_column <- function(df) {
+  dplyr::mutate(df,
+    param_type = c(
+      "bezier start point",
+      "bezier control point 1",
+      "bezier control point 2",
+      "bezier end point"
+    ))
 }
 
 gen_middle_line_points <- function(points_df) {
@@ -209,10 +221,14 @@ benjamini_leaf <- function(
         points_df,
         slopes_df
       ),
-      .id = "i"
+      .id = "i_part"
     )  %>%
+    dplyr::mutate(
+      i_part = as.numeric(.data$i_part)
+    ) %>%
     dplyr::bind_rows(
-      middle_line_df %>% dplyr::mutate(i = "4"))
+      middle_line_df %>% dplyr::mutate(i_part = 4)) %>%
+    dplyr::mutate(element = "half 2")
   lower_half <-  2:4 %>%
     purrr::map_dfr(
       ~get_one_bezier(
@@ -220,13 +236,18 @@ benjamini_leaf <- function(
         points_df %>% rev_points(),
         slopes_df %>% dplyr::mutate(y = -y)
       ),
-      .id = "i"
+      .id = "i_part"
     ) %>%
-    dplyr::mutate(i = paste0(.data$i, "r"))  %>%
-    dplyr::bind_rows(middle_line_df %>% dplyr::mutate(i = "4r"))
+    dplyr::mutate(i_part = as.numeric(.data$i_part))  %>%
+    dplyr::bind_rows(middle_line_df %>% dplyr::mutate(i_part = 4)) %>%
+      dplyr::mutate(element = "half 1")
 
   df <- dplyr::bind_rows(
-    stalk_df %>% dplyr::mutate(i = "stalk"),
+    stalk_df %>%
+      dplyr::mutate(
+        i_part = 0,
+        element = "stalk"
+      ),
     upper_half,
     lower_half
   )
@@ -252,12 +273,15 @@ rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = bezier_df$x[1], yrot 
   rotm <- matrix(c(cos(alpha_rad),sin(alpha_rad),-sin(alpha_rad),cos(alpha_rad)),ncol=2)
   #shift, rotate, shift back
 
-  M <- bezier_df %>% dplyr::select(-.data$i) %>% as.matrix()
+  M <- bezier_df %>%
+    dplyr::select(.data$x, .data$y) %>%
+    as.matrix()
+
+  bezier_df[c("x", "y")] <-
   t(rotm %*% (t(M) - c(xrot, yrot)) + c(xrot, yrot)) %>%
-    round(precision) %>%
-    tibble::as_tibble(.name_repair = "minimal") %>%
-    purrr::set_names(c("x", "y")) %>%
-    dplyr::mutate(i = bezier_df$i)
+    round(precision)
+
+  bezier_df
 }
 
 resize_leaf_params <- function(leaf_params, multiplicator) {
