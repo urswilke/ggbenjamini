@@ -82,7 +82,8 @@ benjamini_branch <- function(
       ) %>%
       add_bezier_point_type_column(),
     leaves
-  )
+  ) %>%
+    dplyr::relocate(.data$i_branch, .data$element, .data$i_part)
 
 }
 
