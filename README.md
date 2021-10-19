@@ -168,3 +168,68 @@ ggplot(dfb) +
 ```
 
 <img src="man/figures/README-plotlotsofbenjamini-1.png" width="100%" />
+
+## Branches
+
+You can also generate branches of leaves with the command
+`benjamini_branch()` (see the vignettes
+`vignette("create_benjamini_polygons")` and
+`vignette("create_benjamini_tree")` for examples):
+
+``` r
+df_branch <- benjamini_branch() %>%
+  # we add an identifier `b`:
+  tidyr::unite(b, i_part, i_branch, element, remove = FALSE) 
+df_branch
+#> # A tibble: 436 × 8
+#>    b          i_branch element i_part     x     y type        param_type        
+#>    <chr>         <dbl> <chr>    <dbl> <dbl> <dbl> <chr>       <chr>             
+#>  1 1_0_branch        0 branch       1  70    280  branch      bezier start point
+#>  2 1_0_branch        0 branch       1  84    245  branch      bezier control po…
+#>  3 1_0_branch        0 branch       1 126    217  branch      bezier control po…
+#>  4 1_0_branch        0 branch       1 168    217  branch      bezier end point  
+#>  5 0_1_stalk         1 stalk        0  75.7  269. leaf_bezier bezier start point
+#>  6 0_1_stalk         1 stalk        0  76.3  268. leaf_bezier bezier control po…
+#>  7 0_1_stalk         1 stalk        0  72.9  259. leaf_bezier bezier control po…
+#>  8 0_1_stalk         1 stalk        0  73.2  259. leaf_bezier bezier end point  
+#>  9 1_1_half 2        1 half 2       1  73.2  259. leaf_bezier bezier start point
+#> 10 1_1_half 2        1 half 2       1  68.8  258  leaf_bezier bezier control po…
+#> # … with 426 more rows
+df_branch %>%
+  ggplot2::ggplot() +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_branch)) +
+  ggplot2::coord_equal()
+```
+
+<img src="man/figures/README-branch-1.png" width="100%" />
+
+## Polygons
+
+If you want to fill the leaves with color, you can use
+`gen_leaf_bezier_coords()` to approximate the leaf parts described by
+bezier curves with polygons:
+
+``` r
+df_branch %>% 
+    filter(stringr::str_detect(element, "^half [12]$")) %>%
+    unite(idx, i_branch, element, remove = FALSE) %>%
+    gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100) %>% 
+  ggplot(
+    data = .,
+    aes(x = x, y = y, group = idx, fill = i_branch)
+  ) +
+  geom_polygon(show.legend = FALSE, color = "black") +
+  theme_void() + 
+  scale_color_gradientn(colours = c("darkgreen", "green"))
+```
+
+<img src="man/figures/README-polygon-1.png" width="100%" />
+
+If you want to know more have a look in
+`vignette("create_benjamini_polygons")` .
+
+## svg
+
+You can also transform the leaf data to svgs. Have a look in
+`vignette("create_benjamini_svg")` for an example to generate
+[svg](vignettes/svg_vignette_output.svg) images like this
