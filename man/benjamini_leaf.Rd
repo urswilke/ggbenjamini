@@ -7,8 +7,8 @@
 benjamini_leaf(
   leaf_params = gen_leaf_parameters(),
   omega = 0,
-  xrot = points_df$x[1],
-  yrot = points_df$y[1],
+  xrot = gen_benjamini_points(leaf_params)$x[1],
+  yrot = gen_benjamini_points(leaf_params)$y[1],
   precision = 2
 )
 }
@@ -32,6 +32,8 @@ Generate bezier curve coordinates of a benjamini leaf
 \examples{
 df <- benjamini_leaf()
 df
-ggplot2::ggplot(df) +
-  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i))
+df \%>\%
+  tidyr::unite(b, i_part, element, remove = FALSE) \%>\%
+  ggplot2::ggplot() +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b))
 }

@@ -10,12 +10,13 @@ Description: This package can be used to generate shapes in the form of ficus be
 License: MIT + file LICENSE
 Suggests: 
     flametree,
-    zeallot,
     rsvg,
     minisvg,
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    vdiffr,
+    ambient
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true

@@ -18,7 +18,7 @@ Let's have a look how this package can be combined with the
 [flametree](https://github.com/djnavarro/flametree/) package. First we'll load
 some libraries.
 
-```{r setup}
+```{r setup, message=FALSE}
 library(benjaminileaves)
 library(dplyr)
 library(tidyr)
@@ -75,7 +75,7 @@ df_leaves <- ft_mod %>%
   summarise(tibble(x = coord_x[c(1, 2, 2, 3)], y = coord_y[c(1, 2, 2, 3)])) %>% 
   group_split() %>%
   map_dfr(benjamini_branch, .id = "branch") %>% 
-  unite(i, i, branch)
+  unite(id, branch, i_branch, element, i_part, remove = FALSE)
 ```
 
 We'll remove the top layer of branches from the flametrees and recreate the plot from above.
@@ -96,7 +96,7 @@ leaves by just adding another layer to the ggplot2 object.
 p +
   ggforce::geom_bezier(
     data = df_leaves %>% drop_na(x), 
-    aes(x = x, y = y, group = i), 
+    aes(x = x, y = y, group = id), 
     inherit.aes = FALSE,
     alpha = 0.5,
     color = "forestgreen"
