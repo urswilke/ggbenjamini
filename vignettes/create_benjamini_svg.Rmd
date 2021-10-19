@@ -115,7 +115,7 @@ g4 <- stag$radialGradient(
 doc$append(g3, g4)
 ```
 
-This is another helper function to append pathes to the svg:
+Here we define helper functions to append pathes as polygons or lines to the svg:
 
 ```{r}
 append_polygon <- function(doc, path_str, fill_color) {
