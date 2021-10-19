@@ -232,4 +232,4 @@ If you want to know more have a look in
 
 You can also transform the leaf data to svgs. Have a look in
 `vignette("create_benjamini_svg")` for an example to generate
-[svg](vignettes/svg_vignette_output.svg) images like this
+[svg](vignettes/svg_vignette_output.svg) images.
