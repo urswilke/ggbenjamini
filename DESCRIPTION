@@ -35,5 +35,5 @@ Imports:
     rlang,
     grid
 Remotes:
-    coolbutuseless/minisvg
+    coolbutuseless/minisvg,
     djnavarro/flametree
