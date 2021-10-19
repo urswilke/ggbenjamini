@@ -207,8 +207,11 @@ gen_middle_line_points <- function(points_df) {
 #'   ggplot2::ggplot() +
 #'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b))
 benjamini_leaf <- function(
-  leaf_params = gen_leaf_parameters(),
-  omega = 0, xrot = points_df$x[1], yrot = points_df$y[1], precision = 2
+    leaf_params = gen_leaf_parameters(),
+    omega = 0,
+    xrot = gen_benjamini_points(leaf_params)$x[1],
+    yrot = gen_benjamini_points(leaf_params)$y[1],
+    precision = 2
   ) {
   points_df = gen_benjamini_points(leaf_params)
   slopes_df = gen_benjamini_slopes(leaf_params)

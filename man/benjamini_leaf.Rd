@@ -7,8 +7,8 @@
 benjamini_leaf(
   leaf_params = gen_leaf_parameters(),
   omega = 0,
-  xrot = points_df$x[1],
-  yrot = points_df$y[1],
+  xrot = gen_benjamini_points(leaf_params)$x[1],
+  yrot = gen_benjamini_points(leaf_params)$y[1],
   precision = 2
 )
 }
