@@ -32,6 +32,8 @@ Generate bezier curve coordinates of a benjamini leaf
 \examples{
 df <- benjamini_leaf()
 df
-ggplot2::ggplot(df) +
-  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = i))
+df \%>\%
+  tidyr::unite(b, i_part, element, remove = FALSE) \%>\%
+  ggplot2::ggplot() +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b))
 }
