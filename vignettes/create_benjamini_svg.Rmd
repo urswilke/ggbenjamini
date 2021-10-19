@@ -25,7 +25,7 @@ library(ggplot2)
 library(stringr)
 library(minisvg)
 
-set.seed(123)
+set.seed(21)
 ```
 
 Now we'll define a structure of bezier curves that we'll use as the coordinates for branches:
