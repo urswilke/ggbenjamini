@@ -26,6 +26,7 @@ gen_bezier_coords <- function(df_bezier, n = 100) {
 #' Transform bezier dataframe to dataframe with path coordinates
 #'
 #' @param df_benjamini_leaf Dataframe returned by `benjamini_leaf()`
+#' @param ... grouping variables in `df_benjamini_leaf` that will be kept in the transformation.
 #' @param n number of points per bezier
 #'
 #' @return Dataframe with the coordinates of the bezier curve interpolations.

@@ -9,6 +9,8 @@ gen_leaf_bezier_coords(df_benjamini_leaf, ..., n = 100)
 \arguments{
 \item{df_benjamini_leaf}{Dataframe returned by \code{benjamini_leaf()}}
 
+\item{...}{grouping variables in \code{df_benjamini_leaf} that will be kept in the transformation.}
+
 \item{n}{number of points per bezier}
 }
 \value{
