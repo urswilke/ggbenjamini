@@ -38,9 +38,8 @@ gen_bezier_coords <- function(df_bezier, n = 100) {
 #'   gen_leaf_bezier_coords(b, i_part, element)
 #' df_coords
 #' df_coords %>%
-#'   tidyr::unite(b, i_part, element, remove = FALSE) %>%
-#'   ggplot(aes(x = x, y = y, group = element, fill = element)) +
-#'   geom_polygon()
+#'   ggplot2::ggplot(ggplot2::aes(x = x, y = y, group = element, fill = element)) +
+#'   ggplot2::geom_polygon()
 gen_leaf_bezier_coords <- function(df_benjamini_leaf, ..., n = 100) {
   group_variables <- rlang::enquos(...)
   df_benjamini_leaf %>%
