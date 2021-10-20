@@ -38,9 +38,6 @@ You can install the newest version of **ggbenjamini** from github with:
 remotes::install_github("urswilke/ggbenjamini")
 ```
 
-
-
-
 ## Usage
 
 First load some libraries:
@@ -86,8 +83,6 @@ segments <- df %>%
     values_fn = list
   ) %>% 
   unnest(c(x_1, x_2, y_1, y_2))
-
-
 
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +

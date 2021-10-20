@@ -116,8 +116,6 @@ segments <- df %>%
   ) %>% 
   unnest(c(x_1, x_2, y_1, y_2))
 
-
-
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
   geom_point(data = df %>% group_by(element, i_part) %>% slice(c(1, 4)), color = "blue", size = 2) +
