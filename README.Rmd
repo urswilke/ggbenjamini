@@ -159,16 +159,16 @@ If you want to fill the leaves with color, you can use `gen_leaf_bezier_coords()
 
 ```{r polygon}
 df_branch %>% 
-    filter(stringr::str_detect(element, "^half [12]$")) %>%
-    unite(idx, i_branch, element, remove = FALSE) %>%
-    gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100) %>% 
+  filter(stringr::str_detect(element, "^half [12]$")) %>%
+  unite(idx, i_branch, element, remove = FALSE) %>%
+  gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100) %>% 
   ggplot(
     data = .,
     aes(x = x, y = y, group = idx, fill = i_branch)
   ) +
   geom_polygon(show.legend = FALSE, color = "black") +
-  theme_void() + 
-  scale_color_gradientn(colours = c("darkgreen", "green"))
+  scale_fill_gradientn(colours = c("darkgreen", "green")) +
+  theme_void() 
 ```
 
 If you want to know more have a look in `vignette("create_benjamini_polygons")` .

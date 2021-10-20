@@ -211,16 +211,16 @@ bezier curves with polygons:
 
 ``` r
 df_branch %>% 
-    filter(stringr::str_detect(element, "^half [12]$")) %>%
-    unite(idx, i_branch, element, remove = FALSE) %>%
-    gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100) %>% 
+  filter(stringr::str_detect(element, "^half [12]$")) %>%
+  unite(idx, i_branch, element, remove = FALSE) %>%
+  gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100) %>% 
   ggplot(
     data = .,
     aes(x = x, y = y, group = idx, fill = i_branch)
   ) +
   geom_polygon(show.legend = FALSE, color = "black") +
-  theme_void() + 
-  scale_color_gradientn(colours = c("darkgreen", "green"))
+  scale_fill_gradientn(colours = c("darkgreen", "green")) +
+  theme_void() 
 ```
 
 <img src="man/figures/README-polygon-1.png" width="100%" />
