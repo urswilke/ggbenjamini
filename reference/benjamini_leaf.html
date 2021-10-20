@@ -174,15 +174,15 @@
 #&gt;    element i_part     x     y param_type            
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 
 #&gt; <span style='color: #BCBCBC;'> 1</span> stalk        0  10    40   bezier start point    
-#&gt; <span style='color: #BCBCBC;'> 2</span> stalk        0  10.0  40.8 bezier control point 1
-#&gt; <span style='color: #BCBCBC;'> 3</span> stalk        0  19.0  39.4 bezier control point 2
-#&gt; <span style='color: #BCBCBC;'> 4</span> stalk        0  19    40   bezier end point      
-#&gt; <span style='color: #BCBCBC;'> 5</span> half 2       1  19    40   bezier start point    
-#&gt; <span style='color: #BCBCBC;'> 6</span> half 2       1  20    35   bezier control point 1
-#&gt; <span style='color: #BCBCBC;'> 7</span> half 2       1  31    34.2 bezier control point 2
-#&gt; <span style='color: #BCBCBC;'> 8</span> half 2       1  35    34   bezier end point      
-#&gt; <span style='color: #BCBCBC;'> 9</span> half 2       2  35    34   bezier start point    
-#&gt; <span style='color: #BCBCBC;'>10</span> half 2       2  39    33.8 bezier control point 1
+#&gt; <span style='color: #BCBCBC;'> 2</span> stalk        0  10.0  40.5 bezier control point 1
+#&gt; <span style='color: #BCBCBC;'> 3</span> stalk        0  21.0  39.6 bezier control point 2
+#&gt; <span style='color: #BCBCBC;'> 4</span> stalk        0  21    40   bezier end point      
+#&gt; <span style='color: #BCBCBC;'> 5</span> half 2       1  21    40   bezier start point    
+#&gt; <span style='color: #BCBCBC;'> 6</span> half 2       1  22    36   bezier control point 1
+#&gt; <span style='color: #BCBCBC;'> 7</span> half 2       1  34    29.8 bezier control point 2
+#&gt; <span style='color: #BCBCBC;'> 8</span> half 2       1  40    30   bezier end point      
+#&gt; <span style='color: #BCBCBC;'> 9</span> half 2       2  40    30   bezier start point    
+#&gt; <span style='color: #BCBCBC;'>10</span> half 2       2  46    30.2 bezier control point 1
 #&gt; <span style='color: #949494;'># … with 26 more rows</span></div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span>
   <span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></span><span class='op'>(</span><span class='va'>b</span>, <span class='va'>i_part</span>, <span class='va'>element</span>, remove <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
