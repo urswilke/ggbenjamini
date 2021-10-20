@@ -119,3 +119,5 @@ ggplot(
   scale_y_reverse() +
   theme_void() 
 ```
+
+If you look closely, you'll see that the leaves cover all leaf stalks and branches. This happens because in the ggplot, we first plot all pathes and then all polygons.
