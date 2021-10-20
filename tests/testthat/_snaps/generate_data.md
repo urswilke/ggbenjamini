@@ -32,10 +32,10 @@
        4 1_0_branch        0 branch       1 168    217  branch      bezier end point  
        5 0_1_stalk         1 stalk        0  75.7  269. leaf_bezier bezier start point
        6 0_1_stalk         1 stalk        0  75.8  269. leaf_bezier bezier control po~
-       7 0_1_stalk         1 stalk        0  81.1  267. leaf_bezier bezier control po~
-       8 0_1_stalk         1 stalk        0  81.2  267. leaf_bezier bezier end point  
-       9 1_1_half 2        1 half 2       1  81.2  267. leaf_bezier bezier start point
-      10 1_1_half 2        1 half 2       1  81.4  263. leaf_bezier bezier control po~
+       7 0_1_stalk         1 stalk        0  82.9  266. leaf_bezier bezier control po~
+       8 0_1_stalk         1 stalk        0  83.0  267. leaf_bezier bezier end point  
+       9 1_1_half 2        1 half 2       1  83.0  267. leaf_bezier bezier start point
+      10 1_1_half 2        1 half 2       1  83.0  264. leaf_bezier bezier control po~
       # ... with 426 more rows
 
 # bezier elements to polygons transformations work

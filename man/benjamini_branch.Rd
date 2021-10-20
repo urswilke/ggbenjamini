@@ -11,6 +11,8 @@ benjamini_branch(
   first_dir = sample(0:1, 1),
   stalk_len = 15,
   leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8),
+  leaf_angle_dist = spark_norm(mean = 0, sd = 3),
+  last_angle_straight = TRUE,
   leaf_size_multiplicator = 1
 )
 }
@@ -29,6 +31,13 @@ benjamini_branch(
 This function returns a function which itself returns a numerical vector of
 length of the number of leaves on the branch. The function will be rescaled
 (divided by it's maximum value).}
+
+\item{leaf_angle_dist}{Manipulate the leaf angles with a spark function
+This function returns a function which itself returns a numerical vector of
+length of the number of leaves on the branch.}
+
+\item{last_angle_straight}{Logical if the angle of the last leaf on the
+branch is very sharp (defaults to TRUE).}
 
 \item{leaf_size_multiplicator}{Multiply leaf size distribution with a factor.}
 }

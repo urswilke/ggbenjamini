@@ -143,6 +143,7 @@ ggplot(dfb) +
 
 You can also generate branches of leaves with the command `benjamini_branch()` (see the vignettes `vignette("create_benjamini_polygons")` and `vignette("create_benjamini_tree")` for examples):
 
+
 ```{r branch}
 df_branch <- benjamini_branch() %>%
   # we add an identifier `b`:

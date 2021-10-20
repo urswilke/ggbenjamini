@@ -9,6 +9,11 @@
 #'   This function returns a function which itself returns a numerical vector of
 #'   length of the number of leaves on the branch. The function will be rescaled
 #'   (divided by it's maximum value).
+#' @param leaf_angle_dist Manipulate the leaf angles with a spark function
+#'   This function returns a function which itself returns a numerical vector of
+#'   length of the number of leaves on the branch.
+#' @param last_angle_straight Logical if the angle of the last leaf on the
+#'   branch is very sharp (defaults to TRUE).
 #' @param leaf_size_multiplicator Multiply leaf size distribution with a factor.
 #'
 #' @return A dataframe containing the data for leaves on a branch (see example).
@@ -30,6 +35,8 @@ benjamini_branch <- function(
   stalk_len = 15,
   # Idea from flametree::flametree_grow()
   leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8),
+  leaf_angle_dist = spark_norm(mean = 0, sd = 3),
+  last_angle_straight = TRUE,
   leaf_size_multiplicator = 1
 ) {
   df_coords <- gen_bezier_coords(df_branch)
@@ -60,6 +67,12 @@ benjamini_branch <- function(
   leaf_angles <- vector("numeric", n_leaves)
   leaf_angles[pos_positions] <- stalk_angle_pos[pos_positions]
   leaf_angles[neg_positions] <- stalk_angle_neg[neg_positions]
+
+  if (last_angle_straight) {
+    leaf_angles[n_leaves] <- (2 * angle[length(angle)] + leaf_angles[n_leaves]) / 3
+  }
+
+  leaf_angles <- leaf_angles + leaf_angle_dist(n_leaves)
 
   dist_multiplicator <- leave_size_dist(n_leaves)
   dist_multiplicator <- dist_multiplicator/max(dist_multiplicator) * leaf_size_multiplicator
@@ -126,5 +139,23 @@ get_leaf_indices <- function(dx, dy, leaf_mean_dist_approx, n_points) {
 spark_weibull <- function(shape = 1.2, scale_factor = 0.5) {
   function(n_leaves) {
     stats::dweibull(1:n_leaves, shape, scale = n_leaves * scale_factor)
+  }
+}
+
+#' Manipulate the angles of the leaves with a normal distribution
+#'
+#' This function returns a function which itself returns a numerical vector of
+#' length of the number of leaves on the branch.
+#'
+#' @param mean,sd Parameters passed to `stats::dnorm()`.
+#'
+#' @return dnorm() function with n_leaves as one of the arguments
+#' @export
+#'
+#' @examples
+#' spark_norm()
+spark_norm <- function(mean = 0, sd = 3) {
+  function(n_leaves) {
+    stats::rnorm(n_leaves, mean = mean, sd = sd)
   }
 }
