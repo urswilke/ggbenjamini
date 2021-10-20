@@ -25,7 +25,10 @@ benjamini_branch(
 
 \item{stalk_len}{length of a stalk}
 
-\item{leave_size_dist}{Manipulate the sizes of the leaves with a spark function}
+\item{leave_size_dist}{Manipulate the sizes of the leaves with a spark function
+This function returns a function which itself returns a numerical vector of
+length of the number of leaves on the branch. The function will be rescaled
+(divided by it's maximum value).}
 
 \item{leaf_size_multiplicator}{Multiply leaf size distribution with a factor.}
 }

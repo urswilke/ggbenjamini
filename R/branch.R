@@ -6,6 +6,9 @@
 #' @param first_dir direction of the first leaf in the branch (0 for right; 1 for left)
 #' @param stalk_len length of a stalk
 #' @param leave_size_dist Manipulate the sizes of the leaves with a spark function
+#'   This function returns a function which itself returns a numerical vector of
+#'   length of the number of leaves on the branch. The function will be rescaled
+#'   (divided by it's maximum value).
 #' @param leaf_size_multiplicator Multiply leaf size distribution with a factor.
 #'
 #' @return A dataframe containing the data for leaves on a branch (see example).
