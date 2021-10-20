@@ -28,10 +28,12 @@ library(minisvg)
 set.seed(21)
 ```
 
+## Data preparation
+
 Now we'll define a structure of bezier curves that we'll use as the coordinates for branches:
 
 ```{r}
-size <- 160
+size <- 640
 df_branches <- tibble(
   x = sample(1:size, 20, replace = TRUE),
   y = sample(1:size, 20, replace = TRUE),
@@ -45,13 +47,14 @@ Now let's grow leaves on these branches:
 df_branches_and_leaves <- df_branches %>% 
   group_split(bezier_idx) %>% 
   map_dfr(
-    ~benjamini_branch(df_branch = .x[c("x", "y")]),
+    ~benjamini_branch(df_branch = .x[c("x", "y")], leaf_size_multiplicator = 4),
     .id = "bezier_idx"
   )
 ```
 
+## ggplot2
 
-and plot this:
+Let's first plot this with ggplot2:
 
 ```{r}
 df_branches_and_leaves %>%
@@ -62,8 +65,9 @@ df_branches_and_leaves %>%
   theme_void()
 ```
 
+## svg
 
-Next we'll define a helper function to define the "d" element of [svg path strings](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
+To plot an svg image, we'll first define a helper function to generate the "d" element of [svg path strings](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
 
 ```{r}
 get_svg_bezier_string <- function(bezier_df) {
@@ -76,7 +80,11 @@ get_svg_bezier_string <- function(bezier_df) {
     # paste("Z") %>% 
     paste0("M ", bezier_df$x[1], ",", bezier_df$y[1], " ", .)
 }
+```
 
+Now we can add columns `path_str` with this "d" element and furthermore, we'll define different `fill_ _color`s for the varyous types of `element`s:
+
+```{r}
 df_svg <- df_branches_and_leaves %>% 
   group_by(bezier_idx, i_branch, element) %>% 
   summarise(path_str =  get_svg_bezier_string(tibble(x, y, i_part))) %>% 
@@ -131,7 +139,7 @@ append_line <- function(doc, path_str, fill_color) {
   doc$append(
     stag$path(
       d = path_str,
-      stroke_width = "0.5",
+      stroke_width = "2",
       fill = "none",
       stroke=fill_color
     )
@@ -174,7 +182,7 @@ Et voilà
 doc$show()
 ```
 
-```{r, echo=FALSE, out.width = "320px"}
+```{r, echo=FALSE}
 doc$save("svg_vignette_output.svg")
 rsvg::rsvg_png("svg_vignette_output.svg", "svg_vignette_output.png")
 knitr::include_graphics("svg_vignette_output.png")
