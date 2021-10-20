@@ -24,18 +24,18 @@
       df_branch
     Output
       # A tibble: 436 x 8
-         b          i_branch element i_part     x     y type        param_type        
-         <chr>         <dbl> <chr>    <dbl> <dbl> <dbl> <chr>       <chr>             
-       1 1_0_branch        0 branch       1  70    280  branch      bezier start point
-       2 1_0_branch        0 branch       1  84    245  branch      bezier control po~
-       3 1_0_branch        0 branch       1 126    217  branch      bezier control po~
-       4 1_0_branch        0 branch       1 168    217  branch      bezier end point  
-       5 0_1_stalk         1 stalk        0  75.7  269. leaf_bezier bezier start point
-       6 0_1_stalk         1 stalk        0  75.8  269. leaf_bezier bezier control po~
-       7 0_1_stalk         1 stalk        0  82.9  266. leaf_bezier bezier control po~
-       8 0_1_stalk         1 stalk        0  83.0  267. leaf_bezier bezier end point  
-       9 1_1_half 2        1 half 2       1  83.0  267. leaf_bezier bezier start point
-      10 1_1_half 2        1 half 2       1  83.0  264. leaf_bezier bezier control po~
+         b          i_leaf element i_part     x     y type        param_type          
+         <chr>       <dbl> <chr>    <dbl> <dbl> <dbl> <chr>       <chr>               
+       1 1_0_branch      0 branch       1  70    280  branch      bezier start point  
+       2 1_0_branch      0 branch       1  84    245  branch      bezier control poin~
+       3 1_0_branch      0 branch       1 126    217  branch      bezier control poin~
+       4 1_0_branch      0 branch       1 168    217  branch      bezier end point    
+       5 0_1_stalk       1 stalk        0  75.7  269. leaf_bezier bezier start point  
+       6 0_1_stalk       1 stalk        0  75.8  269. leaf_bezier bezier control poin~
+       7 0_1_stalk       1 stalk        0  82.9  266. leaf_bezier bezier control poin~
+       8 0_1_stalk       1 stalk        0  83.0  267. leaf_bezier bezier end point    
+       9 1_1_half 2      1 half 2       1  83.0  267. leaf_bezier bezier start point  
+      10 1_1_half 2      1 half 2       1  83.0  264. leaf_bezier bezier control poin~
       # ... with 426 more rows
 
 # bezier elements to polygons transformations work

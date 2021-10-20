@@ -143,17 +143,17 @@ You can also generate branches of leaves with the command `benjamini_branch()` (
 ```{r branch}
 df_branch <- benjamini_branch() %>%
   # we add a unique identifier `b` for all beziers:
-  tidyr::unite(b, i_branch, element, i_part, remove = FALSE) 
+  tidyr::unite(b, i_leaf, element, i_part, remove = FALSE) 
 df_branch
 ```
 
-As the following plot also shows, `benjamini_branch()` adds another column `i_branch` specifying the index of the leaf on the branch.
+As the following plot also shows, `benjamini_branch()` adds another column `i_leaf` specifying the index of the leaf on the branch.
 
 
 ```{r branch2}
 df_branch %>%
   ggplot2::ggplot() +
-  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_branch)) +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_leaf)) +
   ggplot2::coord_equal()
 ```
 
@@ -165,11 +165,11 @@ If you want to fill the leaves with color, you can use `gen_leaf_bezier_coords()
 ```{r polygon}
 df_polygons <- df_branch %>% 
   filter(stringr::str_detect(element, "^half [12]$")) %>%
-  unite(idx, i_branch, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100)
+  unite(idx, i_leaf, element, remove = FALSE) %>%
+  gen_leaf_bezier_coords(idx, i_leaf, element, i_part, n = 100)
 ggplot(
   data = df_polygons,
-  aes(x = x, y = y, group = idx, fill = i_branch)
+  aes(x = x, y = y, group = idx, fill = i_leaf)
 ) +
   geom_polygon(show.legend = FALSE, color = "black") +
   scale_fill_gradientn(colours = c("darkgreen", "green")) +

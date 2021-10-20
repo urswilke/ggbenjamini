@@ -58,7 +58,7 @@ Let's first plot this with ggplot2:
 
 ```{r}
 df_branches_and_leaves %>%
-  unite(idx, bezier_idx, i_branch, i_part, element, remove = FALSE) %>% 
+  unite(idx, bezier_idx, i_leaf, i_part, element, remove = FALSE) %>% 
   ggplot(aes(x = x, y = y, group = idx, color = factor(bezier_idx))) + 
   ggforce::geom_bezier(show.legend = FALSE) +
   scale_y_reverse() +
@@ -86,7 +86,7 @@ Now we can add columns `path_str` with this "d" element and furthermore, we'll d
 
 ```{r}
 df_svg <- df_branches_and_leaves %>% 
-  group_by(bezier_idx, i_branch, element) %>% 
+  group_by(bezier_idx, i_leaf, element) %>% 
   summarise(path_str =  get_svg_bezier_string(tibble(x, y, i_part))) %>% 
   mutate(fill_color = case_when(
     element == "half 1" ~ "url(#RadialGradient3)",

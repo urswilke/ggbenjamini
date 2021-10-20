@@ -180,31 +180,31 @@ You can also generate branches of leaves with the command
 ``` r
 df_branch <- benjamini_branch() %>%
   # we add a unique identifier `b` for all beziers:
-  tidyr::unite(b, i_branch, element, i_part, remove = FALSE) 
+  tidyr::unite(b, i_leaf, element, i_part, remove = FALSE) 
 df_branch
 #> # A tibble: 436 × 8
-#>    b          i_branch element i_part     x     y type        param_type        
-#>    <chr>         <dbl> <chr>    <dbl> <dbl> <dbl> <chr>       <chr>             
-#>  1 0_branch_1        0 branch       1  70    280  branch      bezier start point
-#>  2 0_branch_1        0 branch       1  84    245  branch      bezier control po…
-#>  3 0_branch_1        0 branch       1 126    217  branch      bezier control po…
-#>  4 0_branch_1        0 branch       1 168    217  branch      bezier end point  
-#>  5 1_stalk_0         1 stalk        0  75.7  269. leaf_bezier bezier start point
-#>  6 1_stalk_0         1 stalk        0  76.2  268. leaf_bezier bezier control po…
-#>  7 1_stalk_0         1 stalk        0  73.8  264  leaf_bezier bezier control po…
-#>  8 1_stalk_0         1 stalk        0  74.0  264. leaf_bezier bezier end point  
-#>  9 1_half 2_1        1 half 2       1  74.0  264. leaf_bezier bezier start point
-#> 10 1_half 2_1        1 half 2       1  71.4  264. leaf_bezier bezier control po…
+#>    b          i_leaf element i_part     x     y type        param_type          
+#>    <chr>       <dbl> <chr>    <dbl> <dbl> <dbl> <chr>       <chr>               
+#>  1 0_branch_1      0 branch       1  70    280  branch      bezier start point  
+#>  2 0_branch_1      0 branch       1  84    245  branch      bezier control poin…
+#>  3 0_branch_1      0 branch       1 126    217  branch      bezier control poin…
+#>  4 0_branch_1      0 branch       1 168    217  branch      bezier end point    
+#>  5 1_stalk_0       1 stalk        0  75.7  269. leaf_bezier bezier start point  
+#>  6 1_stalk_0       1 stalk        0  76.2  268. leaf_bezier bezier control poin…
+#>  7 1_stalk_0       1 stalk        0  73.8  264  leaf_bezier bezier control poin…
+#>  8 1_stalk_0       1 stalk        0  74.0  264. leaf_bezier bezier end point    
+#>  9 1_half 2_1      1 half 2       1  74.0  264. leaf_bezier bezier start point  
+#> 10 1_half 2_1      1 half 2       1  71.4  264. leaf_bezier bezier control poin…
 #> # … with 426 more rows
 ```
 
 As the following plot also shows, `benjamini_branch()` adds another
-column `i_branch` specifying the index of the leaf on the branch.
+column `i_leaf` specifying the index of the leaf on the branch.
 
 ``` r
 df_branch %>%
   ggplot2::ggplot() +
-  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_branch)) +
+  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_leaf)) +
   ggplot2::coord_equal()
 ```
 
@@ -219,11 +219,11 @@ with polygons:
 ``` r
 df_polygons <- df_branch %>% 
   filter(stringr::str_detect(element, "^half [12]$")) %>%
-  unite(idx, i_branch, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100)
+  unite(idx, i_leaf, element, remove = FALSE) %>%
+  gen_leaf_bezier_coords(idx, i_leaf, element, i_part, n = 100)
 ggplot(
   data = df_polygons,
-  aes(x = x, y = y, group = idx, fill = i_branch)
+  aes(x = x, y = y, group = idx, fill = i_leaf)
 ) +
   geom_polygon(show.legend = FALSE, color = "black") +
   scale_fill_gradientn(colours = c("darkgreen", "green")) +

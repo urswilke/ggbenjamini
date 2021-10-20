@@ -83,7 +83,7 @@ different elements:
 
 ```{r}
 df_branches_and_leaves %>%
-  unite(idx, bezier_idx, i_branch, i_part, element, remove = FALSE) %>% 
+  unite(idx, bezier_idx, i_leaf, i_part, element, remove = FALSE) %>% 
   ggplot(aes(x = x, y = y, group = idx, color = factor(bezier_idx))) + 
   ggforce::geom_bezier(show.legend = FALSE) +
   scale_y_reverse() +
@@ -98,8 +98,8 @@ have a look at the following section.
 If we want to fill these shapes with color we can first approximate the bezier curves with piecewise linear curves of length `n = 100` for each bezier. Furthermore, we'll add some simplex noise to make them look more interesting:
 ```{r}
 df2 <- df_branches_and_leaves %>%
-  unite(idx, bezier_idx, i_branch, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(idx, bezier_idx, i_branch, element, i_part, n = 100) %>% 
+  unite(idx, bezier_idx, i_leaf, element, remove = FALSE) %>%
+  gen_leaf_bezier_coords(idx, bezier_idx, i_leaf, element, i_part, n = 100) %>% 
   mutate(
     x2 = x + ambient::gen_simplex(x, y, frequency = 0.05, seed = 123),
     y2 = y + ambient::gen_simplex(x, y, frequency = 0.05, seed = 123)

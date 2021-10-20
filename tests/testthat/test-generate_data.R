@@ -5,7 +5,7 @@ df_polygon <- df_leaf %>%
   tidyr::unite(b, i_part, element, remove = FALSE) %>%
   gen_leaf_bezier_coords(b, i_part, element)
 df_branch <- benjamini_branch() %>%
-  tidyr::unite(b, i_part, i_branch, element, remove = FALSE)
+  tidyr::unite(b, i_part, i_leaf, element, remove = FALSE)
 
 test_that("generated bezier leaf dataframe still the same", {
   expect_snapshot(df_leaf)

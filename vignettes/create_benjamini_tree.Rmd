@@ -75,7 +75,7 @@ df_leaves <- ft_mod %>%
   summarise(tibble(x = coord_x[c(1, 2, 2, 3)], y = coord_y[c(1, 2, 2, 3)])) %>% 
   group_split() %>%
   map_dfr(benjamini_branch, .id = "branch") %>% 
-  unite(id, branch, i_branch, element, i_part, remove = FALSE)
+  unite(id, branch, i_leaf, element, i_part, remove = FALSE)
 ```
 
 We'll remove the top layer of branches from the flametrees and recreate the plot from above.

@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' benjamini_branch() %>%
-#'   tidyr::unite(b, i_part, i_branch, element, remove = FALSE) %>%
+#'   tidyr::unite(b, i_part, i_leaf, element, remove = FALSE) %>%
 #'   ggplot2::ggplot() +
 #'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b)) +
 #'   ggplot2::coord_equal()
@@ -85,23 +85,23 @@ benjamini_branch <- function(
       dist_multiplicator
     ),
     function(x, y, z) benjamini_leaf(gen_leaf_parameters(x0 = x$x, y0 = x$y) %>% resize_leaf_params(z), omega = y + 180),
-    .id = "i_branch"
+    .id = "i_leaf"
   ) %>%
-    dplyr::mutate(i_branch = as.numeric(.data$i_branch)) %>%
+    dplyr::mutate(i_leaf = as.numeric(.data$i_leaf)) %>%
     dplyr::mutate(type = "leaf_bezier")
 
   dplyr::bind_rows(
     df_branch %>%
       dplyr::mutate(
         i_part = 1,
-        i_branch = 0,
+        i_leaf = 0,
         type = "branch",
         element = "branch"
       ) %>%
       add_bezier_point_type_column(),
     leaves
   ) %>%
-    dplyr::relocate(.data$i_branch, .data$element, .data$i_part)
+    dplyr::relocate(.data$i_leaf, .data$element, .data$i_part)
 
 }
 
