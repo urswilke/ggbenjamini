@@ -88,7 +88,7 @@ df_branches_and_leaves %>%
   theme_void()
 ```
 
-If we want to fill these shapes with color we can first approximate the bezier curves with piecewise linear curves of length `n = 100` for each bezier. Furthermore, we'll add some simpplex noise to make them look more interesting:
+If we want to fill these shapes with color we can first approximate the bezier curves with piecewise linear curves of length `n = 100` for each bezier. Furthermore, we'll add some simplex noise to make them look more interesting:
 ```{r}
 df2 <- df_branches_and_leaves %>%
   unite(idx, bezier_idx, i_branch, element, remove = FALSE) %>%
