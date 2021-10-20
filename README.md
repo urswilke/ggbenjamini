@@ -10,6 +10,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/benjaminileaves)](https://CRAN.R-project.org/package=benjaminileaves)
 [![R-CMD-check](https://github.com/urswilke/ggbenjamini/workflows/R-CMD-check/badge.svg)](https://github.com/urswilke/ggbenjamini/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/urswilke/ggbenjamini/branch/main/graph/badge.svg)](https://codecov.io/gh/urswilke/ggbenjamini?branch=main)
 <!-- badges: end -->
 
 ## Generate benjamini leaves with bezier curves
