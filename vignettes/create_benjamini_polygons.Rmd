@@ -31,6 +31,8 @@ library(stringr)
 set.seed(123)
 ```
 
+## Béziers
+
 Now we'll create a data structure consisting of multiple bezier curves that we can use to grow branches after (DON'T TRY TO UNDERSTAND THIS CODE! I'M SURE YOU COULD DO THAT MUCH BETTER...):
 
 ```{r}
@@ -83,10 +85,15 @@ different elements:
 df_branches_and_leaves %>%
   unite(idx, bezier_idx, i_branch, i_part, element, remove = FALSE) %>% 
   ggplot(aes(x = x, y = y, group = idx, color = factor(bezier_idx))) + 
-  ggforce::geom_bezier2(show.legend = FALSE) +
+  ggforce::geom_bezier(show.legend = FALSE) +
   scale_y_reverse() +
   theme_void()
 ```
+
+Quite messy, all these lines! In order for the leaves to cover what's below,
+have a look at the following section.
+
+## Polygons
 
 If we want to fill these shapes with color we can first approximate the bezier curves with piecewise linear curves of length `n = 100` for each bezier. Furthermore, we'll add some simplex noise to make them look more interesting:
 ```{r}
