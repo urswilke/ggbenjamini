@@ -1,4 +1,4 @@
-Package: benjaminileaves
+Package: ggbenjamini
 Title: Generate ficus benjamina leaf shapes with bezier curves
 Version: 0.0.0.9000
 Authors@R: 

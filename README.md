@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# benjaminileaves
+# ggbenjamini
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/benjaminileaves)](https://CRAN.R-project.org/package=benjaminileaves)
+status](https://www.r-pkg.org/badges/version/ggbenjamini)](https://CRAN.R-project.org/package=ggbenjamini)
 [![R-CMD-check](https://github.com/urswilke/ggbenjamini/workflows/R-CMD-check/badge.svg)](https://github.com/urswilke/ggbenjamini/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/urswilke/ggbenjamini/branch/main/graph/badge.svg)](https://codecov.io/gh/urswilke/ggbenjamini?branch=main)
@@ -22,13 +22,13 @@ fig](https://en.wikipedia.org/wiki/Ficus_benjamina)) with bezier curves.
 
 ## Installation
 
-You can install the newest version of benjaminileaves from github with:
+You can install the newest version of ggbenjamini from github with:
 
 ``` r
 # install.packages("remotes")
 # (if not installed yet)
 
-remotes::install_github("urswilke/benjaminileaves")
+remotes::install_github("urswilke/ggbenjamini")
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ remotes::install_github("urswilke/benjaminileaves")
 First load some libraries:
 
 ``` r
-library(benjaminileaves)
+library(ggbenjamini)
 library(purrr)
 library(dplyr)
 library(tidyr)

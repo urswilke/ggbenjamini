@@ -1,4 +1,4 @@
 library(testthat)
-library(benjaminileaves)
+library(ggbenjamini)
 
-test_check("benjaminileaves")
+test_check("ggbenjamini")
