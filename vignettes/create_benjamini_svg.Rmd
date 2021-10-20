@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 Let's have a look how the benjamini leaves can be integrated in svg files. First we'll load some libraries.
 
 ```{r setup, message=FALSE}
-library(benjaminileaves)
+library(ggbenjamini)
 library(dplyr)
 library(purrr)
 library(tidyr)

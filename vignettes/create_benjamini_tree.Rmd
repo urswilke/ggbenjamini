@@ -19,7 +19,7 @@ Let's have a look how this package can be combined with the
 some libraries.
 
 ```{r setup, message=FALSE}
-library(benjaminileaves)
+library(ggbenjamini)
 library(dplyr)
 library(tidyr)
 library(purrr)
