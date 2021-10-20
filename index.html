@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggbenjamini</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the newest version of ggbenjamini from github with:</p>
+<p>You can install the newest version of <strong>ggbenjamini</strong> from github with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="co"># (if not installed yet)</span>
@@ -171,8 +171,6 @@
   <span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x_1</span>, <span class="va">x_2</span>, <span class="va">y_1</span>, <span class="va">y_2</span><span class="op">)</span><span class="op">)</span>
 
-
-
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">element</span>, <span class="va">i_part</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
@@ -220,42 +218,44 @@
 <p>You can also generate branches of leaves with the command <code><a href="reference/benjamini_branch.html">benjamini_branch()</a></code> (see the vignettes <code><a href="articles/create_benjamini_polygons.html">vignette("create_benjamini_polygons")</a></code> and <code><a href="articles/create_benjamini_tree.html">vignette("create_benjamini_tree")</a></code> for examples):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_branch</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/benjamini_branch.html">benjamini_branch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># we add an identifier `b`:</span>
-  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">i_part</span>, <span class="va">i_branch</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> 
+  <span class="co"># we add a unique identifier `b` for all beziers:</span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">i_branch</span>, <span class="va">element</span>, <span class="va">i_part</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> 
 <span class="va">df_branch</span>
 <span class="co">#&gt; # A tibble: 436 × 8</span>
 <span class="co">#&gt;    b          i_branch element i_part     x     y type        param_type        </span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             </span>
-<span class="co">#&gt;  1 1_0_branch        0 branch       1  70    280  branch      bezier start point</span>
-<span class="co">#&gt;  2 1_0_branch        0 branch       1  84    245  branch      bezier control po…</span>
-<span class="co">#&gt;  3 1_0_branch        0 branch       1 126    217  branch      bezier control po…</span>
-<span class="co">#&gt;  4 1_0_branch        0 branch       1 168    217  branch      bezier end point  </span>
-<span class="co">#&gt;  5 0_1_stalk         1 stalk        0  75.7  269. leaf_bezier bezier start point</span>
-<span class="co">#&gt;  6 0_1_stalk         1 stalk        0  76.2  268. leaf_bezier bezier control po…</span>
-<span class="co">#&gt;  7 0_1_stalk         1 stalk        0  73.8  264  leaf_bezier bezier control po…</span>
-<span class="co">#&gt;  8 0_1_stalk         1 stalk        0  74.0  264. leaf_bezier bezier end point  </span>
-<span class="co">#&gt;  9 1_1_half 2        1 half 2       1  74.0  264. leaf_bezier bezier start point</span>
-<span class="co">#&gt; 10 1_1_half 2        1 half 2       1  71.4  264. leaf_bezier bezier control po…</span>
-<span class="co">#&gt; # … with 426 more rows</span>
-<span class="va">df_branch</span> <span class="op">%&gt;%</span>
+<span class="co">#&gt;  1 0_branch_1        0 branch       1  70    280  branch      bezier start point</span>
+<span class="co">#&gt;  2 0_branch_1        0 branch       1  84    245  branch      bezier control po…</span>
+<span class="co">#&gt;  3 0_branch_1        0 branch       1 126    217  branch      bezier control po…</span>
+<span class="co">#&gt;  4 0_branch_1        0 branch       1 168    217  branch      bezier end point  </span>
+<span class="co">#&gt;  5 1_stalk_0         1 stalk        0  75.7  269. leaf_bezier bezier start point</span>
+<span class="co">#&gt;  6 1_stalk_0         1 stalk        0  76.2  268. leaf_bezier bezier control po…</span>
+<span class="co">#&gt;  7 1_stalk_0         1 stalk        0  73.8  264  leaf_bezier bezier control po…</span>
+<span class="co">#&gt;  8 1_stalk_0         1 stalk        0  74.0  264. leaf_bezier bezier end point  </span>
+<span class="co">#&gt;  9 1_half 2_1        1 half 2       1  74.0  264. leaf_bezier bezier start point</span>
+<span class="co">#&gt; 10 1_half 2_1        1 half 2       1  71.4  264. leaf_bezier bezier control po…</span>
+<span class="co">#&gt; # … with 426 more rows</span></code></pre></div>
+<p>As the following plot also shows, <code><a href="reference/benjamini_branch.html">benjamini_branch()</a></code> adds another column <code>i_branch</code> specifying the index of the leaf on the branch.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_branch</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggforce</span><span class="fu">::</span><span class="fu"><a href="https://ggforce.data-imaginist.com/reference/geom_bezier.html">geom_bezier</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, group <span class="op">=</span> <span class="va">b</span>, color <span class="op">=</span> <span class="va">i_branch</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-branch-1.png" width="100%"></p>
+<p><img src="reference/figures/README-branch2-1.png" width="100%"></p>
 </div>
 <div id="polygons" class="section level2">
 <h2 class="hasAnchor">
 <a href="#polygons" class="anchor"></a>Polygons</h2>
-<p>If you want to fill the leaves with color, you can use <code><a href="reference/gen_leaf_bezier_coords.html">gen_leaf_bezier_coords()</a></code> to approximate the leaf parts described by bezier curves with polygons:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_branch</span> <span class="op">%&gt;%</span> 
+<p>If you want to fill the leaves with color, you can use <code><a href="reference/gen_leaf_bezier_coords.html">gen_leaf_bezier_coords()</a></code> to approximate the bezier curves leaf parts with polygons:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_polygons</span> <span class="op">&lt;-</span> <span class="va">df_branch</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">element</span>, <span class="st">"^half [12]$"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_branch</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/gen_leaf_bezier_coords.html">gen_leaf_bezier_coords</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_branch</span>, <span class="va">element</span>, <span class="va">i_part</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">.</span>,
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, group <span class="op">=</span> <span class="va">idx</span>, fill <span class="op">=</span> <span class="va">i_branch</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/gen_leaf_bezier_coords.html">gen_leaf_bezier_coords</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_branch</span>, <span class="va">element</span>, <span class="va">i_part</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">df_polygons</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, group <span class="op">=</span> <span class="va">idx</span>, fill <span class="op">=</span> <span class="va">i_branch</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span><span class="op">(</span>colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
@@ -265,7 +265,7 @@
 <div id="svg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#svg" class="anchor"></a>svg</h2>
-<p>You can also transform the leaf data to svgs. Have a look in <code><a href="articles/create_benjamini_svg.html">vignette("create_benjamini_svg")</a></code> for an example to generate <a href="vignettes/svg_vignette_output.svg">svg</a> images.</p>
+<p>You can also transform the leaf data to svgs. Have a look in <code><a href="articles/create_benjamini_svg.html">vignette("create_benjamini_svg")</a></code> for an example to generate svg images.</p>
 </div>
 </div>
   </div>
