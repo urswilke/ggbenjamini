@@ -6,6 +6,7 @@
 #' @param first_dir direction of the first leaf in the branch (0 for right; 1 for left)
 #' @param stalk_len length of a stalk
 #' @param leave_size_dist Manipulate the sizes of the leaves with a spark function
+#' @param leaf_size_multiplicator Multiply leaf size distribution with a factor.
 #'
 #' @return A dataframe containing the data for leaves on a branch (see example).
 #' @export
@@ -25,7 +26,8 @@ benjamini_branch <- function(
   first_dir = sample(0:1, 1),
   stalk_len = 15,
   # Idea from flametree::flametree_grow()
-  leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8)
+  leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8),
+  leaf_size_multiplicator = 1
 ) {
   df_coords <- gen_bezier_coords(df_branch)
 
@@ -57,7 +59,7 @@ benjamini_branch <- function(
   leaf_angles[neg_positions] <- stalk_angle_neg[neg_positions]
 
   dist_multiplicator <- leave_size_dist(n_leaves)
-  dist_multiplicator <- dist_multiplicator/max(dist_multiplicator)
+  dist_multiplicator <- dist_multiplicator/max(dist_multiplicator) * leaf_size_multiplicator
 
 
   leaves <- purrr::pmap_dfr(

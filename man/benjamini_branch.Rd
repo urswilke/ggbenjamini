@@ -10,7 +10,8 @@ benjamini_branch(
   leaf_angle = 45,
   first_dir = sample(0:1, 1),
   stalk_len = 15,
-  leave_size_dist = spark_weibull(shape = 1.2, scale_factor = 0.5)
+  leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8),
+  leaf_size_multiplicator = 1
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ benjamini_branch(
 \item{stalk_len}{length of a stalk}
 
 \item{leave_size_dist}{Manipulate the sizes of the leaves with a spark function}
+
+\item{leaf_size_multiplicator}{Multiply leaf size distribution with a factor.}
 }
 \value{
 A dataframe containing the data for leaves on a branch (see example).
