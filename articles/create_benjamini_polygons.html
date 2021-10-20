@@ -108,7 +108,7 @@
 <span class="co"># df_branches &lt;- tibble(</span>
 <span class="co">#   x = sample(1:size, 20, replace = TRUE), </span>
 <span class="co">#   y = sample(1:size, 20, replace = TRUE), </span>
-<span class="co">#   bezier_idx = rep(1:5, each = 4)</span>
+<span class="co">#   i_branch = rep(1:5, each = 4)</span>
 <span class="co"># )</span>
 <span class="va">xo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="va">size</span><span class="op">/</span><span class="fl">2</span>, <span class="va">size</span><span class="op">/</span><span class="fl">2</span>, by <span class="op">=</span> <span class="va">size</span><span class="op">/</span><span class="fl">8</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.8</span>
 <span class="va">xm1</span> <span class="op">=</span> <span class="va">xo</span> <span class="op">*</span> <span class="fl">0.75</span> <span class="op">-</span> <span class="va">size</span><span class="op">/</span><span class="fl">4</span>
@@ -117,8 +117,8 @@
 <span class="va">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span> <span class="op">*</span> <span class="va">size</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">xo</span><span class="op">)</span><span class="op">)</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">xu</span>, <span class="va">xm1</span>, <span class="va">xm2</span>, <span class="va">xo</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">xu</span>, <span class="va">xm1</span>, <span class="va">xm2</span>, <span class="va">xo</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bezier_idx <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">bezier_idx</span>, values_to <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>i_branch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">i_branch</span>, values_to <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">}</span>
@@ -134,32 +134,32 @@
   <span class="op">)</span>
 <span class="va">df_branches</span>
 <span class="co">#&gt; # A tibble: 36 × 4</span>
-<span class="co">#&gt;    bezier_idx name      x     y</span>
-<span class="co">#&gt;         &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1          1 xu       54   149</span>
-<span class="co">#&gt;  2          1 xm1     -14    77</span>
-<span class="co">#&gt;  3          1 xm2      77    80</span>
-<span class="co">#&gt;  4          1 xo       23    17</span>
-<span class="co">#&gt;  5          2 xu       57   146</span>
-<span class="co">#&gt;  6          2 xm1      -3    76</span>
-<span class="co">#&gt;  7          2 xm2      81    74</span>
-<span class="co">#&gt;  8          2 xo       28    22</span>
-<span class="co">#&gt;  9          3 xu       59   152</span>
-<span class="co">#&gt; 10          3 xm1      22    85</span>
+<span class="co">#&gt;    i_branch name      x     y</span>
+<span class="co">#&gt;       &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1        1 xu       54   149</span>
+<span class="co">#&gt;  2        1 xm1     -14    77</span>
+<span class="co">#&gt;  3        1 xm2      77    80</span>
+<span class="co">#&gt;  4        1 xo       23    17</span>
+<span class="co">#&gt;  5        2 xu       57   146</span>
+<span class="co">#&gt;  6        2 xm1      -3    76</span>
+<span class="co">#&gt;  7        2 xm2      81    74</span>
+<span class="co">#&gt;  8        2 xo       28    22</span>
+<span class="co">#&gt;  9        3 xu       59   152</span>
+<span class="co">#&gt; 10        3 xm1      22    85</span>
 <span class="co">#&gt; # … with 26 more rows</span></code></pre></div>
 <p>Now we can grow leaves on these branches:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_branches_and_leaves</span> <span class="op">&lt;-</span> <span class="va">df_branches</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split</a></span><span class="op">(</span><span class="va">bezier_idx</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split</a></span><span class="op">(</span><span class="va">i_branch</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr</a></span><span class="op">(</span>
     <span class="op">~</span><span class="fu"><a href="../reference/benjamini_branch.html">benjamini_branch</a></span><span class="op">(</span>df_branch <span class="op">=</span> <span class="va">.x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,
-    .id <span class="op">=</span> <span class="st">"bezier_idx"</span>
+    .id <span class="op">=</span> <span class="st">"i_branch"</span>
   <span class="op">)</span></code></pre></div>
 <p>When we plot these bezier curves with ggplot2, we can color the outlines of the different elements:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_branches_and_leaves</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">bezier_idx</span>, <span class="va">i_branch</span>, <span class="va">i_part</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, group <span class="op">=</span> <span class="va">idx</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">bezier_idx</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_branch</span>, <span class="va">i_leaf</span>, <span class="va">i_part</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, group <span class="op">=</span> <span class="va">idx</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">i_branch</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">ggforce</span><span class="fu">::</span><span class="fu"><a href="https://ggforce.data-imaginist.com/reference/geom_bezier.html">geom_bezier</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -172,8 +172,8 @@
 <p>If we want to fill these shapes with color we can first approximate the bezier curves with piecewise linear curves of length <code>n = 100</code> for each bezier. Furthermore, we’ll add some simplex noise to make them look more interesting:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df2</span> <span class="op">&lt;-</span> <span class="va">df_branches_and_leaves</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">bezier_idx</span>, <span class="va">i_branch</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/gen_leaf_bezier_coords.html">gen_leaf_bezier_coords</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">bezier_idx</span>, <span class="va">i_branch</span>, <span class="va">element</span>, <span class="va">i_part</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_branch</span>, <span class="va">i_leaf</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/gen_leaf_bezier_coords.html">gen_leaf_bezier_coords</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_branch</span>, <span class="va">i_leaf</span>, <span class="va">element</span>, <span class="va">i_part</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     x2 <span class="op">=</span> <span class="va">x</span> <span class="op">+</span> <span class="fu">ambient</span><span class="fu">::</span><span class="fu"><a href="https://ambient.data-imaginist.com/reference/noise_simplex.html">gen_simplex</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, frequency <span class="op">=</span> <span class="fl">0.05</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>,
     y2 <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="fu">ambient</span><span class="fu">::</span><span class="fu"><a href="https://ambient.data-imaginist.com/reference/noise_simplex.html">gen_simplex</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, frequency <span class="op">=</span> <span class="fl">0.05</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>
