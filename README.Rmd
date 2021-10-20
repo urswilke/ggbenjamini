@@ -154,6 +154,7 @@ df_branch %>%
   ggplot2::coord_equal()
 ```
 
+
 ## Polygons
 
 If you want to fill the leaves with color, you can use `gen_leaf_bezier_coords()` to approximate the leaf parts described by bezier curves with polygons:

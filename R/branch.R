@@ -25,7 +25,7 @@ benjamini_branch <- function(
   first_dir = sample(0:1, 1),
   stalk_len = 15,
   # Idea from flametree::flametree_grow()
-  leave_size_dist = spark_weibull(shape = 1.2, scale_factor = 0.5)
+  leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8)
 ) {
   df_coords <- gen_bezier_coords(df_branch)
 
