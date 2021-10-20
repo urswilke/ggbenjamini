@@ -29,7 +29,7 @@ with bezier curves.
 
 ## Installation
 
-You can install the newest version of ggbenjamini from github with:
+You can install the newest version of **ggbenjamini** from github with:
 
 ``` r
 # install.packages("remotes")
@@ -147,9 +147,15 @@ You can also generate branches of leaves with the command `benjamini_branch()` (
 
 ```{r branch}
 df_branch <- benjamini_branch() %>%
-  # we add an identifier `b`:
-  tidyr::unite(b, i_part, i_branch, element, remove = FALSE) 
+  # we add a unique identifier `b` for all beziers:
+  tidyr::unite(b, i_branch, element, i_part, remove = FALSE) 
 df_branch
+```
+
+As the following plot also shows, `benjamini_branch()` adds another column `i_branch` specifying the index of the leaf on the branch.
+
+
+```{r branch2}
 df_branch %>%
   ggplot2::ggplot() +
   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_branch)) +
@@ -159,17 +165,17 @@ df_branch %>%
 
 ## Polygons
 
-If you want to fill the leaves with color, you can use `gen_leaf_bezier_coords()` to approximate the leaf parts described by bezier curves with polygons:
+If you want to fill the leaves with color, you can use `gen_leaf_bezier_coords()` to approximate the bezier curves leaf parts with polygons:
 
 ```{r polygon}
-df_branch %>% 
+df_polygons <- df_branch %>% 
   filter(stringr::str_detect(element, "^half [12]$")) %>%
   unite(idx, i_branch, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100) %>% 
-  ggplot(
-    data = .,
-    aes(x = x, y = y, group = idx, fill = i_branch)
-  ) +
+  gen_leaf_bezier_coords(idx, i_branch, element, i_part, n = 100)
+ggplot(
+  data = df_polygons,
+  aes(x = x, y = y, group = idx, fill = i_branch)
+) +
   geom_polygon(show.legend = FALSE, color = "black") +
   scale_fill_gradientn(colours = c("darkgreen", "green")) +
   theme_void() 
@@ -179,4 +185,4 @@ If you want to know more have a look in `vignette("create_benjamini_polygons")` 
 
 ## svg
 
-You can also transform the leaf data to svgs. Have a look in `vignette("create_benjamini_svg")` for an example to generate [svg](vignettes/svg_vignette_output.svg) images.
+You can also transform the leaf data to svgs. Have a look in `vignette("create_benjamini_svg")` for an example to generate svg images.
