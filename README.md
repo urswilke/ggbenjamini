@@ -19,6 +19,8 @@ coverage](https://codecov.io/gh/urswilke/ggbenjamini/branch/main/graph/badge.svg
 The goal of this package is to generate shapes in the form of ficus
 benjamina leaves ([weeping
 fig](https://en.wikipedia.org/wiki/Ficus_benjamina)) with bezier curves.
+It is heavily inspired by the awesome
+[flametree](https://flametree.djnavarro.net/) package.
 
 ## Installation
 
