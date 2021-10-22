@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Generate ficus benjamina leaf shapes with bezier curves">
-<meta property="og:description" content="This package can be used to generate shapes in the form of ficus benjamina (weeping fig) leaves with bezier curves. The main output of the package is a dataframe containing all the information of these bezier curves.">
+<meta property="og:description" content="This package can be used to generate shapes in the form of ficus benjamina (weeping fig) leaves with bezier curves. The main output of the package are dataframes containing all the information of these bezier curves.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -155,7 +155,7 @@
 <span class="co">#&gt; 34 half 1       4  38    40.3 bezier control point 1</span>
 <span class="co">#&gt; 35 half 1       4  33    39.6 bezier control point 2</span>
 <span class="co">#&gt; 36 half 1       4  20    40   bezier end point</span></code></pre></div>
-<p>It results in a dataframe of multiple bezier curves representing the shape of a leaf. The first column <code>element</code> indicates which part of the leaf the bezier describes, and can take the values “stalk”, “half 2” and “half 1”. <code>i_part</code> denotes the id of the bezier curve, and <code>x</code> &amp; <code>y</code> its point coordinates. The column <code>param_type</code> denotes the type of the point in the bezier curve.</p>
+<p>It results in a dataframe of multiple bezier curves representing the shape of a leaf. The first column <code>element</code> indicates which part of the leaf the bezier describes, and can take the values “stalk,” “half 2” and “half 1.” <code>i_part</code> denotes the id of the bezier curve, and <code>x</code> &amp; <code>y</code> its point coordinates. The column <code>param_type</code> denotes the type of the point in the bezier curve.</p>
 <p>The meaning is best illustrated with a plot:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rearrange data to display segments:</span>
@@ -266,6 +266,119 @@
 <h2 class="hasAnchor">
 <a href="#svg" class="anchor"></a>svg</h2>
 <p>You can also transform the leaf data to svgs. Have a look in <code><a href="articles/create_benjamini_svg.html">vignette("create_benjamini_svg")</a></code> for an example to generate svg images.</p>
+<!-- 
+The following as well as the bibtex file "pkg-refs.bib" were automatically
+created with the command: 
+
+grateful::cite_packages(out.format = "Rmd")
+
+-> then I just removed this package... :) -<
+-->
+</div>
+<div id="r-packages-used" class="section level2">
+<h2 class="hasAnchor">
+<a href="#r-packages-used" class="anchor"></a>R packages used</h2>
+<p>This package stands on the shoulders of giants. It was only possible thanks to the following libraries:</p>
+<ul>
+<li>base (R Core Team 2021a)</li>
+<li>pkgdown (Wickham and Hesselberth 2020)</li>
+<li>stringr (Wickham 2019)</li>
+<li>dplyr (Wickham et al. 2021)</li>
+<li>ggplot2 (Wickham 2016)</li>
+<li>purrr (Henry and Wickham 2020)</li>
+<li>tidyr (Wickham 2021)</li>
+<li>ggforce (Pedersen 2021)</li>
+<li>magrittr (Bache and Wickham 2020)</li>
+<li>tibble (Müller and Wickham 2021)</li>
+<li>rlang (Henry and Wickham 2021)</li>
+<li>grid (R Core Team 2021b)</li>
+<li>flametree (Navarro 2021)</li>
+<li>rsvg (Ooms 2021)</li>
+<li>minisvg (FC 2021)</li>
+<li>knitr (Xie 2014)</li>
+<li>rmarkdown (Xie, Dervieux, and Riederer 2020)</li>
+<li>testthat (Wickham 2011)</li>
+<li>vdiffr (Henry et al. 2021)</li>
+<li>ambient (Pedersen and Peck 2020)</li>
+<li>covr (Hester 2020a)</li>
+<li>stats (R Core Team 2021c)</li>
+<li>glue (Hester 2020b)</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-magrittr" class="csl-entry">
+<p>Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr" class="uri">https://CRAN.R-project.org/package=magrittr</a>.</p>
+</div>
+<div id="ref-minisvg" class="csl-entry">
+<p>FC, Mike. 2021. <em>Minisvg: SVG Document Builder</em>.</p>
+</div>
+<div id="ref-vdiffr" class="csl-entry">
+<p>Henry, Lionel, Thomas Lin Pedersen, T Jake Luciani, Matthieu Decorde, and Vaudor Lise. 2021. <em>Vdiffr: Visual Regression Testing and Graphical Diffing</em>. <a href="https://CRAN.R-project.org/package=vdiffr" class="uri">https://CRAN.R-project.org/package=vdiffr</a>.</p>
+</div>
+<div id="ref-purrr" class="csl-entry">
+<p>Henry, Lionel, and Hadley Wickham. 2020. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-rlang" class="csl-entry">
+<p>———. 2021. <em>Rlang: Functions for Base Types and Core r and ’Tidyverse’ Features</em>. <a href="https://CRAN.R-project.org/package=rlang" class="uri">https://CRAN.R-project.org/package=rlang</a>.</p>
+</div>
+<div id="ref-covr" class="csl-entry">
+<p>Hester, Jim. 2020a. <em>Covr: Test Coverage for Packages</em>. <a href="https://CRAN.R-project.org/package=covr" class="uri">https://CRAN.R-project.org/package=covr</a>.</p>
+</div>
+<div id="ref-glue" class="csl-entry">
+<p>———. 2020b. <em>Glue: Interpreted String Literals</em>. <a href="https://CRAN.R-project.org/package=glue" class="uri">https://CRAN.R-project.org/package=glue</a>.</p>
+</div>
+<div id="ref-tibble" class="csl-entry">
+<p>Müller, Kirill, and Hadley Wickham. 2021. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</p>
+</div>
+<div id="ref-flametree" class="csl-entry">
+<p>Navarro, Danielle. 2021. <em>Flametree: Generate Random Tree-Like Images</em>. <a href="https://CRAN.R-project.org/package=flametree" class="uri">https://CRAN.R-project.org/package=flametree</a>.</p>
+</div>
+<div id="ref-rsvg" class="csl-entry">
+<p>Ooms, Jeroen. 2021. <em>Rsvg: Render SVG Images into PDF, PNG, PostScript, or Bitmap Arrays</em>. <a href="https://CRAN.R-project.org/package=rsvg" class="uri">https://CRAN.R-project.org/package=rsvg</a>.</p>
+</div>
+<div id="ref-ggforce" class="csl-entry">
+<p>Pedersen, Thomas Lin. 2021. <em>Ggforce: Accelerating ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggforce" class="uri">https://CRAN.R-project.org/package=ggforce</a>.</p>
+</div>
+<div id="ref-ambient" class="csl-entry">
+<p>Pedersen, Thomas Lin, and Jordan Peck. 2020. <em>Ambient: A Generator of Multidimensional Noise</em>. <a href="https://CRAN.R-project.org/package=ambient" class="uri">https://CRAN.R-project.org/package=ambient</a>.</p>
+</div>
+<div id="ref-base" class="csl-entry">
+<p>R Core Team. 2021a. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-grid" class="csl-entry">
+<p>———. 2021b. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-stats" class="csl-entry">
+<p>———. 2021c. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-testthat" class="csl-entry">
+<p>Wickham, Hadley. 2011. “Testthat: Get Started with Testing.” <em>The R Journal</em> 3: 5–10. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="uri">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</p>
+</div>
+<div id="ref-ggplot2" class="csl-entry">
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div id="ref-stringr" class="csl-entry">
+<p>———. 2019. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div id="ref-tidyr" class="csl-entry">
+<p>———. 2021. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-dplyr" class="csl-entry">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-pkgdown" class="csl-entry">
+<p>Wickham, Hadley, and Jay Hesselberth. 2020. <em>Pkgdown: Make Static HTML Documentation for a Package</em>. <a href="https://CRAN.R-project.org/package=pkgdown" class="uri">https://CRAN.R-project.org/package=pkgdown</a>.</p>
+</div>
+<div id="ref-knitr" class="csl-entry">
+<p>Xie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research in R.” In <em>Implementing Reproducible Computational Research</em>, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman; Hall/CRC. <a href="http://www.crcpress.com/product/isbn/9781466561595" class="uri">http://www.crcpress.com/product/isbn/9781466561595</a>.</p>
+</div>
+<div id="ref-rmarkdown" class="csl-entry">
+<p>Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook</a>.</p>
+</div>
+</div>
 </div>
 </div>
   </div>
@@ -281,7 +394,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Urs Wilke <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Urs Wilke <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-7257-2524" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
