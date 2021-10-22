@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: pkg-refs.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -181,3 +182,43 @@ If you want to know more have a look in `vignette("create_benjamini_polygons")` 
 ## svg
 
 You can also transform the leaf data to svgs. Have a look in `vignette("create_benjamini_svg")` for an example to generate svg images.
+
+
+<!-- 
+The following as well as the bibtex file "pkg-refs.bib" were automatically
+created with the command: 
+
+grateful::cite_packages(out.format = "Rmd")
+
+-> then I just removed this package... :) -<
+-->
+
+## R packages used
+
+This package stands on the shoulders of giants. It was only possible thanks to the following libraries:
+
+- base [@base]
+- pkgdown [@pkgdown]
+- stringr [@stringr]
+- dplyr [@dplyr]
+- ggplot2 [@ggplot2]
+- purrr [@purrr]
+- tidyr [@tidyr]
+- ggforce [@ggforce]
+- magrittr [@magrittr]
+- tibble [@tibble]
+- rlang [@rlang]
+- grid [@grid]
+- flametree [@flametree]
+- rsvg [@rsvg]
+- minisvg [@minisvg]
+- knitr [@knitr]
+- rmarkdown [@rmarkdown]
+- testthat [@testthat]
+- vdiffr [@vdiffr]
+- ambient [@ambient]
+- covr [@covr]
+- stats [@stats]
+- glue [@glue]
+
+## References
