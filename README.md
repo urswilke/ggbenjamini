@@ -95,8 +95,8 @@ print(df, n = 40)
 
 It results in a dataframe of multiple bezier curves representing the
 shape of a leaf. The first column `element` indicates which part of the
-leaf the bezier describes, and can take the values “stalk”, “half 2” and
-“half 1”. `i_part` denotes the id of the bezier curve, and `x` & `y` its
+leaf the bezier describes, and can take the values “stalk,” “half 2” and
+“half 1.” `i_part` denotes the id of the bezier curve, and `x` & `y` its
 point coordinates. The column `param_type` denotes the type of the point
 in the bezier curve.
 
@@ -240,3 +240,249 @@ If you want to know more have a look in
 You can also transform the leaf data to svgs. Have a look in
 `vignette("create_benjamini_svg")` for an example to generate svg
 images.
+
+## R packages used
+
+``` r
+("
+- base [@base]
+- pkgdown [@pkgdown]
+- stringr [@stringr]
+- dplyr [@dplyr]
+- ggplot2 [@ggplot2]
+- purrr [@purrr]
+- tidyr [@tidyr]
+- ggforce [@ggforce]
+- magrittr [@magrittr]
+- tibble [@tibble]
+- rlang [@rlang]
+- grid [@grid]
+- flametree [@flametree]
+- rsvg [@rsvg]
+- minisvg [@minisvg]
+- knitr [@knitr]
+- rmarkdown [@rmarkdown]
+- testthat [@testthat]
+- vdiffr [@vdiffr]
+- ambient [@ambient]
+- covr [@covr]
+- stats [@stats]
+- ggbenjamini [@ggbenjamini]
+- glue [@glue]
+") %>% 
+  details::details(lang = NULL)
+```
+
+<details closed>
+
+-   base (R Core Team 2021a)
+-   pkgdown (Wickham and Hesselberth 2020)
+-   stringr (Wickham 2019)
+-   dplyr (Wickham et al. 2021)
+-   ggplot2 (Wickham 2016)
+-   purrr (Henry and Wickham 2020)
+-   tidyr (Wickham 2021)
+-   ggforce (Pedersen 2021)
+-   magrittr (Bache and Wickham 2020)
+-   tibble (Müller and Wickham 2021)
+-   rlang (Henry and Wickham 2021)
+-   grid (R Core Team 2021b)
+-   flametree (Navarro 2021)
+-   rsvg (Ooms 2021)
+-   minisvg (FC 2021)
+-   knitr (Xie 2014)
+-   rmarkdown (Xie, Dervieux, and Riederer 2020)
+-   testthat (Wickham 2011)
+-   vdiffr (Henry et al. 2021)
+-   ambient (Pedersen and Peck 2020)
+-   covr (Hester 2020a)
+-   stats (R Core Team 2021c)
+-   ggbenjamini (Wilke)
+-   glue (Hester 2020b)
+
+</details>
+
+<br>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-magrittr" class="csl-entry">
+
+Bache, Stefan Milton, and Hadley Wickham. 2020. *Magrittr: A
+Forward-Pipe Operator for r*.
+<https://CRAN.R-project.org/package=magrittr>.
+
+</div>
+
+<div id="ref-minisvg" class="csl-entry">
+
+FC, Mike. 2021. *Minisvg: SVG Document Builder*.
+
+</div>
+
+<div id="ref-vdiffr" class="csl-entry">
+
+Henry, Lionel, Thomas Lin Pedersen, T Jake Luciani, Matthieu Decorde,
+and Vaudor Lise. 2021. *Vdiffr: Visual Regression Testing and Graphical
+Diffing*. <https://CRAN.R-project.org/package=vdiffr>.
+
+</div>
+
+<div id="ref-purrr" class="csl-entry">
+
+Henry, Lionel, and Hadley Wickham. 2020. *Purrr: Functional Programming
+Tools*. <https://CRAN.R-project.org/package=purrr>.
+
+</div>
+
+<div id="ref-rlang" class="csl-entry">
+
+Henry, Lionel, and Hadley Wickham. 2021. *Rlang: Functions for Base
+Types and Core r and ’Tidyverse’ Features*.
+<https://CRAN.R-project.org/package=rlang>.
+
+</div>
+
+<div id="ref-covr" class="csl-entry">
+
+Hester, Jim. 2020a. *Covr: Test Coverage for Packages*.
+<https://CRAN.R-project.org/package=covr>.
+
+</div>
+
+<div id="ref-glue" class="csl-entry">
+
+Hester, Jim. 2020b. *Glue: Interpreted String Literals*.
+<https://CRAN.R-project.org/package=glue>.
+
+</div>
+
+<div id="ref-tibble" class="csl-entry">
+
+Müller, Kirill, and Hadley Wickham. 2021. *Tibble: Simple Data Frames*.
+<https://CRAN.R-project.org/package=tibble>.
+
+</div>
+
+<div id="ref-flametree" class="csl-entry">
+
+Navarro, Danielle. 2021. *Flametree: Generate Random Tree-Like Images*.
+<https://CRAN.R-project.org/package=flametree>.
+
+</div>
+
+<div id="ref-rsvg" class="csl-entry">
+
+Ooms, Jeroen. 2021. *Rsvg: Render SVG Images into PDF, PNG, PostScript,
+or Bitmap Arrays*. <https://CRAN.R-project.org/package=rsvg>.
+
+</div>
+
+<div id="ref-ggforce" class="csl-entry">
+
+Pedersen, Thomas Lin. 2021. *Ggforce: Accelerating ’Ggplot2’*.
+<https://CRAN.R-project.org/package=ggforce>.
+
+</div>
+
+<div id="ref-ambient" class="csl-entry">
+
+Pedersen, Thomas Lin, and Jordan Peck. 2020. *Ambient: A Generator of
+Multidimensional Noise*. <https://CRAN.R-project.org/package=ambient>.
+
+</div>
+
+<div id="ref-base" class="csl-entry">
+
+R Core Team. 2021a. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-grid" class="csl-entry">
+
+R Core Team. 2021b. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-stats" class="csl-entry">
+
+R Core Team. 2021c. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-testthat" class="csl-entry">
+
+Wickham, Hadley. 2011. “Testthat: Get Started with Testing.” *The R
+Journal* 3: 5–10.
+<https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf>.
+
+</div>
+
+<div id="ref-ggplot2" class="csl-entry">
+
+Wickham, Hadley. 2016. *Ggplot2: Elegant Graphics for Data Analysis*.
+Springer-Verlag New York. <https://ggplot2.tidyverse.org>.
+
+</div>
+
+<div id="ref-stringr" class="csl-entry">
+
+Wickham, Hadley. 2019. *Stringr: Simple, Consistent Wrappers for Common
+String Operations*. <https://CRAN.R-project.org/package=stringr>.
+
+</div>
+
+<div id="ref-tidyr" class="csl-entry">
+
+Wickham, Hadley. 2021. *Tidyr: Tidy Messy Data*.
+<https://CRAN.R-project.org/package=tidyr>.
+
+</div>
+
+<div id="ref-dplyr" class="csl-entry">
+
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021.
+*Dplyr: A Grammar of Data Manipulation*.
+<https://CRAN.R-project.org/package=dplyr>.
+
+</div>
+
+<div id="ref-pkgdown" class="csl-entry">
+
+Wickham, Hadley, and Jay Hesselberth. 2020. *Pkgdown: Make Static HTML
+Documentation for a Package*.
+<https://CRAN.R-project.org/package=pkgdown>.
+
+</div>
+
+<div id="ref-ggbenjamini" class="csl-entry">
+
+Wilke, Urs. *Ggbenjamini: Generate Ficus Benjamina Leaf Shapes with
+Bezier Curves*.
+
+</div>
+
+<div id="ref-knitr" class="csl-entry">
+
+Xie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research
+in R.” In *Implementing Reproducible Computational Research*, edited by
+Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman;
+Hall/CRC. <http://www.crcpress.com/product/isbn/9781466561595>.
+
+</div>
+
+<div id="ref-rmarkdown" class="csl-entry">
+
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. *R Markdown
+Cookbook*. Boca Raton, Florida: Chapman; Hall/CRC.
+<https://bookdown.org/yihui/rmarkdown-cookbook>.
+
+</div>
+
+</div>

@@ -1,5 +1,7 @@
 ---
 output: github_document
+bibliography: pkg-refs.bib
+csl: british-journal-of-sociology-of-education.csl
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -181,3 +183,36 @@ If you want to know more have a look in `vignette("create_benjamini_polygons")` 
 ## svg
 
 You can also transform the leaf data to svgs. Have a look in `vignette("create_benjamini_svg")` for an example to generate svg images.
+
+
+## R packages used
+
+```{r}
+("
+- base [@base]
+- pkgdown [@pkgdown]
+- stringr [@stringr]
+- dplyr [@dplyr]
+- ggplot2 [@ggplot2]
+- purrr [@purrr]
+- tidyr [@tidyr]
+- ggforce [@ggforce]
+- magrittr [@magrittr]
+- tibble [@tibble]
+- rlang [@rlang]
+- grid [@grid]
+- flametree [@flametree]
+- rsvg [@rsvg]
+- minisvg [@minisvg]
+- knitr [@knitr]
+- rmarkdown [@rmarkdown]
+- testthat [@testthat]
+- vdiffr [@vdiffr]
+- ambient [@ambient]
+- covr [@covr]
+- stats [@stats]
+- ggbenjamini [@ggbenjamini]
+- glue [@glue]
+") %>% 
+  details::details(lang = NULL)
+```
