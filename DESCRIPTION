@@ -5,8 +5,9 @@ Authors@R:
     person(given = "Urs",
            family = "Wilke",
            role = c("aut", "cre"),
-           email = "urs.wilke@gmail.com")
-Description: This package can be used to generate shapes in the form of ficus benjamina (weeping fig) leaves with bezier curves. The main output of the package is a dataframe containing all the information of these bezier curves.
+           email = "urs.wilke@gmail.com",
+           comment = c(ORCID = "0000-0001-7257-2524"))
+Description: This package can be used to generate shapes in the form of ficus benjamina (weeping fig) leaves with bezier curves. The main output of the package are dataframes containing all the information of these bezier curves.
 License: MIT + file LICENSE
 Suggests: 
     flametree,
