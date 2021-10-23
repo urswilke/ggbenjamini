@@ -35,12 +35,12 @@ gen_bezier_coords <- function(df_bezier, n = 100) {
 #' @examples
 #' df_coords <- benjamini_leaf() %>%
 #'   tidyr::unite(b, i_part, element, remove = FALSE) %>%
-#'   gen_leaf_bezier_coords(b, i_part, element)
+#'   bezier_to_polygon(b, i_part, element)
 #' df_coords
 #' df_coords %>%
 #'   ggplot2::ggplot(ggplot2::aes(x = x, y = y, group = element, fill = element)) +
 #'   ggplot2::geom_polygon()
-gen_leaf_bezier_coords <- function(df_benjamini_leaf, ..., n = 100) {
+bezier_to_polygon <- function(df_benjamini_leaf, ..., n = 100) {
   group_variables <- rlang::enquos(...)
   df_benjamini_leaf %>%
     dplyr::group_by(!!!group_variables) %>%

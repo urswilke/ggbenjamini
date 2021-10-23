@@ -3,7 +3,7 @@ set.seed(123)
 df_leaf <- benjamini_leaf()
 df_polygon <- df_leaf %>%
   tidyr::unite(b, i_part, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(b, i_part, element)
+  bezier_to_polygon(b, i_part, element)
 df_branch <- benjamini_branch() %>%
   tidyr::unite(b, i_part, i_leaf, element, remove = FALSE)
 

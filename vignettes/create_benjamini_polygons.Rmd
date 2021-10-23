@@ -99,7 +99,7 @@ If we want to fill these shapes with color we can first approximate the bezier c
 ```{r}
 df2 <- df_branches_and_leaves %>%
   unite(idx, i_branch, i_leaf, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(idx, i_branch, i_leaf, element, i_part, n = 100) %>% 
+  bezier_to_polygon(idx, i_branch, i_leaf, element, i_part, n = 100) %>% 
   mutate(
     x2 = x + ambient::gen_simplex(x, y, frequency = 0.05, seed = 123),
     y2 = y + ambient::gen_simplex(x, y, frequency = 0.05, seed = 123)

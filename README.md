@@ -215,14 +215,14 @@ df_branch %>%
 ## Polygons
 
 If you want to fill the leaves with color, you can use
-`gen_leaf_bezier_coords()` to approximate the bezier curves leaf parts
-with polygons:
+`bezier_to_polygon()` to approximate the bezier curves leaf parts with
+polygons:
 
 ``` r
 df_polygons <- df_branch %>% 
   filter(stringr::str_detect(element, "^half [12]$")) %>%
   unite(idx, i_leaf, element, remove = FALSE) %>%
-  gen_leaf_bezier_coords(idx, i_leaf, element, i_part, n = 100)
+  bezier_to_polygon(idx, i_leaf, element, i_part, n = 100)
 ggplot(
   data = df_polygons,
   aes(x = x, y = y, group = idx, fill = i_leaf)
