@@ -9,7 +9,6 @@ benjamini_branch(
   leaf_mean_dist_approx = 10,
   leaf_angle = 45,
   first_dir = sample(0:1, 1),
-  stalk_len = 15,
   leave_size_dist = spark_weibull(shape = 1.5, scale_factor = 0.8),
   leaf_angle_dist = spark_norm(mean = 0, sd = 3),
   last_angle_straight = TRUE,
@@ -17,15 +16,13 @@ benjamini_branch(
 )
 }
 \arguments{
-\item{df_branch}{dataframe containing the x & y coordinates of a branch}
+\item{df_branch}{dataframe containing the 4 x & y bezier coordinates of a branch}
 
 \item{leaf_mean_dist_approx}{approximate distance of two leaves}
 
 \item{leaf_angle}{angle between the leaf stalks and the branch}
 
 \item{first_dir}{direction of the first leaf in the branch (0 for right; 1 for left)}
-
-\item{stalk_len}{length of a stalk}
 
 \item{leave_size_dist}{Manipulate the sizes of the leaves with a spark function
 This function returns a function which itself returns a numerical vector of
