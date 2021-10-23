@@ -198,8 +198,8 @@ gen_middle_line_points <- function(points_df) {
 #' Generate bezier curve coordinates of a benjamini leaf
 #' @param leaf_params parameter that control the leaf shape
 #' @param omega rotation angle of the leaf
-#' @param xrot rotation x coordinate
-#' @param yrot rotation y coordinate
+#' @param xrot rotation x coordinate (preset to leaf origin).
+#' @param yrot rotation y coordinate (preset to leaf origin).
 #' @param precision numeric precision of the output
 #'
 #'
@@ -210,7 +210,8 @@ gen_middle_line_points <- function(points_df) {
 #' df <- benjamini_leaf()
 #' df
 #' df %>%
-#'   tidyr::unite(b, i_part, element, remove = FALSE) %>%
+#'   # This generated a unique identifier for the 4 rows of each bezier curve:
+#'   tidyr::unite(b, element, i_part, remove = FALSE) %>%
 #'   ggplot2::ggplot() +
 #'   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b))
 benjamini_leaf <- function(

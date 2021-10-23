@@ -17,9 +17,9 @@ benjamini_leaf(
 
 \item{omega}{rotation angle of the leaf}
 
-\item{xrot}{rotation x coordinate}
+\item{xrot}{rotation x coordinate (preset to leaf origin).}
 
-\item{yrot}{rotation y coordinate}
+\item{yrot}{rotation y coordinate (preset to leaf origin).}
 
 \item{precision}{numeric precision of the output}
 }
@@ -33,7 +33,8 @@ Generate bezier curve coordinates of a benjamini leaf
 df <- benjamini_leaf()
 df
 df \%>\%
-  tidyr::unite(b, i_part, element, remove = FALSE) \%>\%
+  # This generated a unique identifier for the 4 rows of each bezier curve:
+  tidyr::unite(b, element, i_part, remove = FALSE) \%>\%
   ggplot2::ggplot() +
   ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b))
 }
