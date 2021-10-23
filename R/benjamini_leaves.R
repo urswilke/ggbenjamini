@@ -1,13 +1,20 @@
 #' Generate bezier coordinates of a leaf
 #'
+#' Except the start point coordinates of the leaf origin `x0` & `y0`
+#' (arbitrarily set to 10 and 40) all coordinates are relative to this origin.
+#' Most of the parameters are random generated, except for some of them (e.g.,
+#' to close polygons, or to keep the stalk and the mid vein on the same
+#' line).
+#'
+#'
 #' @param x0,y0 coordinates of the leaf origin
 #' @param dx10,dy10,dx21,dy21,dx32,dy32,dx43,dy43 coordinates of the other
-#'   control points (relative to the origin)
+#'   bezier start & end points
 #' @param sx0,sx1,sx2,sx3,sx4 x coordinates of the control points
 #' @param sy0,sy1,sy2,sy3,sy4 y coordinates of the control points
-#' @param smx1,smx2,smy1,smy2 x & y coordinates of the middle vein control points
+#' @param smx1,smx2,smy1,smy2 x & y coordinates of the mid vein control points
 #'
-#' @return named list with all parameters
+#' @return named list of all parameters
 #' @export
 #'
 #' @examples
