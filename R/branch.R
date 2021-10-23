@@ -73,7 +73,7 @@ benjamini_branch <- function(
   leaf_angles <- leaf_angles + leaf_angle_dist(n_leaves)
 
   dist_multiplicator <- leave_size_dist(n_leaves)
-  dist_multiplicator <- dist_multiplicator/max(dist_multiplicator) * leaf_size_multiplicator
+  dist_multiplicator <- dist_multiplicator * leaf_size_multiplicator
 
 
   leaves <- purrr::pmap_dfr(
@@ -125,18 +125,22 @@ get_leaf_indices <- function(dx, dy, leaf_mean_dist_approx, n_points) {
 #' Manipulate the sizes of the leaves with a Weibull distribution
 #'
 #' This function returns a function which itself returns a numerical vector of
-#' length of the number of leaves on the branch.
+#' length `n_leaves`, the number of leaves on the branch. These values serve
+#' as relative multiplication factors of the sizes of the leaves of the branch.
+#' (The maximum value of this distribution is then normalized to 1.)
 #'
 #' @param shape,scale_factor Parameters passed to `stats::dweibull()`.
 #'
-#' @return dweibull() function with n_leaves as one of the arguments
+#' @return dweibull() function depending on n_leaves as one of the arguments
 #' @export
 #'
 #' @examples
-#' spark_weibull()
+#' #Mark the two consecutive pairs of parentheses:
+#' spark_weibull()(n_leaves = 10)
 spark_weibull <- function(shape = 1.2, scale_factor = 0.5) {
   function(n_leaves) {
-    stats::dweibull(1:n_leaves, shape, scale = n_leaves * scale_factor)
+    distribution <- stats::dweibull(1:n_leaves, shape, scale = n_leaves * scale_factor)
+    distribution / max(distribution)
   }
 }
 

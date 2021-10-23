@@ -10,12 +10,15 @@ spark_weibull(shape = 1.2, scale_factor = 0.5)
 \item{shape, scale_factor}{Parameters passed to \code{stats::dweibull()}.}
 }
 \value{
-dweibull() function with n_leaves as one of the arguments
+dweibull() function depending on n_leaves as one of the arguments
 }
 \description{
 This function returns a function which itself returns a numerical vector of
-length of the number of leaves on the branch.
+length \code{n_leaves}, the number of leaves on the branch. These values serve
+as relative multiplication factors of the sizes of the leaves of the branch.
+(The maximum value of this distribution is then normalized to 1.)
 }
 \examples{
-spark_weibull()
+#Mark the two consecutive pairs of parentheses:
+spark_weibull()(n_leaves = 10)
 }
