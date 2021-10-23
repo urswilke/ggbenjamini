@@ -7,8 +7,8 @@
 benjamini_leaf(
   leaf_params = gen_leaf_parameters(),
   omega = 0,
-  xrot = gen_benjamini_points(leaf_params)$x[1],
-  yrot = gen_benjamini_points(leaf_params)$y[1],
+  xrot = leaf_params$x0,
+  yrot = leaf_params$y0,
   precision = 2
 )
 }
@@ -17,9 +17,9 @@ benjamini_leaf(
 
 \item{omega}{rotation angle of the leaf}
 
-\item{xrot}{rotation x coordinate (preset to leaf origin).}
+\item{xrot}{x coordinate of pivot point (preset to leaf origin).}
 
-\item{yrot}{rotation y coordinate (preset to leaf origin).}
+\item{yrot}{x coordinate of pivot point (preset to leaf origin).}
 
 \item{precision}{numeric precision of the output}
 }

@@ -198,8 +198,8 @@ gen_middle_line_points <- function(points_df) {
 #' Generate bezier curve coordinates of a benjamini leaf
 #' @param leaf_params parameter that control the leaf shape
 #' @param omega rotation angle of the leaf
-#' @param xrot rotation x coordinate (preset to leaf origin).
-#' @param yrot rotation y coordinate (preset to leaf origin).
+#' @param xrot x coordinate of pivot point (preset to leaf origin).
+#' @param yrot x coordinate of pivot point (preset to leaf origin).
 #' @param precision numeric precision of the output
 #'
 #'
@@ -217,8 +217,8 @@ gen_middle_line_points <- function(points_df) {
 benjamini_leaf <- function(
     leaf_params = gen_leaf_parameters(),
     omega = 0,
-    xrot = gen_benjamini_points(leaf_params)$x[1],
-    yrot = gen_benjamini_points(leaf_params)$y[1],
+    xrot = leaf_params$x0,
+    yrot = leaf_params$y0,
     precision = 2
   ) {
   points_df = gen_benjamini_points(leaf_params)
