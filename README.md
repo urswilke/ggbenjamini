@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggbenjamini
+# ggbenjamini <img src="man/figures/hex_sticker.png" width="160px" align="right" />
 
 <!-- badges: start -->
 

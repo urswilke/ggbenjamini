@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ggbenjamini
+# ggbenjamini  <img src="man/figures/hex_sticker.png" width="160px" align="right" />
+
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
