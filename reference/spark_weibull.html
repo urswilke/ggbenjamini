@@ -41,7 +41,9 @@
 
 <meta property="og:title" content="Manipulate the sizes of the leaves with a Weibull distribution — spark_weibull" />
 <meta property="og:description" content="This function returns a function which itself returns a numerical vector of
-length of the number of leaves on the branch." />
+length n_leaves, the number of leaves on the branch. These values serve
+as relative multiplication factors of the sizes of the leaves of the branch.
+(The maximum value of this distribution is then normalized to 1.)" />
 
 
 
@@ -129,7 +131,9 @@ length of the number of leaves on the branch." />
 
     <div class="ref-description">
     <p>This function returns a function which itself returns a numerical vector of
-length of the number of leaves on the branch.</p>
+length <code>n_leaves</code>, the number of leaves on the branch. These values serve
+as relative multiplication factors of the sizes of the leaves of the branch.
+(The maximum value of this distribution is then normalized to 1.)</p>
     </div>
 
     <pre class="usage"><span class='fu'>spark_weibull</span><span class='op'>(</span>shape <span class='op'>=</span> <span class='fl'>1.2</span>, scale_factor <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span></pre>
@@ -145,16 +149,13 @@ length of the number of leaves on the branch.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>dweibull() function with n_leaves as one of the arguments</p>
+    <p>dweibull() function depending on n_leaves as one of the arguments</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>spark_weibull</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; function (n_leaves) 
-#&gt; {
-#&gt;     stats::dweibull(1:n_leaves, shape, scale = n_leaves * scale_factor)
-#&gt; }
-#&gt; &lt;bytecode: 0x56259b45a1b8&gt;
-#&gt; &lt;environment: 0x56259a89b7b0&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>#Mark the two consecutive pairs of parentheses:</span>
+<span class='fu'>spark_weibull</span><span class='op'>(</span><span class='op'>)</span><span class='op'>(</span>n_leaves <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 1.0000000 0.9517662 0.8377380 0.7097325 0.5867500 0.4765146 0.3816251
+#&gt;  [8] 0.3021437 0.2368941 0.1841649</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

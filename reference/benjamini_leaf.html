@@ -133,8 +133,8 @@
     <pre class="usage"><span class='fu'>benjamini_leaf</span><span class='op'>(</span>
   leaf_params <span class='op'>=</span> <span class='fu'><a href='gen_leaf_parameters.html'>gen_leaf_parameters</a></span><span class='op'>(</span><span class='op'>)</span>,
   omega <span class='op'>=</span> <span class='fl'>0</span>,
-  xrot <span class='op'>=</span> <span class='fu'><a href='gen_benjamini_points.html'>gen_benjamini_points</a></span><span class='op'>(</span><span class='va'>leaf_params</span><span class='op'>)</span><span class='op'>$</span><span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
-  yrot <span class='op'>=</span> <span class='fu'><a href='gen_benjamini_points.html'>gen_benjamini_points</a></span><span class='op'>(</span><span class='va'>leaf_params</span><span class='op'>)</span><span class='op'>$</span><span class='va'>y</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
+  xrot <span class='op'>=</span> <span class='va'>leaf_params</span><span class='op'>$</span><span class='va'>x0</span>,
+  yrot <span class='op'>=</span> <span class='va'>leaf_params</span><span class='op'>$</span><span class='va'>y0</span>,
   precision <span class='op'>=</span> <span class='fl'>2</span>
 <span class='op'>)</span></pre>
 
@@ -151,11 +151,11 @@
     </tr>
     <tr>
       <th>xrot</th>
-      <td><p>rotation x coordinate</p></td>
+      <td><p>x coordinate of pivot point (preset to leaf origin).</p></td>
     </tr>
     <tr>
       <th>yrot</th>
-      <td><p>rotation y coordinate</p></td>
+      <td><p>x coordinate of pivot point (preset to leaf origin).</p></td>
     </tr>
     <tr>
       <th>precision</th>
@@ -184,7 +184,8 @@
 #&gt; <span style='color: #BCBCBC;'> 9</span> half 2       2  40    30   bezier start point    
 #&gt; <span style='color: #BCBCBC;'>10</span> half 2       2  46    30.2 bezier control point 1
 #&gt; <span style='color: #949494;'># … with 26 more rows</span></div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></span><span class='op'>(</span><span class='va'>b</span>, <span class='va'>i_part</span>, <span class='va'>element</span>, remove <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># This generated a unique identifier for the 4 rows of each bezier curve:</span>
+  <span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></span><span class='op'>(</span><span class='va'>b</span>, <span class='va'>element</span>, <span class='va'>i_part</span>, remove <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>ggforce</span><span class='fu'>::</span><span class='fu'><a href='https://ggforce.data-imaginist.com/reference/geom_bezier.html'>geom_bezier</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, group <span class='op'>=</span> <span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='benjamini_leaf-1.png' alt='' width='700' height='433' /></div></pre>

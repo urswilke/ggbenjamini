@@ -135,7 +135,6 @@
   leaf_mean_dist_approx <span class='op'>=</span> <span class='fl'>10</span>,
   leaf_angle <span class='op'>=</span> <span class='fl'>45</span>,
   first_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>,
-  stalk_len <span class='op'>=</span> <span class='fl'>15</span>,
   leave_size_dist <span class='op'>=</span> <span class='fu'><a href='spark_weibull.html'>spark_weibull</a></span><span class='op'>(</span>shape <span class='op'>=</span> <span class='fl'>1.5</span>, scale_factor <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>,
   leaf_angle_dist <span class='op'>=</span> <span class='fu'><a href='spark_norm.html'>spark_norm</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>0</span>, sd <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
   last_angle_straight <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -147,7 +146,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df_branch</th>
-      <td><p>dataframe containing the x &amp; y coordinates of a branch</p></td>
+      <td><p>dataframe containing the 4 x &amp; y bezier coordinates of a branch</p></td>
     </tr>
     <tr>
       <th>leaf_mean_dist_approx</th>
@@ -160,10 +159,6 @@
     <tr>
       <th>first_dir</th>
       <td><p>direction of the first leaf in the branch (0 for right; 1 for left)</p></td>
-    </tr>
-    <tr>
-      <th>stalk_len</th>
-      <td><p>length of a stalk</p></td>
     </tr>
     <tr>
       <th>leave_size_dist</th>

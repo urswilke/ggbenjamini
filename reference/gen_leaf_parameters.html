@@ -40,7 +40,11 @@
 
 
 <meta property="og:title" content="Generate bezier coordinates of a leaf — gen_leaf_parameters" />
-<meta property="og:description" content="Generate bezier coordinates of a leaf" />
+<meta property="og:description" content="Except the start point coordinates of the leaf origin x0 &amp;amp; y0
+(arbitrarily set to 10 and 40) all coordinates are relative to this origin.
+Most of the parameters are random generated, except for some of them (e.g.,
+to close polygons, or to keep the stalk and the mid vein on the same
+line)." />
 
 
 
@@ -127,7 +131,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Generate bezier coordinates of a leaf</p>
+    <p>Except the start point coordinates of the leaf origin <code>x0</code> &amp; <code>y0</code>
+(arbitrarily set to 10 and 40) all coordinates are relative to this origin.
+Most of the parameters are random generated, except for some of them (e.g.,
+to close polygons, or to keep the stalk and the mid vein on the same
+line).</p>
     </div>
 
     <pre class="usage"><span class='fu'>gen_leaf_parameters</span><span class='op'>(</span>
@@ -167,7 +175,7 @@
     <tr>
       <th>dx10, dy10, dx21, dy21, dx32, dy32, dx43, dy43</th>
       <td><p>coordinates of the other
-control points (relative to the origin)</p></td>
+bezier start &amp; end points</p></td>
     </tr>
     <tr>
       <th>sx0, sx1, sx2, sx3, sx4</th>
@@ -179,13 +187,13 @@ control points (relative to the origin)</p></td>
     </tr>
     <tr>
       <th>smx1, smx2, smy1, smy2</th>
-      <td><p>x &amp; y coordinates of the middle vein control points</p></td>
+      <td><p>x &amp; y coordinates of the mid vein control points</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>named list with all parameters</p>
+    <p>named list of all parameters</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>gen_leaf_parameters</span><span class='op'>(</span><span class='op'>)</span>
