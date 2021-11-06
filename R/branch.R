@@ -37,7 +37,7 @@ benjamini_branch <- function(
   last_angle_straight = TRUE,
   leaf_size_multiplicator = 1
 ) {
-  df_coords <- gen_bezier_coords(df_branch)
+  df_coords <- gen_bezier_lin_interp(df_branch)
 
   n_points <- nrow(df_coords)
   dx <- df_coords$x[-n_points] - df_coords$x[-1]
