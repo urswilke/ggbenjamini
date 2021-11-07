@@ -112,7 +112,6 @@ it's as needed, but every second bezier is pointing in the wrong direction and t
 
 ```{r}
 df_bezier_skeleton <- df_svg_skeleton %>%
-  mutate(i = paste0(row, "_", i_curve)) %>% 
   group_by(row, i_curve) %>%
   # correct direction of beziers with index i_curve == 1:
   slice(ifelse(i_curve %% 2 == 1, 4:1, 1:4)) %>% 
@@ -120,7 +119,8 @@ df_bezier_skeleton <- df_svg_skeleton %>%
   # i_branch for each branch (only for clarity):
   mutate(i_branch = cur_group_id()) %>%
   ungroup() %>%
-  select(-row, -i_curve)
+  select(-row, -i_curve) %>% 
+  relocate(i_branch)
 
 ```
 

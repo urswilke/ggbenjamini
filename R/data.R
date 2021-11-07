@@ -8,6 +8,5 @@
 #'   \item{svg_point_type}{original point type in the svg file }
 #'   \item{x}{x coordinate}
 #'   \item{y}{y coordinate}
-#'   ...
 #' }
 "df_bezier_skeleton"

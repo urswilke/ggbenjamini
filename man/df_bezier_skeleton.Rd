@@ -11,7 +11,6 @@ A data frame with 40 rows and 4 variables:
 \item{svg_point_type}{original point type in the svg file }
 \item{x}{x coordinate}
 \item{y}{y coordinate}
-...
 }
 }
 \usage{
