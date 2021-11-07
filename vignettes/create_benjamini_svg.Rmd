@@ -23,8 +23,8 @@ library(dplyr)
 library(purrr)
 library(tidyr)
 library(ggplot2)
-library(stringr)
 library(forcats)
+library(stringr)
 library(minisvg)
 
 set.seed(21)
@@ -93,7 +93,7 @@ df_svg <- df_branches_and_leaves %>%
   mutate(fill_var = (6 * i_branch %>% as.numeric()) + i_leaf + sample(1:10, 1, TRUE)) %>%
   ungroup() %>% 
   mutate(hex = palhex(fill_var/ max(fill_var))) %>% 
-  mutate(fill_gradient = hex %>% as_factor() %>% as.numeric() %>% paste0("url(#gradient", ., ")")) 
+  mutate(fill_gradient = factor(hex) %>% as.numeric() %>% paste0("url(#gradient", ., ")")) 
   
 df_svg
 ```

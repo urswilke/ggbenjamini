@@ -18,7 +18,8 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr,
     ambient,
-    covr
+    covr,
+    usethis
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
