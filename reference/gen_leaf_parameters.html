@@ -107,6 +107,9 @@ line)." />
     <li>
       <a href="../articles/create_benjamini_tree.html">Create a tree with benjamini leaves</a>
     </li>
+    <li>
+      <a href="../articles/import_svg_bezier.html">Import bezier pathes from svg files</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -196,79 +199,80 @@ bezier start &amp; end points</p></td>
     <p>named list of all parameters</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gen_leaf_parameters</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $x0
-#&gt; [1] 10
-#&gt; 
-#&gt; $y0
-#&gt; [1] 40
-#&gt; 
-#&gt; $dx10
-#&gt; [1] 9
-#&gt; 
-#&gt; $dy10
-#&gt; [1] 0
-#&gt; 
-#&gt; $dx21
-#&gt; [1] 19
-#&gt; 
-#&gt; $dy21
-#&gt; [1] -10
-#&gt; 
-#&gt; $dx32
-#&gt; [1] 16
-#&gt; 
-#&gt; $dy32
-#&gt; [1] 8.491727
-#&gt; 
-#&gt; $dx43
-#&gt; [1] 6
-#&gt; 
-#&gt; $dy43
-#&gt; [1] 38.49173
-#&gt; 
-#&gt; $sx0
-#&gt; [1] 0.0101951
-#&gt; 
-#&gt; $sx1
-#&gt; [1] 3
-#&gt; 
-#&gt; $sx2
-#&gt; [1] 5
-#&gt; 
-#&gt; $sx3
-#&gt; [1] 2
-#&gt; 
-#&gt; $sx4
-#&gt; [1] 0.105987
-#&gt; 
-#&gt; $sy0
-#&gt; [1] 0.6292132
-#&gt; 
-#&gt; $sy1
-#&gt; [1] -5
-#&gt; 
-#&gt; $sy2
-#&gt; [1] 0.4684625
-#&gt; 
-#&gt; $sy3
-#&gt; [1] 1.161078
-#&gt; 
-#&gt; $sy4
-#&gt; [1] 0.5981253
-#&gt; 
-#&gt; $smx1
-#&gt; [1] -7
-#&gt; 
-#&gt; $smx2
-#&gt; [1] -14
-#&gt; 
-#&gt; $smy1
-#&gt; [1] 0.04685683
-#&gt; 
-#&gt; $smy2
-#&gt; [1] -0.06024217
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>gen_leaf_parameters</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $x0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $y0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 40</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dx10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dy10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dx21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 19</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dy21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dx32</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dy32</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 8.491727</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dx43</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $dy43</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 38.49173</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sx0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.0101951</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sx1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sx2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sx3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sx4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.105987</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sy0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.6292132</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sy1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sy2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.4684625</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sy3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 1.161078</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sy4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.5981253</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $smx1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $smx2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -14</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $smy1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.04685683</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $smy2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] -0.06024217</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

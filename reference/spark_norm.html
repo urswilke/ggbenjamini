@@ -104,6 +104,9 @@ length of the number of leaves on the branch." />
     <li>
       <a href="../articles/create_benjamini_tree.html">Create a tree with benjamini leaves</a>
     </li>
+    <li>
+      <a href="../articles/import_svg_bezier.html">Import bezier pathes from svg files</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -148,13 +151,14 @@ length of the number of leaves on the branch.</p>
     <p>dnorm() function with n_leaves as one of the arguments</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>spark_norm</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; function (n_leaves) 
-#&gt; {
-#&gt;     stats::rnorm(n_leaves, mean = mean, sd = sd)
-#&gt; }
-#&gt; &lt;bytecode: 0x55ea37182908&gt;
-#&gt; &lt;environment: 0x55ea3c30ded0&gt;</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>spark_norm</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> function (n_leaves) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> {</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     stats::rnorm(n_leaves, mean = mean, sd = sd)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> }</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;bytecode: 0x561ca064e7c8&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;environment: 0x561ca59612a0&gt;</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -103,6 +103,9 @@
     <li>
       <a href="../articles/create_benjamini_tree.html">Create a tree with benjamini leaves</a>
     </li>
+    <li>
+      <a href="../articles/import_svg_bezier.html">Import bezier pathes from svg files</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -156,13 +159,14 @@ example).</p></td>
     <p>A dataframe containing the information for one bezier curve in the format as needed by <code><a href='https://ggforce.data-imaginist.com/reference/geom_bezier.html'>ggforce::geom_bezier</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-<span class='va'>leaf_params</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_leaf_parameters.html'>gen_leaf_parameters</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>points_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_benjamini_points.html'>gen_benjamini_points</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>slopes_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_benjamini_slopes.html'>gen_benjamini_slopes</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>df_bezier</span> <span class='op'>&lt;-</span> <span class='fu'>get_one_bezier</span><span class='op'>(</span><span class='fl'>1</span>, <span class='va'>points_df</span>, <span class='va'>slopes_df</span><span class='op'>)</span>
-<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df_bezier</span>, <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>ggforce</span><span class='fu'>::</span><span class='fu'><a href='https://ggforce.data-imaginist.com/reference/geom_bezier.html'>geom_bezier</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='get_one_bezier-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>leaf_params</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_leaf_parameters.html'>gen_leaf_parameters</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>points_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_benjamini_points.html'>gen_benjamini_points</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>slopes_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_benjamini_slopes.html'>gen_benjamini_slopes</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df_bezier</span> <span class='op'>&lt;-</span> <span class='fu'>get_one_bezier</span><span class='op'>(</span><span class='fl'>1</span>, <span class='va'>points_df</span>, <span class='va'>slopes_df</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df_bezier</span>, <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>ggforce</span><span class='fu'>::</span><span class='fu'><a href='https://ggforce.data-imaginist.com/reference/geom_bezier.html'>geom_bezier</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='get_one_bezier-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
