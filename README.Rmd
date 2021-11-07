@@ -230,7 +230,5 @@ This package stands on the shoulders of giants. It was only possible thanks to t
 - glue [@glue]
 - scales [@scales]
 
-## References
-
 
 ## References

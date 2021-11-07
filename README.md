@@ -291,8 +291,6 @@ thanks to the following libraries:
 
 ## References
 
-## References
-
 <div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-magrittr" class="csl-entry">
