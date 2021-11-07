@@ -23,7 +23,6 @@ library(dplyr)
 library(purrr)
 library(tidyr)
 library(ggplot2)
-library(forcats)
 library(stringr)
 library(minisvg)
 
