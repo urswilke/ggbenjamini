@@ -187,11 +187,16 @@ You can also transform the leaf data to svgs. Have a look in `vignette("create_b
 
 <!-- 
 The following as well as the bibtex file "pkg-refs.bib" were automatically
-created with the command: 
+created with the commands:
+library(grateful)
+pkgs <- scan_packages()
+# don't know why including "R" gives an error ??
+pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")]
+cites <- get_citations(pkgs)
+rmd <- create_rmd(cites)
 
-grateful::cite_packages(out.format = "Rmd")
+-> then copy the list in the created refs.Rmd below
 
--> then I just removed this package... :) -<
 -->
 
 ## R packages used
@@ -224,5 +229,8 @@ This package stands on the shoulders of giants. It was only possible thanks to t
 - stats [@stats]
 - glue [@glue]
 - scales [@scales]
+
+## References
+
 
 ## References

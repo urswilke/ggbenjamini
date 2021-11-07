@@ -245,11 +245,16 @@ images.
 
 <!-- 
 The following as well as the bibtex file "pkg-refs.bib" were automatically
-created with the command: 
+created with the commands:
+library(grateful)
+pkgs <- scan_packages()
+# don't know why including "R" gives an error ??
+pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")]
+cites <- get_citations(pkgs)
+rmd <- create_rmd(cites)
 
-grateful::cite_packages(out.format = "Rmd")
+-> then copy the list in the created refs.Rmd below
 
--> then I just removed this package... :) -<
 -->
 
 ## R packages used
@@ -257,7 +262,7 @@ grateful::cite_packages(out.format = "Rmd")
 This package stands on the shoulders of giants. It was only possible
 thanks to the following libraries:
 
--   base (**base?**)
+-   base (R Core Team 2021a)
 -   pkgdown (Wickham and Hesselberth 2020)
 -   stringr (Wickham 2019)
 -   dplyr (Wickham et al. 2021)
@@ -268,7 +273,7 @@ thanks to the following libraries:
 -   magrittr (Bache and Wickham 2020)
 -   tibble (Müller and Wickham 2021)
 -   rlang (Henry and Wickham 2021)
--   grid (R Core Team 2021a)
+-   grid (R Core Team 2021b)
 -   prismatic (Hvitfeldt 2021)
 -   flametree (Navarro 2021)
 -   rsvg (Ooms 2021)
@@ -280,9 +285,11 @@ thanks to the following libraries:
 -   ambient (Pedersen and Peck 2020)
 -   covr (Hester 2020a)
 -   usethis (Wickham, Bryan, and Barrett 2021)
--   stats (R Core Team 2021b)
+-   stats (R Core Team 2021c)
 -   glue (Hester 2020b)
 -   scales (Wickham and Seidel 2020)
+
+## References
 
 ## References
 
@@ -380,7 +387,7 @@ Multidimensional Noise*. <https://CRAN.R-project.org/package=ambient>.
 
 </div>
 
-<div id="ref-grid" class="csl-entry">
+<div id="ref-base" class="csl-entry">
 
 R Core Team. 2021a. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -388,9 +395,17 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-stats" class="csl-entry">
+<div id="ref-grid" class="csl-entry">
 
 ———. 2021b. *R: A Language and Environment for Statistical Computing*.
+Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-stats" class="csl-entry">
+
+———. 2021c. *R: A Language and Environment for Statistical Computing*.
 Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
 
