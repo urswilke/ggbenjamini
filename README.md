@@ -257,7 +257,7 @@ grateful::cite_packages(out.format = "Rmd")
 This package stands on the shoulders of giants. It was only possible
 thanks to the following libraries:
 
--   base (R Core Team 2021a)
+-   base (**base?**)
 -   pkgdown (Wickham and Hesselberth 2020)
 -   stringr (Wickham 2019)
 -   dplyr (Wickham et al. 2021)
@@ -268,7 +268,8 @@ thanks to the following libraries:
 -   magrittr (Bache and Wickham 2020)
 -   tibble (Müller and Wickham 2021)
 -   rlang (Henry and Wickham 2021)
--   grid (R Core Team 2021b)
+-   grid (R Core Team 2021a)
+-   prismatic (Hvitfeldt 2021)
 -   flametree (Navarro 2021)
 -   rsvg (Ooms 2021)
 -   minisvg (FC 2021)
@@ -278,8 +279,10 @@ thanks to the following libraries:
 -   vdiffr (Henry et al. 2021)
 -   ambient (Pedersen and Peck 2020)
 -   covr (Hester 2020a)
--   stats (R Core Team 2021c)
+-   usethis (Wickham, Bryan, and Barrett 2021)
+-   stats (R Core Team 2021b)
 -   glue (Hester 2020b)
+-   scales (Wickham and Seidel 2020)
 
 ## References
 
@@ -335,6 +338,13 @@ Hester, Jim. 2020a. *Covr: Test Coverage for Packages*.
 
 </div>
 
+<div id="ref-prismatic" class="csl-entry">
+
+Hvitfeldt, Emil. 2021. *Prismatic: Color Manipulation Tools*.
+<https://CRAN.R-project.org/package=prismatic>.
+
+</div>
+
 <div id="ref-tibble" class="csl-entry">
 
 Müller, Kirill, and Hadley Wickham. 2021. *Tibble: Simple Data Frames*.
@@ -370,7 +380,7 @@ Multidimensional Noise*. <https://CRAN.R-project.org/package=ambient>.
 
 </div>
 
-<div id="ref-base" class="csl-entry">
+<div id="ref-grid" class="csl-entry">
 
 R Core Team. 2021a. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -378,17 +388,9 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-grid" class="csl-entry">
-
-———. 2021b. *R: A Language and Environment for Statistical Computing*.
-Vienna, Austria: R Foundation for Statistical Computing.
-<https://www.R-project.org/>.
-
-</div>
-
 <div id="ref-stats" class="csl-entry">
 
-———. 2021c. *R: A Language and Environment for Statistical Computing*.
+———. 2021b. *R: A Language and Environment for Statistical Computing*.
 Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
 
@@ -423,6 +425,14 @@ Operations*. <https://CRAN.R-project.org/package=stringr>.
 
 </div>
 
+<div id="ref-usethis" class="csl-entry">
+
+Wickham, Hadley, Jennifer Bryan, and Malcolm Barrett. 2021. *Usethis:
+Automate Package and Project Setup*.
+<https://CRAN.R-project.org/package=usethis>.
+
+</div>
+
 <div id="ref-dplyr" class="csl-entry">
 
 Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021.
@@ -436,6 +446,13 @@ Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021.
 Wickham, Hadley, and Jay Hesselberth. 2020. *Pkgdown: Make Static HTML
 Documentation for a Package*.
 <https://CRAN.R-project.org/package=pkgdown>.
+
+</div>
+
+<div id="ref-scales" class="csl-entry">
+
+Wickham, Hadley, and Dana Seidel. 2020. *Scales: Scale Functions for
+Visualization*. <https://CRAN.R-project.org/package=scales>.
 
 </div>
 
