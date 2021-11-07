@@ -272,11 +272,16 @@
 <p>You can also transform the leaf data to svgs. Have a look in <code><a href="articles/create_benjamini_svg.html">vignette("create_benjamini_svg")</a></code> for an example to generate svg images.</p>
 <!-- 
 The following as well as the bibtex file "pkg-refs.bib" were automatically
-created with the command: 
+created with the commands:
+library(grateful)
+pkgs <- scan_packages()
+# don't know why including "R" gives an error ??
+pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")]
+cites <- get_citations(pkgs)
+rmd <- create_rmd(cites)
 
-grateful::cite_packages(out.format = "Rmd")
+-> then copy the list in the created refs.Rmd below
 
--> then I just removed this package... :) -<
 -->
 </div>
 <div id="r-packages-used" class="section level2">
@@ -284,7 +289,7 @@ grateful::cite_packages(out.format = "Rmd")
 <a href="#r-packages-used" class="anchor"></a>R packages used</h2>
 <p>This package stands on the shoulders of giants. It was only possible thanks to the following libraries:</p>
 <ul>
-<li>base (<strong>base?</strong>)</li>
+<li>base (R Core Team 2021a)</li>
 <li>pkgdown (Wickham and Hesselberth 2020)</li>
 <li>stringr (Wickham 2019)</li>
 <li>dplyr (Wickham et al. 2021)</li>
@@ -295,7 +300,7 @@ grateful::cite_packages(out.format = "Rmd")
 <li>magrittr (Bache and Wickham 2020)</li>
 <li>tibble (Müller and Wickham 2021)</li>
 <li>rlang (Henry and Wickham 2021)</li>
-<li>grid (R Core Team 2021a)</li>
+<li>grid (R Core Team 2021b)</li>
 <li>prismatic (Hvitfeldt 2021)</li>
 <li>flametree (Navarro 2021)</li>
 <li>rsvg (Ooms 2021)</li>
@@ -307,7 +312,7 @@ grateful::cite_packages(out.format = "Rmd")
 <li>ambient (Pedersen and Peck 2020)</li>
 <li>covr (Hester 2020a)</li>
 <li>usethis (Wickham, Bryan, and Barrett 2021)</li>
-<li>stats (R Core Team 2021b)</li>
+<li>stats (R Core Team 2021c)</li>
 <li>glue (Hester 2020b)</li>
 <li>scales (Wickham and Seidel 2020)</li>
 </ul>
@@ -315,6 +320,10 @@ grateful::cite_packages(out.format = "Rmd")
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
+</div>
+<div id="references-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references-1" class="anchor"></a>References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-magrittr" class="csl-entry">
 <p>Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr" class="uri">https://CRAN.R-project.org/package=magrittr</a>.</p>
@@ -355,11 +364,14 @@ grateful::cite_packages(out.format = "Rmd")
 <div id="ref-ambient" class="csl-entry">
 <p>Pedersen, Thomas Lin, and Jordan Peck. 2020. <em>Ambient: A Generator of Multidimensional Noise</em>. <a href="https://CRAN.R-project.org/package=ambient" class="uri">https://CRAN.R-project.org/package=ambient</a>.</p>
 </div>
-<div id="ref-grid" class="csl-entry">
+<div id="ref-base" class="csl-entry">
 <p>R Core Team. 2021a. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
 </div>
-<div id="ref-stats" class="csl-entry">
+<div id="ref-grid" class="csl-entry">
 <p>———. 2021b. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-stats" class="csl-entry">
+<p>———. 2021c. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
 </div>
 <div id="ref-testthat" class="csl-entry">
 <p>Wickham, Hadley. 2011. “Testthat: Get Started with Testing.” <em>The R Journal</em> 3: 5–10. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="uri">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</p>
