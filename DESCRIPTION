@@ -36,7 +36,8 @@ Imports:
     magrittr,
     tibble,
     rlang,
-    grid
+    grid,
+    prismatic
 Remotes:
     coolbutuseless/minisvg,
     djnavarro/flametree

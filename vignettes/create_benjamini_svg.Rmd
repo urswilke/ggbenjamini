@@ -25,6 +25,7 @@ library(tidyr)
 library(ggplot2)
 library(stringr)
 library(minisvg)
+library(prismatic)
 
 set.seed(21)
 ```
@@ -132,7 +133,7 @@ append_gradient_def <- function(doc, id, col1 = "#00FF00", col2 = "#008000") {
   doc
 }
 
-hex_needed %>% iwalk(~append_gradient_def(doc, paste0("gradient", .y), .x, prismatic::clr_darken(.x)))
+hex_needed %>% iwalk(~append_gradient_def(doc, paste0("gradient", .y), .x, clr_darken(.x)))
 ```
 
 ...and append them to the document:
