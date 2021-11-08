@@ -25,8 +25,10 @@ library(ggbenjamini)
 library(dplyr)
 library(purrr)
 library(tidyr)
-library(ggplot2)
 library(stringr)
+library(ggplot2)
+library(ggforce)
+library(ambient)
 
 set.seed(123)
 ```
@@ -85,7 +87,7 @@ different elements:
 df_branches_and_leaves %>%
   unite(idx, i_branch, i_leaf, i_part, element, remove = FALSE) %>% 
   ggplot(aes(x = x, y = y, group = idx, color = factor(i_branch))) + 
-  ggforce::geom_bezier(show.legend = FALSE) +
+  geom_bezier(show.legend = FALSE) +
   scale_y_reverse() +
   theme_void()
 ```
@@ -101,8 +103,8 @@ df2 <- df_branches_and_leaves %>%
   unite(idx, i_branch, i_leaf, element, remove = FALSE) %>%
   bezier_to_polygon(idx, i_branch, i_leaf, element, i_part, n = 100) %>% 
   mutate(
-    x2 = x + ambient::gen_simplex(x, y, frequency = 0.05, seed = 123),
-    y2 = y + ambient::gen_simplex(x, y, frequency = 0.05, seed = 123)
+    x2 = x + gen_simplex(x, y, frequency = 0.05, seed = 123),
+    y2 = y + gen_simplex(x, y, frequency = 0.05, seed = 123)
   )
 ```
 
