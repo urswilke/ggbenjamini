@@ -191,7 +191,7 @@ created with the commands:
 library(grateful)
 pkgs <- scan_packages()
 # don't know why including "R" gives an error ??
-pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")]
+pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")] %>% c("magick")
 cites <- get_citations(pkgs)
 rmd <- create_rmd(cites)
 
@@ -229,6 +229,7 @@ This package stands on the shoulders of giants. It was only possible thanks to t
 - stats [@stats]
 - glue [@glue]
 - scales [@scales]
+- magick [@magick]
 
 
 ## References

@@ -249,7 +249,7 @@ created with the commands:
 library(grateful)
 pkgs <- scan_packages()
 # don't know why including "R" gives an error ??
-pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")]
+pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")] %>% c("magick")
 cites <- get_citations(pkgs)
 rmd <- create_rmd(cites)
 
@@ -276,18 +276,19 @@ thanks to the following libraries:
 -   grid (R Core Team 2021b)
 -   prismatic (Hvitfeldt 2021)
 -   flametree (Navarro 2021)
--   rsvg (Ooms 2021)
+-   rsvg (Ooms 2021b)
 -   minisvg (FC 2021)
 -   knitr (Xie 2014)
 -   rmarkdown (Xie, Dervieux, and Riederer 2020)
 -   testthat (Wickham 2011)
 -   vdiffr (Henry et al. 2021)
 -   ambient (Pedersen and Peck 2020)
--   covr (Hester 2020a)
+-   covr (Hester 2020)
 -   usethis (Wickham, Bryan, and Barrett 2021)
 -   stats (R Core Team 2021c)
--   glue (Hester 2020b)
+-   glue (Hester 2021)
 -   scales (Wickham and Seidel 2020)
+-   magick (Ooms 2021a)
 
 ## References
 
@@ -331,14 +332,14 @@ Features*. <https://CRAN.R-project.org/package=rlang>.
 
 <div id="ref-covr" class="csl-entry">
 
-Hester, Jim. 2020a. *Covr: Test Coverage for Packages*.
+Hester, Jim. 2020. *Covr: Test Coverage for Packages*.
 <https://CRAN.R-project.org/package=covr>.
 
 </div>
 
 <div id="ref-glue" class="csl-entry">
 
-———. 2020b. *Glue: Interpreted String Literals*.
+———. 2021. *Glue: Interpreted String Literals*.
 <https://CRAN.R-project.org/package=glue>.
 
 </div>
@@ -364,10 +365,17 @@ Navarro, Danielle. 2021. *Flametree: Generate Random Tree-Like Images*.
 
 </div>
 
+<div id="ref-magick" class="csl-entry">
+
+Ooms, Jeroen. 2021a. *Magick: Advanced Graphics and Image-Processing in
+r*. <https://CRAN.R-project.org/package=magick>.
+
+</div>
+
 <div id="ref-rsvg" class="csl-entry">
 
-Ooms, Jeroen. 2021. *Rsvg: Render SVG Images into PDF, PNG, PostScript,
-or Bitmap Arrays*. <https://CRAN.R-project.org/package=rsvg>.
+———. 2021b. *Rsvg: Render SVG Images into PDF, PNG, PostScript, or
+Bitmap Arrays*. <https://CRAN.R-project.org/package=rsvg>.
 
 </div>
 
