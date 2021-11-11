@@ -276,7 +276,7 @@ created with the commands:
 library(grateful)
 pkgs <- scan_packages()
 # don't know why including "R" gives an error ??
-pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")]
+pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")] %>% c("magick")
 cites <- get_citations(pkgs)
 rmd <- create_rmd(cites)
 
@@ -303,18 +303,19 @@ rmd <- create_rmd(cites)
 <li>grid (R Core Team 2021b)</li>
 <li>prismatic (Hvitfeldt 2021)</li>
 <li>flametree (Navarro 2021)</li>
-<li>rsvg (Ooms 2021)</li>
+<li>rsvg (Ooms 2021b)</li>
 <li>minisvg (FC 2021)</li>
 <li>knitr (Xie 2014)</li>
 <li>rmarkdown (Xie, Dervieux, and Riederer 2020)</li>
 <li>testthat (Wickham 2011)</li>
 <li>vdiffr (Henry et al. 2021)</li>
 <li>ambient (Pedersen and Peck 2020)</li>
-<li>covr (Hester 2020a)</li>
+<li>covr (Hester 2020)</li>
 <li>usethis (Wickham, Bryan, and Barrett 2021)</li>
 <li>stats (R Core Team 2021c)</li>
-<li>glue (Hester 2020b)</li>
+<li>glue (Hester 2021)</li>
 <li>scales (Wickham and Seidel 2020)</li>
+<li>magick (Ooms 2021a)</li>
 </ul>
 </div>
 <div id="references" class="section level2">
@@ -337,10 +338,10 @@ rmd <- create_rmd(cites)
 <p>———. 2021. <em>Rlang: Functions for Base Types and Core r and ’Tidyverse’ Features</em>. <a href="https://CRAN.R-project.org/package=rlang" class="uri">https://CRAN.R-project.org/package=rlang</a>.</p>
 </div>
 <div id="ref-covr" class="csl-entry">
-<p>Hester, Jim. 2020a. <em>Covr: Test Coverage for Packages</em>. <a href="https://CRAN.R-project.org/package=covr" class="uri">https://CRAN.R-project.org/package=covr</a>.</p>
+<p>Hester, Jim. 2020. <em>Covr: Test Coverage for Packages</em>. <a href="https://CRAN.R-project.org/package=covr" class="uri">https://CRAN.R-project.org/package=covr</a>.</p>
 </div>
 <div id="ref-glue" class="csl-entry">
-<p>———. 2020b. <em>Glue: Interpreted String Literals</em>. <a href="https://CRAN.R-project.org/package=glue" class="uri">https://CRAN.R-project.org/package=glue</a>.</p>
+<p>———. 2021. <em>Glue: Interpreted String Literals</em>. <a href="https://CRAN.R-project.org/package=glue" class="uri">https://CRAN.R-project.org/package=glue</a>.</p>
 </div>
 <div id="ref-prismatic" class="csl-entry">
 <p>Hvitfeldt, Emil. 2021. <em>Prismatic: Color Manipulation Tools</em>. <a href="https://CRAN.R-project.org/package=prismatic" class="uri">https://CRAN.R-project.org/package=prismatic</a>.</p>
@@ -351,8 +352,11 @@ rmd <- create_rmd(cites)
 <div id="ref-flametree" class="csl-entry">
 <p>Navarro, Danielle. 2021. <em>Flametree: Generate Random Tree-Like Images</em>. <a href="https://CRAN.R-project.org/package=flametree" class="uri">https://CRAN.R-project.org/package=flametree</a>.</p>
 </div>
+<div id="ref-magick" class="csl-entry">
+<p>Ooms, Jeroen. 2021a. <em>Magick: Advanced Graphics and Image-Processing in r</em>. <a href="https://CRAN.R-project.org/package=magick" class="uri">https://CRAN.R-project.org/package=magick</a>.</p>
+</div>
 <div id="ref-rsvg" class="csl-entry">
-<p>Ooms, Jeroen. 2021. <em>Rsvg: Render SVG Images into PDF, PNG, PostScript, or Bitmap Arrays</em>. <a href="https://CRAN.R-project.org/package=rsvg" class="uri">https://CRAN.R-project.org/package=rsvg</a>.</p>
+<p>———. 2021b. <em>Rsvg: Render SVG Images into PDF, PNG, PostScript, or Bitmap Arrays</em>. <a href="https://CRAN.R-project.org/package=rsvg" class="uri">https://CRAN.R-project.org/package=rsvg</a>.</p>
 </div>
 <div id="ref-ggforce" class="csl-entry">
 <p>Pedersen, Thomas Lin. 2021. <em>Ggforce: Accelerating ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggforce" class="uri">https://CRAN.R-project.org/package=ggforce</a>.</p>
