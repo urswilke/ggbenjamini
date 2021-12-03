@@ -1,10 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   create_benjamini_polygons: create_benjamini_polygons.html
   create_benjamini_svg: create_benjamini_svg.html
   create_benjamini_tree: create_benjamini_tree.html
   import_svg_bezier: import_svg_bezier.html
-last_built: 2021-11-11T12:42Z
+last_built: 2021-12-03T14:01Z
 
