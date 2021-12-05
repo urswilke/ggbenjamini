@@ -32,7 +32,11 @@ To start, we'll first generate some flametrees and make some modifications:
 
 ```{r}
 ft <- flametree_grow(
-    seg_wid = spark_decay(time = 0.3, multiplier = 3, constant = 0.1),
+    seg_wid = spark_decay(
+      time = 0.3, 
+      multiplier = 3,
+      constant = 0.1
+    ),
     seed = 21, 
     trees = 5, 
     time = 2, 
@@ -72,7 +76,10 @@ df_leaves <- ft_mod %>%
   # Only apply to the top layer:
   filter(id_time == max(id_time)) %>% 
   group_by(id_pathtree) %>% 
-  summarise(tibble(x = coord_x[c(1, 2, 2, 3)], y = coord_y[c(1, 2, 2, 3)])) %>% 
+  summarise(tibble(
+    x = coord_x[c(1, 2, 2, 3)], 
+    y = coord_y[c(1, 2, 2, 3)]
+  )) %>% 
   group_split() %>%
   map_dfr(benjamini_branch, .id = "i_branch") %>% 
   unite(id, i_branch, i_leaf, element, i_part, remove = FALSE)
