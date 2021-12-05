@@ -45,7 +45,6 @@ library(tidyr)
 library(stringr)
 library(ggplot2)
 library(ggforce)
-library(details)
 set.seed(123)
 ```
 
@@ -58,6 +57,58 @@ of a ficus benjamini. The main function is `benjamini_leaf()`:
 df <- benjamini_leaf()
 ```
 
+<details>
+<summary>
+Show generated dataframe `df` of benjamini leaf bezier curve parameters
+</summary>
+
+``` r
+knitr::kable(df)
+```
+
+| element | i\_part |        x |        y | param\_type            |
+|:--------|--------:|---------:|---------:|:-----------------------|
+| stalk   |       0 | 10.00000 | 40.00000 | bezier start point     |
+| stalk   |       0 | 10.04566 | 40.94991 | bezier control point 1 |
+| stalk   |       0 | 19.97942 | 39.35523 | bezier control point 2 |
+| stalk   |       0 | 20.00000 | 40.00000 | bezier end point       |
+| half 2  |       1 | 20.00000 | 40.00000 | bezier start point     |
+| half 2  |       1 | 22.00000 | 36.00000 | bezier control point 1 |
+| half 2  |       1 | 29.00000 | 35.17208 | bezier control point 2 |
+| half 2  |       1 | 34.00000 | 35.00000 | bezier end point       |
+| half 2  |       2 | 34.00000 | 35.00000 | bezier start point     |
+| half 2  |       2 | 39.00000 | 34.82792 | bezier control point 1 |
+| half 2  |       2 | 43.00000 | 37.33259 | bezier control point 2 |
+| half 2  |       2 | 45.00000 | 38.78709 | bezier end point       |
+| half 2  |       3 | 45.00000 | 38.78709 | bezier start point     |
+| half 2  |       3 | 47.00000 | 40.24159 | bezier control point 1 |
+| half 2  |       3 | 50.97942 | 39.35523 | bezier control point 2 |
+| half 2  |       3 | 51.00000 | 40.00000 | bezier end point       |
+| half 2  |       4 | 51.00000 | 40.00000 | bezier start point     |
+| half 2  |       4 | 38.00000 | 40.31141 | bezier control point 1 |
+| half 2  |       4 | 33.00000 | 39.58294 | bezier control point 2 |
+| half 2  |       4 | 20.00000 | 40.00000 | bezier end point       |
+| half 1  |       1 | 20.00000 | 40.00000 | bezier start point     |
+| half 1  |       1 | 22.00000 | 44.00000 | bezier control point 1 |
+| half 1  |       1 | 29.00000 | 44.82792 | bezier control point 2 |
+| half 1  |       1 | 34.00000 | 45.00000 | bezier end point       |
+| half 1  |       2 | 34.00000 | 45.00000 | bezier start point     |
+| half 1  |       2 | 39.00000 | 45.17208 | bezier control point 1 |
+| half 1  |       2 | 43.00000 | 42.66741 | bezier control point 2 |
+| half 1  |       2 | 45.00000 | 41.21291 | bezier end point       |
+| half 1  |       3 | 45.00000 | 41.21291 | bezier start point     |
+| half 1  |       3 | 47.00000 | 39.75841 | bezier control point 1 |
+| half 1  |       3 | 50.97942 | 40.64477 | bezier control point 2 |
+| half 1  |       3 | 51.00000 | 40.00000 | bezier end point       |
+| half 1  |       4 | 51.00000 | 40.00000 | bezier start point     |
+| half 1  |       4 | 38.00000 | 40.31141 | bezier control point 1 |
+| half 1  |       4 | 33.00000 | 39.58294 | bezier control point 2 |
+| half 1  |       4 | 20.00000 | 40.00000 | bezier end point       |
+
+</details>
+
+<br>
+
 It results in a dataframe of multiple bezier curves representing the
 shape of a leaf. The first column `element` indicates which part of the
 leaf the bezier describes, and can take the values “stalk,” “half 2” and
@@ -65,64 +116,12 @@ leaf the bezier describes, and can take the values “stalk,” “half 2” and
 point coordinates. The column `param_type` denotes the type of the point
 in the bezier curve.
 
-``` details
-knitr::kable(df)
-```
-
-<details closed>
-<summary>
-<span title="Click to Open"> Show dataframe of benjamini leaf bezier
-curves </span>
-</summary>
-
-``` r
-
-
-|element | i_part|        x|        y|param_type             |
-|:-------|------:|--------:|--------:|:----------------------|
-|stalk   |      0| 10.00000| 40.00000|bezier start point     |
-|stalk   |      0| 10.04566| 40.94991|bezier control point 1 |
-|stalk   |      0| 19.97942| 39.35523|bezier control point 2 |
-|stalk   |      0| 20.00000| 40.00000|bezier end point       |
-|half 2  |      1| 20.00000| 40.00000|bezier start point     |
-|half 2  |      1| 22.00000| 36.00000|bezier control point 1 |
-|half 2  |      1| 29.00000| 35.17208|bezier control point 2 |
-|half 2  |      1| 34.00000| 35.00000|bezier end point       |
-|half 2  |      2| 34.00000| 35.00000|bezier start point     |
-|half 2  |      2| 39.00000| 34.82792|bezier control point 1 |
-|half 2  |      2| 43.00000| 37.33259|bezier control point 2 |
-|half 2  |      2| 45.00000| 38.78709|bezier end point       |
-|half 2  |      3| 45.00000| 38.78709|bezier start point     |
-|half 2  |      3| 47.00000| 40.24159|bezier control point 1 |
-|half 2  |      3| 50.97942| 39.35523|bezier control point 2 |
-|half 2  |      3| 51.00000| 40.00000|bezier end point       |
-|half 2  |      4| 51.00000| 40.00000|bezier start point     |
-|half 2  |      4| 38.00000| 40.31141|bezier control point 1 |
-|half 2  |      4| 33.00000| 39.58294|bezier control point 2 |
-|half 2  |      4| 20.00000| 40.00000|bezier end point       |
-|half 1  |      1| 20.00000| 40.00000|bezier start point     |
-|half 1  |      1| 22.00000| 44.00000|bezier control point 1 |
-|half 1  |      1| 29.00000| 44.82792|bezier control point 2 |
-|half 1  |      1| 34.00000| 45.00000|bezier end point       |
-|half 1  |      2| 34.00000| 45.00000|bezier start point     |
-|half 1  |      2| 39.00000| 45.17208|bezier control point 1 |
-|half 1  |      2| 43.00000| 42.66741|bezier control point 2 |
-|half 1  |      2| 45.00000| 41.21291|bezier end point       |
-|half 1  |      3| 45.00000| 41.21291|bezier start point     |
-|half 1  |      3| 47.00000| 39.75841|bezier control point 1 |
-|half 1  |      3| 50.97942| 40.64477|bezier control point 2 |
-|half 1  |      3| 51.00000| 40.00000|bezier end point       |
-|half 1  |      4| 51.00000| 40.00000|bezier start point     |
-|half 1  |      4| 38.00000| 40.31141|bezier control point 1 |
-|half 1  |      4| 33.00000| 39.58294|bezier control point 2 |
-|half 1  |      4| 20.00000| 40.00000|bezier end point       |
-```
-
-</details>
-
-<br>
-
 The meaning is best illustrated with a plot:
+
+<details>
+<summary>
+Show code to generate plot
+</summary>
 
 ``` r
 # rearrange data to display segments:
@@ -138,7 +137,7 @@ segments <- df %>%
   ) %>% 
   unnest(c(x_1, x_2, y_1, y_2))
 
-ggplot(df, aes(x = x, y = y)) + 
+p <- ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
   geom_point(
     data = df %>% 
@@ -172,15 +171,18 @@ ggplot(df, aes(x = x, y = y)) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-def-1.png" width="100%" />
+</details>
 
-The black point represents the leaf origin. This and the blue points
-denote the start/end points of the bezier curves, and the red dots the
-positions of the control points. The leaf is cut in two halves
-(`element == "half 1" OR "half 2"`) by the lines where `i_part == 4`
-(which represents the midvein of the leaf). The exact dimensions of
-these coordinates are generated by random numbers in certain ranges (see
-the definition of the argument `leaf_params` in `benjamini_leaf()`).
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+The black point represents the leaf origin. Together with the blue
+points they denote the start/end points of the bezier curves, and the
+red dots the positions of their control points. The leaf is cut in two
+halves (`element == "half 1" OR "half 2"`) by the lines where
+`i_part == 4` (which represents the midvein of the leaf). The exact
+dimensions of these coordinates are generated by random numbers in
+certain ranges (see the definition of the argument `leaf_params` in
+`benjamini_leaf()`).
 
 ## Illustration of the randomness
 
