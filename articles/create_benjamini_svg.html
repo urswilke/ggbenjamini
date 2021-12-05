@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">ggbenjamini</a>
 
@@ -126,10 +126,19 @@
   <span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">i_branch</span>, <span class="va">i_leaf</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="co"># We'll define some alchemist random distribution for the color scale later:</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>fill_var <span class="op">=</span> <span class="op">(</span><span class="fl">6</span> <span class="op">*</span> <span class="va">i_branch</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">i_leaf</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
+    fill_var <span class="op">=</span> <span class="fl">6</span> <span class="op">*</span> 
+      <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">i_branch</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="va">i_leaf</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>hex <span class="op">=</span> <span class="fu">palhex</span><span class="op">(</span><span class="va">fill_var</span><span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">fill_var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">hex</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"url(#gradient"</span>, <span class="va">.</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>hex <span class="op">=</span> <span class="fu">palhex</span><span class="op">(</span><span class="va">fill_var</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">fill_var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
+    fill_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">hex</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+      <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"url(#gradient"</span>, <span class="va">.</span>, <span class="st">")"</span><span class="op">)</span>
+  <span class="op">)</span> 
   
 <span class="va">df_svg</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 910 × 8</span></span>
@@ -163,7 +172,9 @@
 <code class="sourceCode R"><span class="va">doc</span> <span class="op">&lt;-</span> <span class="va"><a href="https://coolbutuseless.github.io/package/minisvg/reference/SVGDocument.html" class="external-link">SVGDocument</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>width <span class="op">=</span> <span class="va">size</span>, height <span class="op">=</span> <span class="va">size</span><span class="op">)</span></code></pre></div>
 <p>In order to have some more realistic texture, we’ll define gradients for the leaves:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">append_gradient_def</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">doc</span>, <span class="va">id</span>, <span class="va">col1</span> <span class="op">=</span> <span class="st">"#00FF00"</span>, <span class="va">col2</span> <span class="op">=</span> <span class="st">"#008000"</span><span class="op">)</span> <span class="op">{</span>
+<code class="sourceCode R"><span class="va">append_gradient_def</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span>
+  <span class="va">doc</span>, <span class="va">id</span>, <span class="va">col1</span> <span class="op">=</span> <span class="st">"#00FF00"</span>, <span class="va">col2</span> <span class="op">=</span> <span class="st">"#008000"</span>
+<span class="op">)</span> <span class="op">{</span>
   <span class="va">doc</span><span class="op">$</span><span class="fu">append</span><span class="op">(</span>
     <span class="va">stag</span><span class="op">$</span><span class="fu">radialGradient</span><span class="op">(</span>
       id <span class="op">=</span> <span class="va">id</span>, cx<span class="op">=</span><span class="st">"0.35"</span>, cy<span class="op">=</span><span class="st">"0.63"</span>, r<span class="op">=</span><span class="st">"0.7"</span>,
@@ -174,7 +185,14 @@
   <span class="va">doc</span>
 <span class="op">}</span>
 
-<span class="va">hex_needed</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html" class="external-link">iwalk</a></span><span class="op">(</span><span class="op">~</span><span class="fu">append_gradient_def</span><span class="op">(</span><span class="va">doc</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"gradient"</span>, <span class="va">.y</span><span class="op">)</span>, <span class="va">.x</span>, <span class="fu"><a href="https://rdrr.io/pkg/prismatic/man/clr_darken.html" class="external-link">clr_darken</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">hex_needed</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html" class="external-link">iwalk</a></span><span class="op">(</span>
+    <span class="op">~</span><span class="fu">append_gradient_def</span><span class="op">(</span>
+      <span class="va">doc</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"gradient"</span>, <span class="va">.y</span><span class="op">)</span>, 
+      <span class="va">.x</span>, 
+      <span class="fu"><a href="https://rdrr.io/pkg/prismatic/man/clr_darken.html" class="external-link">clr_darken</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
 <p>…and append them to the document:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># doc$append(gradients)</span></code></pre></div>

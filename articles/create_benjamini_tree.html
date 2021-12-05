@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">ggbenjamini</a>
 
@@ -81,7 +81,11 @@
 <p>To start, we’ll first generate some flametrees and make some modifications:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ft</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/flametree_grow.html" class="external-link">flametree_grow</a></span><span class="op">(</span>
-    seg_wid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/sparks.html" class="external-link">spark_decay</a></span><span class="op">(</span>time <span class="op">=</span> <span class="fl">0.3</span>, multiplier <span class="op">=</span> <span class="fl">3</span>, constant <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,
+    seg_wid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/sparks.html" class="external-link">spark_decay</a></span><span class="op">(</span>
+      time <span class="op">=</span> <span class="fl">0.3</span>, 
+      multiplier <span class="op">=</span> <span class="fl">3</span>,
+      constant <span class="op">=</span> <span class="fl">0.1</span>
+    <span class="op">)</span>,
     seed <span class="op">=</span> <span class="fl">21</span>, 
     trees <span class="op">=</span> <span class="fl">5</span>, 
     time <span class="op">=</span> <span class="fl">2</span>, 
@@ -119,7 +123,10 @@
   <span class="co"># Only apply to the top layer:</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">id_time</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">id_time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id_pathtree</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">coord_x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">coord_y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+    x <span class="op">=</span> <span class="va">coord_x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span>, 
+    y <span class="op">=</span> <span class="va">coord_y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span>
+  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html" class="external-link">group_split</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="va">benjamini_branch</span>, .id <span class="op">=</span> <span class="st">"i_branch"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html" class="external-link">unite</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">i_branch</span>, <span class="va">i_leaf</span>, <span class="va">element</span>, <span class="va">i_part</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
