@@ -49,7 +49,10 @@ library(ggbenjamini)
 library(purrr)
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(ggplot2)
+library(ggforce)
+library(details)
 set.seed(123)
 ```
 
@@ -62,14 +65,18 @@ The main function is `benjamini_leaf()`:
 
 ```{r fun}
 df <- benjamini_leaf()
-print(df, n = 40)
 ```
+
 It results in a dataframe of multiple bezier curves representing the shape of a leaf. 
 The first column `element` indicates which part of the leaf the bezier describes, 
 and can take the values 
 `r glue::glue('"{unique(benjamini_leaf()$element)}"') %>% glue::glue_collapse(sep = ", ", last = " and ")`.
 `i_part` denotes the id of the bezier curve, and `x` & `y` its point coordinates.
 The column `param_type` denotes the type of the point in the bezier curve.
+
+```{details, details.summary = "Show dataframe of benjamini leaf bezier curves"}
+knitr::kable(df)
+```
 
 The meaning is best illustrated with a plot:
 ```{r def}
@@ -88,9 +95,23 @@ segments <- df %>%
 
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
-  geom_point(data = df %>% group_by(element, i_part) %>% slice(c(1, 4)), color = "blue", size = 2) +
-  geom_point(data = df %>% slice(1), color = "black", size = 3) +
-  ggforce::geom_bezier(aes(group = interaction(element, i_part), color = factor(i_part))) +
+  geom_point(
+    data = df %>% 
+      group_by(element, i_part) %>% 
+      slice(c(1, 4)),
+    color = "blue", 
+    size = 2
+  ) +
+  geom_point(
+    data = df %>% slice(1), 
+    color = "black", 
+    size = 3
+  ) +
+  geom_bezier(
+    aes(
+      group = interaction(element, i_part), 
+      color = factor(i_part)
+    )) +
   geom_segment(
     data = segments, 
     aes(
@@ -126,12 +147,17 @@ dfb <- expand_grid(
     y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
-  map_dfr(~benjamini_leaf(gen_leaf_parameters(x0 = .x$x, y0 = .x$y)), .id = "i_leaf") %>%
+  map_dfr(
+    ~benjamini_leaf(gen_leaf_parameters(
+      x0 = .x$x, 
+      y0 = .x$y
+    )), 
+    .id = "i_leaf"
+  ) %>%
   unite(i, i_leaf, i_part, element, remove = FALSE)
 
 ggplot(dfb) +
-  ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
-  # geom_point(data = l_points %>% bind_rows(), aes(x = x, y = y), color = "red") +
+  geom_bezier(aes(x = x, y = y, group = i)) +
   coord_equal() +
   theme_minimal()
 ```
@@ -145,7 +171,7 @@ You can also generate branches of leaves with the command `benjamini_branch()` (
 ```{r branch}
 df_branch <- benjamini_branch() %>%
   # we add a unique identifier `b` for all beziers:
-  tidyr::unite(b, i_leaf, element, i_part, remove = FALSE) 
+  unite(b, i_leaf, element, i_part, remove = FALSE) 
 df_branch
 ```
 
@@ -154,9 +180,9 @@ As the following plot also shows, `benjamini_branch()` adds another column `i_le
 
 ```{r branch2}
 df_branch %>%
-  ggplot2::ggplot() +
-  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_leaf)) +
-  ggplot2::coord_equal()
+  ggplot() +
+  geom_bezier(aes(x = x, y = y, group = b, color = i_leaf)) +
+  coord_equal()
 ```
 
 
@@ -166,7 +192,7 @@ If you want to fill the leaves with color, you can use `bezier_to_polygon()` to 
 
 ```{r polygon}
 df_polygons <- df_branch %>% 
-  filter(stringr::str_detect(element, "^half [12]$")) %>%
+  filter(str_detect(element, "^half [12]$")) %>%
   unite(idx, i_leaf, element, remove = FALSE) %>%
   bezier_to_polygon(idx, i_leaf, element, i_part, n = 100)
 ggplot(

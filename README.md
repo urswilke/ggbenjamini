@@ -42,7 +42,10 @@ library(ggbenjamini)
 library(purrr)
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(ggplot2)
+library(ggforce)
+library(details)
 set.seed(123)
 ```
 
@@ -53,46 +56,6 @@ of a ficus benjamini. The main function is `benjamini_leaf()`:
 
 ``` r
 df <- benjamini_leaf()
-print(df, n = 40)
-#> # A tibble: 36 × 5
-#>    element i_part     x     y param_type            
-#>    <chr>    <dbl> <dbl> <dbl> <chr>                 
-#>  1 stalk        0  10    40   bezier start point    
-#>  2 stalk        0  10.0  40.9 bezier control point 1
-#>  3 stalk        0  20.0  39.4 bezier control point 2
-#>  4 stalk        0  20    40   bezier end point      
-#>  5 half 2       1  20    40   bezier start point    
-#>  6 half 2       1  22    36   bezier control point 1
-#>  7 half 2       1  29    35.2 bezier control point 2
-#>  8 half 2       1  34    35   bezier end point      
-#>  9 half 2       2  34    35   bezier start point    
-#> 10 half 2       2  39    34.8 bezier control point 1
-#> 11 half 2       2  43    37.3 bezier control point 2
-#> 12 half 2       2  45    38.8 bezier end point      
-#> 13 half 2       3  45    38.8 bezier start point    
-#> 14 half 2       3  47    40.2 bezier control point 1
-#> 15 half 2       3  51.0  39.4 bezier control point 2
-#> 16 half 2       3  51    40   bezier end point      
-#> 17 half 2       4  51    40   bezier start point    
-#> 18 half 2       4  38    40.3 bezier control point 1
-#> 19 half 2       4  33    39.6 bezier control point 2
-#> 20 half 2       4  20    40   bezier end point      
-#> 21 half 1       1  20    40   bezier start point    
-#> 22 half 1       1  22    44   bezier control point 1
-#> 23 half 1       1  29    44.8 bezier control point 2
-#> 24 half 1       1  34    45   bezier end point      
-#> 25 half 1       2  34    45   bezier start point    
-#> 26 half 1       2  39    45.2 bezier control point 1
-#> 27 half 1       2  43    42.7 bezier control point 2
-#> 28 half 1       2  45    41.2 bezier end point      
-#> 29 half 1       3  45    41.2 bezier start point    
-#> 30 half 1       3  47    39.8 bezier control point 1
-#> 31 half 1       3  51.0  40.6 bezier control point 2
-#> 32 half 1       3  51    40   bezier end point      
-#> 33 half 1       4  51    40   bezier start point    
-#> 34 half 1       4  38    40.3 bezier control point 1
-#> 35 half 1       4  33    39.6 bezier control point 2
-#> 36 half 1       4  20    40   bezier end point
 ```
 
 It results in a dataframe of multiple bezier curves representing the
@@ -101,6 +64,63 @@ leaf the bezier describes, and can take the values “stalk,” “half 2” and
 “half 1.” `i_part` denotes the id of the bezier curve, and `x` & `y` its
 point coordinates. The column `param_type` denotes the type of the point
 in the bezier curve.
+
+``` details
+knitr::kable(df)
+```
+
+<details closed>
+<summary>
+<span title="Click to Open"> Show dataframe of benjamini leaf bezier
+curves </span>
+</summary>
+
+``` r
+
+
+|element | i_part|        x|        y|param_type             |
+|:-------|------:|--------:|--------:|:----------------------|
+|stalk   |      0| 10.00000| 40.00000|bezier start point     |
+|stalk   |      0| 10.04566| 40.94991|bezier control point 1 |
+|stalk   |      0| 19.97942| 39.35523|bezier control point 2 |
+|stalk   |      0| 20.00000| 40.00000|bezier end point       |
+|half 2  |      1| 20.00000| 40.00000|bezier start point     |
+|half 2  |      1| 22.00000| 36.00000|bezier control point 1 |
+|half 2  |      1| 29.00000| 35.17208|bezier control point 2 |
+|half 2  |      1| 34.00000| 35.00000|bezier end point       |
+|half 2  |      2| 34.00000| 35.00000|bezier start point     |
+|half 2  |      2| 39.00000| 34.82792|bezier control point 1 |
+|half 2  |      2| 43.00000| 37.33259|bezier control point 2 |
+|half 2  |      2| 45.00000| 38.78709|bezier end point       |
+|half 2  |      3| 45.00000| 38.78709|bezier start point     |
+|half 2  |      3| 47.00000| 40.24159|bezier control point 1 |
+|half 2  |      3| 50.97942| 39.35523|bezier control point 2 |
+|half 2  |      3| 51.00000| 40.00000|bezier end point       |
+|half 2  |      4| 51.00000| 40.00000|bezier start point     |
+|half 2  |      4| 38.00000| 40.31141|bezier control point 1 |
+|half 2  |      4| 33.00000| 39.58294|bezier control point 2 |
+|half 2  |      4| 20.00000| 40.00000|bezier end point       |
+|half 1  |      1| 20.00000| 40.00000|bezier start point     |
+|half 1  |      1| 22.00000| 44.00000|bezier control point 1 |
+|half 1  |      1| 29.00000| 44.82792|bezier control point 2 |
+|half 1  |      1| 34.00000| 45.00000|bezier end point       |
+|half 1  |      2| 34.00000| 45.00000|bezier start point     |
+|half 1  |      2| 39.00000| 45.17208|bezier control point 1 |
+|half 1  |      2| 43.00000| 42.66741|bezier control point 2 |
+|half 1  |      2| 45.00000| 41.21291|bezier end point       |
+|half 1  |      3| 45.00000| 41.21291|bezier start point     |
+|half 1  |      3| 47.00000| 39.75841|bezier control point 1 |
+|half 1  |      3| 50.97942| 40.64477|bezier control point 2 |
+|half 1  |      3| 51.00000| 40.00000|bezier end point       |
+|half 1  |      4| 51.00000| 40.00000|bezier start point     |
+|half 1  |      4| 38.00000| 40.31141|bezier control point 1 |
+|half 1  |      4| 33.00000| 39.58294|bezier control point 2 |
+|half 1  |      4| 20.00000| 40.00000|bezier end point       |
+```
+
+</details>
+
+<br>
 
 The meaning is best illustrated with a plot:
 
@@ -120,9 +140,23 @@ segments <- df %>%
 
 ggplot(df, aes(x = x, y = y)) + 
   geom_point(color = "red") +
-  geom_point(data = df %>% group_by(element, i_part) %>% slice(c(1, 4)), color = "blue", size = 2) +
-  geom_point(data = df %>% slice(1), color = "black", size = 3) +
-  ggforce::geom_bezier(aes(group = interaction(element, i_part), color = factor(i_part))) +
+  geom_point(
+    data = df %>% 
+      group_by(element, i_part) %>% 
+      slice(c(1, 4)),
+    color = "blue", 
+    size = 2
+  ) +
+  geom_point(
+    data = df %>% slice(1), 
+    color = "black", 
+    size = 3
+  ) +
+  geom_bezier(
+    aes(
+      group = interaction(element, i_part), 
+      color = factor(i_part)
+    )) +
   geom_segment(
     data = segments, 
     aes(
@@ -160,12 +194,17 @@ dfb <- expand_grid(
     y = seq(25, 125, 25)
 ) %>%
   transpose() %>%
-  map_dfr(~benjamini_leaf(gen_leaf_parameters(x0 = .x$x, y0 = .x$y)), .id = "i_leaf") %>%
+  map_dfr(
+    ~benjamini_leaf(gen_leaf_parameters(
+      x0 = .x$x, 
+      y0 = .x$y
+    )), 
+    .id = "i_leaf"
+  ) %>%
   unite(i, i_leaf, i_part, element, remove = FALSE)
 
 ggplot(dfb) +
-  ggforce::geom_bezier(aes(x = x, y = y, group = i)) +
-  # geom_point(data = l_points %>% bind_rows(), aes(x = x, y = y), color = "red") +
+  geom_bezier(aes(x = x, y = y, group = i)) +
   coord_equal() +
   theme_minimal()
 ```
@@ -182,7 +221,7 @@ You can also generate branches of leaves with the command
 ``` r
 df_branch <- benjamini_branch() %>%
   # we add a unique identifier `b` for all beziers:
-  tidyr::unite(b, i_leaf, element, i_part, remove = FALSE) 
+  unite(b, i_leaf, element, i_part, remove = FALSE) 
 df_branch
 #> # A tibble: 436 × 8
 #>    b          i_leaf element i_part     x     y type        param_type          
@@ -205,9 +244,9 @@ column `i_leaf` specifying the index of the leaf on the branch.
 
 ``` r
 df_branch %>%
-  ggplot2::ggplot() +
-  ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b, color = i_leaf)) +
-  ggplot2::coord_equal()
+  ggplot() +
+  geom_bezier(aes(x = x, y = y, group = b, color = i_leaf)) +
+  coord_equal()
 ```
 
 <img src="man/figures/README-branch2-1.png" width="100%" />
@@ -220,7 +259,7 @@ polygons:
 
 ``` r
 df_polygons <- df_branch %>% 
-  filter(stringr::str_detect(element, "^half [12]$")) %>%
+  filter(str_detect(element, "^half [12]$")) %>%
   unite(idx, i_leaf, element, remove = FALSE) %>%
   bezier_to_polygon(idx, i_leaf, element, i_part, n = 100)
 ggplot(
