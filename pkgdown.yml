@@ -6,7 +6,7 @@ articles:
   create_benjamini_svg: create_benjamini_svg.html
   create_benjamini_tree: create_benjamini_tree.html
   import_svg_bezier: import_svg_bezier.html
-last_built: 2021-12-05T17:21Z
+last_built: 2021-12-05T19:24Z
 urls:
   reference: https://urswilke.github.io/ggbenjamini/reference
   article: https://urswilke.github.io/ggbenjamini/articles

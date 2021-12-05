@@ -91,7 +91,6 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggforce.data-imaginist.com" class="external-link">ggforce</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yonicd/details" class="external-link">details</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
@@ -100,52 +99,276 @@
 <p>The package generates bezier curves that imitate the shape of the leaves of a ficus benjamini. The main function is <code><a href="reference/benjamini_leaf.html">benjamini_leaf()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/benjamini_leaf.html">benjamini_leaf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<details><p><summary> Show generated dataframe <code>df</code> of benjamini leaf bezier curve parameters </summary></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">element</th>
+<th align="right">i_part</th>
+<th align="right">x</th>
+<th align="right">y</th>
+<th align="left">param_type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">stalk</td>
+<td align="right">0</td>
+<td align="right">10.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">stalk</td>
+<td align="right">0</td>
+<td align="right">10.04566</td>
+<td align="right">40.94991</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">stalk</td>
+<td align="right">0</td>
+<td align="right">19.97942</td>
+<td align="right">39.35523</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">stalk</td>
+<td align="right">0</td>
+<td align="right">20.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">1</td>
+<td align="right">20.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">1</td>
+<td align="right">22.00000</td>
+<td align="right">36.00000</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">1</td>
+<td align="right">29.00000</td>
+<td align="right">35.17208</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">1</td>
+<td align="right">34.00000</td>
+<td align="right">35.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">2</td>
+<td align="right">34.00000</td>
+<td align="right">35.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">2</td>
+<td align="right">39.00000</td>
+<td align="right">34.82792</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">2</td>
+<td align="right">43.00000</td>
+<td align="right">37.33259</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">2</td>
+<td align="right">45.00000</td>
+<td align="right">38.78709</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">3</td>
+<td align="right">45.00000</td>
+<td align="right">38.78709</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">3</td>
+<td align="right">47.00000</td>
+<td align="right">40.24159</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">3</td>
+<td align="right">50.97942</td>
+<td align="right">39.35523</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">3</td>
+<td align="right">51.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">4</td>
+<td align="right">51.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">4</td>
+<td align="right">38.00000</td>
+<td align="right">40.31141</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 2</td>
+<td align="right">4</td>
+<td align="right">33.00000</td>
+<td align="right">39.58294</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 2</td>
+<td align="right">4</td>
+<td align="right">20.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">1</td>
+<td align="right">20.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">1</td>
+<td align="right">22.00000</td>
+<td align="right">44.00000</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">1</td>
+<td align="right">29.00000</td>
+<td align="right">44.82792</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">1</td>
+<td align="right">34.00000</td>
+<td align="right">45.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">2</td>
+<td align="right">34.00000</td>
+<td align="right">45.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">2</td>
+<td align="right">39.00000</td>
+<td align="right">45.17208</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">2</td>
+<td align="right">43.00000</td>
+<td align="right">42.66741</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">2</td>
+<td align="right">45.00000</td>
+<td align="right">41.21291</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">3</td>
+<td align="right">45.00000</td>
+<td align="right">41.21291</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">3</td>
+<td align="right">47.00000</td>
+<td align="right">39.75841</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">3</td>
+<td align="right">50.97942</td>
+<td align="right">40.64477</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">3</td>
+<td align="right">51.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">4</td>
+<td align="right">51.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier start point</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">4</td>
+<td align="right">38.00000</td>
+<td align="right">40.31141</td>
+<td align="left">bezier control point 1</td>
+</tr>
+<tr class="odd">
+<td align="left">half 1</td>
+<td align="right">4</td>
+<td align="right">33.00000</td>
+<td align="right">39.58294</td>
+<td align="left">bezier control point 2</td>
+</tr>
+<tr class="even">
+<td align="left">half 1</td>
+<td align="right">4</td>
+<td align="right">20.00000</td>
+<td align="right">40.00000</td>
+<td align="left">bezier end point</td>
+</tr>
+</tbody>
+</table></details><p><br></p>
 <p>It results in a dataframe of multiple bezier curves representing the shape of a leaf. The first column <code>element</code> indicates which part of the leaf the bezier describes, and can take the values “stalk,” “half 2” and “half 1.” <code>i_part</code> denotes the id of the bezier curve, and <code>x</code> &amp; <code>y</code> its point coordinates. The column <code>param_type</code> denotes the type of the point in the bezier curve.</p>
-<pre class="details"><code><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre>
-<details closed><p><summary><span title="Click to Open"> Show dataframe of benjamini leaf bezier curves </span> </summary></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="op">|</span>element <span class="op">|</span><span class="st"> </span>i_part<span class="op">|</span><span class="st">        </span>x<span class="op">|</span><span class="st">        </span>y<span class="op">|</span>param_type             <span class="op">|</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="er">|:</span><span class="op">-------</span><span class="er">|</span><span class="op">------</span><span class="er">:|</span><span class="op">--------</span><span class="er">:|</span><span class="op">--------</span><span class="er">:|:</span><span class="op">----------------------</span><span class="er">|</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="er">|</span>stalk   <span class="op">|</span><span class="st">      </span><span class="dv">0</span><span class="op">|</span><span class="st"> </span><span class="fl">10.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="er">|</span>stalk   <span class="op">|</span><span class="st">      </span><span class="dv">0</span><span class="op">|</span><span class="st"> </span><span class="fl">10.04566</span><span class="op">|</span><span class="st"> </span><span class="fl">40.94991</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="er">|</span>stalk   <span class="op">|</span><span class="st">      </span><span class="dv">0</span><span class="op">|</span><span class="st"> </span><span class="fl">19.97942</span><span class="op">|</span><span class="st"> </span><span class="fl">39.35523</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="er">|</span>stalk   <span class="op">|</span><span class="st">      </span><span class="dv">0</span><span class="op">|</span><span class="st"> </span><span class="fl">20.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">20.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">22.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">36.00000</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">29.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">35.17208</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">34.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">35.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">34.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">35.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">39.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">34.82792</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">43.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">37.33259</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">45.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">38.78709</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">45.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">38.78709</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">47.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.24159</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">50.97942</span><span class="op">|</span><span class="st"> </span><span class="fl">39.35523</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">51.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">51.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">38.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.31141</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">33.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">39.58294</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="er">|</span>half <span class="dv">2</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">20.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">20.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">22.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">44.00000</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">29.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">44.82792</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">1</span><span class="op">|</span><span class="st"> </span><span class="fl">34.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">45.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">34.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">45.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">39.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">45.17208</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">43.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">42.66741</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">2</span><span class="op">|</span><span class="st"> </span><span class="fl">45.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">41.21291</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">45.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">41.21291</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">47.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">39.75841</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">50.97942</span><span class="op">|</span><span class="st"> </span><span class="fl">40.64477</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">3</span><span class="op">|</span><span class="st"> </span><span class="fl">51.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">51.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier start point     <span class="op">|</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">38.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.31141</span><span class="op">|</span>bezier control point <span class="dv">1</span> <span class="op">|</span></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">33.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">39.58294</span><span class="op">|</span>bezier control point <span class="dv">2</span> <span class="op">|</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a><span class="er">|</span>half <span class="dv">1</span>  <span class="op">|</span><span class="st">      </span><span class="dv">4</span><span class="op">|</span><span class="st"> </span><span class="fl">20.00000</span><span class="op">|</span><span class="st"> </span><span class="fl">40.00000</span><span class="op">|</span>bezier end point       <span class="op">|</span></span></code></pre></div>
-</details><p><br></p>
 <p>The meaning is best illustrated with a plot:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<details><p><summary> Show code to generate plot </summary></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rearrange data to display segments:</span>
 <span class="va">segments</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">param_type</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
@@ -159,7 +382,7 @@
   <span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">unnest</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x_1</span>, <span class="va">x_2</span>, <span class="va">y_1</span>, <span class="va">y_2</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>
     data <span class="op">=</span> <span class="va">df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
@@ -191,14 +414,14 @@
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-def-1.png" width="100%"></p>
-<p>The black point represents the leaf origin. This and the blue points denote the start/end points of the bezier curves, and the red dots the positions of the control points. The leaf is cut in two halves (<code>element == "half 1" OR "half 2"</code>) by the lines where <code>i_part == 4</code> (which represents the midvein of the leaf). The exact dimensions of these coordinates are generated by random numbers in certain ranges (see the definition of the argument <code>leaf_params</code> in <code><a href="reference/benjamini_leaf.html">benjamini_leaf()</a></code>).</p>
+</details><p><img src="reference/figures/README-def-1.png" width="100%"></p>
+<p>The black point represents the leaf origin. Together with the blue points they denote the start/end points of the bezier curves, and the red dots the positions of their control points. The leaf is cut in two halves (<code>element == "half 1" OR "half 2"</code>) by the lines where <code>i_part == 4</code> (which represents the midvein of the leaf). The exact dimensions of these coordinates are generated by random numbers in certain ranges (see the definition of the argument <code>leaf_params</code> in <code><a href="reference/benjamini_leaf.html">benjamini_leaf()</a></code>).</p>
 </div>
 <div class="section level2">
 <h2 id="illustration-of-the-randomness">Illustration of the randomness<a class="anchor" aria-label="anchor" href="#illustration-of-the-randomness"></a>
 </h2>
 <p>In order to show the variations of the <code><a href="reference/benjamini_leaf.html">benjamini_leaf()</a></code> (if parameters are not explicitly specified), let’s only pass the position of the leaf origins and let the function randomly generate the rest of the shapes:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/expand_grid.html" class="external-link">expand_grid</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span>, <span class="fl">50</span><span class="op">)</span>,
     y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">125</span>, <span class="fl">25</span><span class="op">)</span>
@@ -223,7 +446,7 @@
 <h2 id="branches">Branches<a class="anchor" aria-label="anchor" href="#branches"></a>
 </h2>
 <p>You can also generate branches of leaves with the command <code><a href="reference/benjamini_branch.html">benjamini_branch()</a></code> (see the vignettes <code><a href="articles/create_benjamini_polygons.html">vignette("create_benjamini_polygons")</a></code> and <code><a href="articles/create_benjamini_tree.html">vignette("create_benjamini_tree")</a></code> for examples):</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_branch</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/benjamini_branch.html">benjamini_branch</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="co"># we add a unique identifier `b` for all beziers:</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html" class="external-link">unite</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">i_leaf</span>, <span class="va">element</span>, <span class="va">i_part</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> 
@@ -243,7 +466,7 @@
 <span class="co">#&gt; 10 1_half 2_1      1 half 2       1  71.4  264. leaf_bezier bezier control poin…</span>
 <span class="co">#&gt; # … with 426 more rows</span></code></pre></div>
 <p>As the following plot also shows, <code><a href="reference/benjamini_branch.html">benjamini_branch()</a></code> adds another column <code>i_leaf</code> specifying the index of the leaf on the branch.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_branch</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggforce.data-imaginist.com/reference/geom_bezier.html" class="external-link">geom_bezier</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, group <span class="op">=</span> <span class="va">b</span>, color <span class="op">=</span> <span class="va">i_leaf</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -254,7 +477,7 @@
 <h2 id="polygons">Polygons<a class="anchor" aria-label="anchor" href="#polygons"></a>
 </h2>
 <p>If you want to fill the leaves with color, you can use <code><a href="reference/bezier_to_polygon.html">bezier_to_polygon()</a></code> to approximate the bezier curves leaf parts with polygons:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_polygons</span> <span class="op">&lt;-</span> <span class="va">df_branch</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">element</span>, <span class="st">"^half [12]$"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html" class="external-link">unite</a></span><span class="op">(</span><span class="va">idx</span>, <span class="va">i_leaf</span>, <span class="va">element</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
