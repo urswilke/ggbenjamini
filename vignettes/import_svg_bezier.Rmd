@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, message=FALSE}
 library(ggbenjamini)
 library(dplyr)
 library(purrr)
@@ -51,7 +51,7 @@ svg_skeleton <- system.file("extdata", "branch_skeleton.svg", package = "ggbenja
 Next we'll load the svg object and extract the bezier curves into a dataframe `df_svg_skeleton`:
 
 
-```{r}
+```{r, message=FALSE}
 svg_doc <- parse_svg_doc(svg_skeleton)
 
 # you can descend in the elements of the object and find the part you're
@@ -66,22 +66,37 @@ df_raw <- tibble(s = path_strings) %>%
   # separate the 2 parts of each curve
   separate_rows(s, sep = "(?=[mMcC] )") %>%
   filter(s != "") %>%
-  separate(s, c("svg_point_type", "coords"), sep = " ", extra = "merge") %>%
+  separate(
+    s, 
+    c("svg_point_type", "coords"), 
+    sep = " ",
+    extra = "merge"
+  ) %>%
   separate_rows(coords, sep = " ") %>%
   filter(coords != "") %>%
   mutate(coords = as.numeric(coords)) %>%
-  mutate(i = ifelse(row_number() %% 2 == 1, "x", "y")) %>%
-  pivot_wider(values_from = coords, names_from = i) %>%
-  unnest(x, y)
+  mutate(i = ifelse(
+    row_number() %% 2 == 1, 
+    "x", 
+    "y"
+  )) %>%
+  pivot_wider(
+    values_from = coords, 
+    names_from = i, 
+    values_fn = list
+  ) %>%
+  unnest(c(x, y))
 
 split_beziers <- function(df_bezier) {
-  if (!nrow(df_bezier) != 4 | !(nrow(df_bezier) - 1)  %% 3 == 0) {
-    stop("urgh")
-  }
   if (nrow(df_bezier) > 4) {
     n_others <- (nrow(df_bezier) - 4) / 3
-    other_rows <- map(1:(n_others+1), ~ 1:4 + (.x - 1) * 3) %>% unlist()
-    res <- df_bezier[c(other_rows),] %>% mutate(i_curve = rep(1:(n_others+1), each = 4))
+    other_rows <- map(
+      1:(n_others+1), 
+      ~ 1:4 + (.x - 1) * 3
+    ) %>% 
+      unlist()
+    res <- df_bezier[c(other_rows),] %>% 
+      mutate(i_curve = rep(1:(n_others+1), each = 4))
   }
   if (nrow(df_bezier) == 4) {
     res <- df_bezier
@@ -100,8 +115,16 @@ Looking at the `geom_bezier()` plot,
 ```{r}
 df_svg_skeleton %>%
   # arrange(-row_number()) %>%
-  ggplot(aes(x, y, group = interaction(row, i_curve), color = factor(row))) +
-  ggforce::geom_bezier(arrow = grid::arrow()) + scale_y_reverse()
+  ggplot(
+    aes(
+      x, 
+      y, 
+      group = interaction(row, i_curve), 
+      color = factor(row)
+    )
+  ) +
+  ggforce::geom_bezier(arrow = grid::arrow()) + 
+  scale_y_reverse()
 ```
 
 
@@ -128,8 +151,16 @@ Now this looks better.
 
 ```{r}
 df_bezier_skeleton %>%
-  ggplot(aes(x, y, group = i_branch, color = factor(i_branch))) +
-  ggforce::geom_bezier(arrow = grid::arrow()) + scale_y_reverse()
+  ggplot(
+    aes(
+      x, 
+      y,
+      group = i_branch,
+      color = factor(i_branch)
+    )
+  ) +
+  ggforce::geom_bezier(arrow = grid::arrow()) +
+  scale_y_reverse()
 
 ```
 
