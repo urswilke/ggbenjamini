@@ -90,10 +90,19 @@ df_svg <- df_branches_and_leaves %>%
   )) %>%
   group_by(i_branch, i_leaf) %>%
   # We'll define some alchemist random distribution for the color scale later:
-  mutate(fill_var = (6 * i_branch %>% as.numeric()) + i_leaf + sample(1:10, 1, TRUE)) %>%
+  mutate(
+    fill_var = 6 * 
+      as.numeric(i_branch) + 
+      i_leaf + 
+      sample(1:10, 1, TRUE)
+  ) %>%
   ungroup() %>% 
-  mutate(hex = palhex(fill_var/ max(fill_var))) %>% 
-  mutate(fill_gradient = factor(hex) %>% as.numeric() %>% paste0("url(#gradient", ., ")")) 
+  mutate(hex = palhex(fill_var / max(fill_var))) %>% 
+  mutate(
+    fill_gradient = factor(hex) %>% 
+      as.numeric() %>%
+      paste0("url(#gradient", ., ")")
+  ) 
   
 df_svg
 ```
@@ -122,7 +131,9 @@ doc <- SVGDocument$new(width = size, height = size)
 
 In order to have some more realistic texture, we'll define gradients for the leaves:
 ```{r}
-append_gradient_def <- function(doc, id, col1 = "#00FF00", col2 = "#008000") {
+append_gradient_def <- function(
+  doc, id, col1 = "#00FF00", col2 = "#008000"
+) {
   doc$append(
     stag$radialGradient(
       id = id, cx="0.35", cy="0.63", r="0.7",
@@ -133,7 +144,14 @@ append_gradient_def <- function(doc, id, col1 = "#00FF00", col2 = "#008000") {
   doc
 }
 
-hex_needed %>% iwalk(~append_gradient_def(doc, paste0("gradient", .y), .x, clr_darken(.x)))
+hex_needed %>% 
+  iwalk(
+    ~append_gradient_def(
+      doc, paste0("gradient", .y), 
+      .x, 
+      clr_darken(.x)
+    )
+  )
 ```
 
 ...and append them to the document:
