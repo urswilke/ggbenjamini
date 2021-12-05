@@ -89,7 +89,7 @@ The meaning is best illustrated with a plot:
 <summary>Show code to generate plot</summary>
 
 
-```{r def}
+```{r}
 # rearrange data to display segments:
 segments <- df %>% 
   select(-param_type) %>% 
@@ -140,7 +140,7 @@ p <- ggplot(df, aes(x = x, y = y)) +
 </details>
 
 
-```{r, echo=FALSE}
+```{r def, echo=FALSE}
 p
 ```
 

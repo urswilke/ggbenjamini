@@ -173,7 +173,7 @@ p <- ggplot(df, aes(x = x, y = y)) +
 
 </details>
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-def-1.png" width="100%" />
 
 The black point represents the leaf origin. Together with the blue
 points they denote the start/end points of the bezier curves, and the
