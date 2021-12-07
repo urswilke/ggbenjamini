@@ -452,18 +452,18 @@
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html" class="external-link">unite</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">i_leaf</span>, <span class="va">element</span>, <span class="va">i_part</span>, remove <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> 
 <span class="va">df_branch</span>
 <span class="co">#&gt; # A tibble: 436 × 8</span>
-<span class="co">#&gt;    b          i_leaf element i_part     x     y type        param_type          </span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;               </span>
-<span class="co">#&gt;  1 0_branch_1      0 branch       1  70    280  branch      bezier start point  </span>
-<span class="co">#&gt;  2 0_branch_1      0 branch       1  84    245  branch      bezier control poin…</span>
-<span class="co">#&gt;  3 0_branch_1      0 branch       1 126    217  branch      bezier control poin…</span>
-<span class="co">#&gt;  4 0_branch_1      0 branch       1 168    217  branch      bezier end point    </span>
-<span class="co">#&gt;  5 1_stalk_0       1 stalk        0  75.7  269. leaf_bezier bezier start point  </span>
-<span class="co">#&gt;  6 1_stalk_0       1 stalk        0  76.2  268. leaf_bezier bezier control poin…</span>
-<span class="co">#&gt;  7 1_stalk_0       1 stalk        0  73.8  264  leaf_bezier bezier control poin…</span>
-<span class="co">#&gt;  8 1_stalk_0       1 stalk        0  74.0  264. leaf_bezier bezier end point    </span>
-<span class="co">#&gt;  9 1_half 2_1      1 half 2       1  74.0  264. leaf_bezier bezier start point  </span>
-<span class="co">#&gt; 10 1_half 2_1      1 half 2       1  71.4  264. leaf_bezier bezier control poin…</span>
+<span class="co">#&gt;    b          i_leaf element i_part     x     y type        param_type    </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;         </span>
+<span class="co">#&gt;  1 0_branch_1      0 branch       1  70    280  branch      bezier start …</span>
+<span class="co">#&gt;  2 0_branch_1      0 branch       1  84    245  branch      bezier contro…</span>
+<span class="co">#&gt;  3 0_branch_1      0 branch       1 126    217  branch      bezier contro…</span>
+<span class="co">#&gt;  4 0_branch_1      0 branch       1 168    217  branch      bezier end po…</span>
+<span class="co">#&gt;  5 1_stalk_0       1 stalk        0  75.7  269. leaf_bezier bezier start …</span>
+<span class="co">#&gt;  6 1_stalk_0       1 stalk        0  76.2  268. leaf_bezier bezier contro…</span>
+<span class="co">#&gt;  7 1_stalk_0       1 stalk        0  73.8  264  leaf_bezier bezier contro…</span>
+<span class="co">#&gt;  8 1_stalk_0       1 stalk        0  74.0  264. leaf_bezier bezier end po…</span>
+<span class="co">#&gt;  9 1_half 2_1      1 half 2       1  74.0  264. leaf_bezier bezier start …</span>
+<span class="co">#&gt; 10 1_half 2_1      1 half 2       1  71.4  264. leaf_bezier bezier contro…</span>
 <span class="co">#&gt; # … with 426 more rows</span></code></pre></div>
 <p>As the following plot also shows, <code><a href="reference/benjamini_branch.html">benjamini_branch()</a></code> adds another column <code>i_leaf</code> specifying the index of the leaf on the branch.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
