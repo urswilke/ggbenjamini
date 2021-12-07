@@ -85,7 +85,12 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_branches_and_leaves</span> <span class="op">&lt;-</span> <span class="va">df_bezier_skeleton</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">i_branch</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="../reference/benjamini_branch.html">benjamini_branch</a></span><span class="op">(</span>df_branch <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, leaf_size_multiplicator <span class="op">=</span> <span class="fl">0.5</span>, leaf_mean_dist_approx <span class="op">=</span> <span class="fl">20</span>, leaf_angle_dist <span class="op">=</span> <span class="fu"><a href="../reference/spark_norm.html">spark_norm</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="../reference/benjamini_branch.html">benjamini_branch</a></span><span class="op">(</span>
+    df_branch <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, 
+    leaf_size_multiplicator <span class="op">=</span> <span class="fl">0.5</span>, 
+    leaf_mean_dist_approx <span class="op">=</span> <span class="fl">20</span>, 
+    leaf_angle_dist <span class="op">=</span> <span class="fu"><a href="../reference/spark_norm.html">spark_norm</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
+  <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now we can add columns <code>path_str</code> with this “d” element and furthermore, we’ll define different <code>fill_color</code>s for the varyous types of <code>element</code>s and transform these to svg path strings:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">get_svg_bezier_string</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">bezier_df</span><span class="op">)</span> <span class="op">{</span>
@@ -101,7 +106,10 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">640</span>
 
-<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#faff5a"</span>, <span class="st">"#b65151"</span>, <span class="st">"#de9602"</span>, <span class="st">"#ff980b"</span>, <span class="st">"#fdd021"</span>, <span class="st">"#5c9e3f"</span>, <span class="st">"#fef266"</span>, <span class="st">"#925e16"</span><span class="op">)</span>
+<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+  <span class="st">"#faff5a"</span>, <span class="st">"#b65151"</span>, <span class="st">"#de9602"</span>, <span class="st">"#ff980b"</span>,
+  <span class="st">"#fdd021"</span>, <span class="st">"#5c9e3f"</span>, <span class="st">"#fef266"</span>, <span class="st">"#925e16"</span>
+<span class="op">)</span>
 <span class="va">palhex</span> <span class="op">&lt;-</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/gradient_n_pal.html" class="external-link">gradient_n_pal</a></span><span class="op">(</span>colours <span class="op">=</span> <span class="va">pal</span><span class="op">)</span>
 
 
