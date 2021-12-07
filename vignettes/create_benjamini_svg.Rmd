@@ -37,7 +37,12 @@ We'll use the package example dataframe `df_bezier_skeleton` with the bezier pat
 ```{r}
 df_branches_and_leaves <- df_bezier_skeleton %>%
   group_by(i_branch) %>% 
-  summarise(benjamini_branch(df_branch = tibble(x, y), leaf_size_multiplicator = 0.5, leaf_mean_dist_approx = 20, leaf_angle_dist = spark_norm(mean = 0, sd = 15)))
+  summarise(benjamini_branch(
+    df_branch = tibble(x, y), 
+    leaf_size_multiplicator = 0.5, 
+    leaf_mean_dist_approx = 20, 
+    leaf_angle_dist = spark_norm(mean = 0, sd = 15)
+  ))
 
 ```
 
@@ -65,7 +70,10 @@ get_svg_bezier_string <- function(bezier_df) {
 ```{r}
 size <- 640
 
-pal <- c("#faff5a", "#b65151", "#de9602", "#ff980b", "#fdd021", "#5c9e3f", "#fef266", "#925e16")
+pal <- c(
+  "#faff5a", "#b65151", "#de9602", "#ff980b",
+  "#fdd021", "#5c9e3f", "#fef266", "#925e16"
+)
 palhex <- scales::gradient_n_pal(colours = pal)
 
 
