@@ -66,44 +66,44 @@ Show generated dataframe `df` of benjamini leaf bezier curve parameters
 knitr::kable(df)
 ```
 
-| element | i\_part |        x |        y | param\_type            |
-|:--------|--------:|---------:|---------:|:-----------------------|
-| stalk   |       0 | 10.00000 | 40.00000 | bezier start point     |
-| stalk   |       0 | 10.04566 | 40.94991 | bezier control point 1 |
-| stalk   |       0 | 19.97942 | 39.35523 | bezier control point 2 |
-| stalk   |       0 | 20.00000 | 40.00000 | bezier end point       |
-| half 2  |       1 | 20.00000 | 40.00000 | bezier start point     |
-| half 2  |       1 | 22.00000 | 36.00000 | bezier control point 1 |
-| half 2  |       1 | 29.00000 | 35.17208 | bezier control point 2 |
-| half 2  |       1 | 34.00000 | 35.00000 | bezier end point       |
-| half 2  |       2 | 34.00000 | 35.00000 | bezier start point     |
-| half 2  |       2 | 39.00000 | 34.82792 | bezier control point 1 |
-| half 2  |       2 | 43.00000 | 37.33259 | bezier control point 2 |
-| half 2  |       2 | 45.00000 | 38.78709 | bezier end point       |
-| half 2  |       3 | 45.00000 | 38.78709 | bezier start point     |
-| half 2  |       3 | 47.00000 | 40.24159 | bezier control point 1 |
-| half 2  |       3 | 50.97942 | 39.35523 | bezier control point 2 |
-| half 2  |       3 | 51.00000 | 40.00000 | bezier end point       |
-| half 2  |       4 | 51.00000 | 40.00000 | bezier start point     |
-| half 2  |       4 | 38.00000 | 40.31141 | bezier control point 1 |
-| half 2  |       4 | 33.00000 | 39.58294 | bezier control point 2 |
-| half 2  |       4 | 20.00000 | 40.00000 | bezier end point       |
-| half 1  |       1 | 20.00000 | 40.00000 | bezier start point     |
-| half 1  |       1 | 22.00000 | 44.00000 | bezier control point 1 |
-| half 1  |       1 | 29.00000 | 44.82792 | bezier control point 2 |
-| half 1  |       1 | 34.00000 | 45.00000 | bezier end point       |
-| half 1  |       2 | 34.00000 | 45.00000 | bezier start point     |
-| half 1  |       2 | 39.00000 | 45.17208 | bezier control point 1 |
-| half 1  |       2 | 43.00000 | 42.66741 | bezier control point 2 |
-| half 1  |       2 | 45.00000 | 41.21291 | bezier end point       |
-| half 1  |       3 | 45.00000 | 41.21291 | bezier start point     |
-| half 1  |       3 | 47.00000 | 39.75841 | bezier control point 1 |
-| half 1  |       3 | 50.97942 | 40.64477 | bezier control point 2 |
-| half 1  |       3 | 51.00000 | 40.00000 | bezier end point       |
-| half 1  |       4 | 51.00000 | 40.00000 | bezier start point     |
-| half 1  |       4 | 38.00000 | 40.31141 | bezier control point 1 |
-| half 1  |       4 | 33.00000 | 39.58294 | bezier control point 2 |
-| half 1  |       4 | 20.00000 | 40.00000 | bezier end point       |
+| element | i_part |        x |        y | param_type             |
+|:--------|-------:|---------:|---------:|:-----------------------|
+| stalk   |      0 | 10.00000 | 40.00000 | bezier start point     |
+| stalk   |      0 | 10.04566 | 40.94991 | bezier control point 1 |
+| stalk   |      0 | 19.97942 | 39.35523 | bezier control point 2 |
+| stalk   |      0 | 20.00000 | 40.00000 | bezier end point       |
+| half 2  |      1 | 20.00000 | 40.00000 | bezier start point     |
+| half 2  |      1 | 22.00000 | 36.00000 | bezier control point 1 |
+| half 2  |      1 | 29.00000 | 35.17208 | bezier control point 2 |
+| half 2  |      1 | 34.00000 | 35.00000 | bezier end point       |
+| half 2  |      2 | 34.00000 | 35.00000 | bezier start point     |
+| half 2  |      2 | 39.00000 | 34.82792 | bezier control point 1 |
+| half 2  |      2 | 43.00000 | 37.33259 | bezier control point 2 |
+| half 2  |      2 | 45.00000 | 38.78709 | bezier end point       |
+| half 2  |      3 | 45.00000 | 38.78709 | bezier start point     |
+| half 2  |      3 | 47.00000 | 40.24159 | bezier control point 1 |
+| half 2  |      3 | 50.97942 | 39.35523 | bezier control point 2 |
+| half 2  |      3 | 51.00000 | 40.00000 | bezier end point       |
+| half 2  |      4 | 51.00000 | 40.00000 | bezier start point     |
+| half 2  |      4 | 38.00000 | 40.31141 | bezier control point 1 |
+| half 2  |      4 | 33.00000 | 39.58294 | bezier control point 2 |
+| half 2  |      4 | 20.00000 | 40.00000 | bezier end point       |
+| half 1  |      1 | 20.00000 | 40.00000 | bezier start point     |
+| half 1  |      1 | 22.00000 | 44.00000 | bezier control point 1 |
+| half 1  |      1 | 29.00000 | 44.82792 | bezier control point 2 |
+| half 1  |      1 | 34.00000 | 45.00000 | bezier end point       |
+| half 1  |      2 | 34.00000 | 45.00000 | bezier start point     |
+| half 1  |      2 | 39.00000 | 45.17208 | bezier control point 1 |
+| half 1  |      2 | 43.00000 | 42.66741 | bezier control point 2 |
+| half 1  |      2 | 45.00000 | 41.21291 | bezier end point       |
+| half 1  |      3 | 45.00000 | 41.21291 | bezier start point     |
+| half 1  |      3 | 47.00000 | 39.75841 | bezier control point 1 |
+| half 1  |      3 | 50.97942 | 40.64477 | bezier control point 2 |
+| half 1  |      3 | 51.00000 | 40.00000 | bezier end point       |
+| half 1  |      4 | 51.00000 | 40.00000 | bezier start point     |
+| half 1  |      4 | 38.00000 | 40.31141 | bezier control point 1 |
+| half 1  |      4 | 33.00000 | 39.58294 | bezier control point 2 |
+| half 1  |      4 | 20.00000 | 40.00000 | bezier end point       |
 
 </details>
 
@@ -111,8 +111,8 @@ knitr::kable(df)
 
 It results in a dataframe of multiple bezier curves representing the
 shape of a leaf. The first column `element` indicates which part of the
-leaf the bezier describes, and can take the values “stalk,” “half 2” and
-“half 1.” `i_part` denotes the id of the bezier curve, and `x` & `y` its
+leaf the bezier describes, and can take the values “stalk”, “half 2” and
+“half 1”. `i_part` denotes the id of the bezier curve, and `x` & `y` its
 point coordinates. The column `param_type` denotes the type of the point
 in the bezier curve.
 
@@ -304,70 +304,25 @@ This package stands on the shoulders of giants. It was only possible
 thanks to the following libraries:
 
 -   base (R Core Team 2021a)
--   pkgdown (Wickham and Hesselberth 2020)
--   stringr (Wickham 2019)
--   dplyr (Wickham et al. 2021)
--   ggplot2 (Wickham 2016)
--   purrr (Henry and Wickham 2020)
--   tidyr (Wickham 2021)
+-   tidyverse (Wickham et al. 2019)
 -   ggforce (Pedersen 2021)
--   magrittr (Bache and Wickham 2020)
--   tibble (Müller and Wickham 2021)
--   rlang (Henry and Wickham 2021)
 -   grid (R Core Team 2021b)
 -   prismatic (Hvitfeldt 2021)
 -   flametree (Navarro 2021)
 -   rsvg (Ooms 2021b)
 -   minisvg (FC 2021)
--   knitr (Xie 2014)
--   rmarkdown (Xie, Dervieux, and Riederer 2020)
--   testthat (Wickham 2011)
--   vdiffr (Henry et al. 2021)
 -   ambient (Pedersen and Peck 2020)
 -   covr (Hester 2020)
--   usethis (Wickham, Bryan, and Barrett 2021)
 -   stats (R Core Team 2021c)
--   glue (Hester 2021)
--   scales (Wickham and Seidel 2020)
 -   magick (Ooms 2021a)
 
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-magrittr" class="csl-entry">
-
-Bache, Stefan Milton, and Hadley Wickham. 2020. *Magrittr: A
-Forward-Pipe Operator for r*.
-<https://CRAN.R-project.org/package=magrittr>.
-
-</div>
-
 <div id="ref-minisvg" class="csl-entry">
 
 FC, Mike. 2021. *Minisvg: SVG Document Builder*.
-
-</div>
-
-<div id="ref-vdiffr" class="csl-entry">
-
-Henry, Lionel, Thomas Lin Pedersen, T Jake Luciani, Matthieu Decorde,
-and Vaudor Lise. 2021. *Vdiffr: Visual Regression Testing and Graphical
-Diffing*. <https://CRAN.R-project.org/package=vdiffr>.
-
-</div>
-
-<div id="ref-purrr" class="csl-entry">
-
-Henry, Lionel, and Hadley Wickham. 2020. *Purrr: Functional Programming
-Tools*. <https://CRAN.R-project.org/package=purrr>.
-
-</div>
-
-<div id="ref-rlang" class="csl-entry">
-
-———. 2021. *Rlang: Functions for Base Types and Core r and ’Tidyverse’
-Features*. <https://CRAN.R-project.org/package=rlang>.
 
 </div>
 
@@ -378,24 +333,10 @@ Hester, Jim. 2020. *Covr: Test Coverage for Packages*.
 
 </div>
 
-<div id="ref-glue" class="csl-entry">
-
-———. 2021. *Glue: Interpreted String Literals*.
-<https://CRAN.R-project.org/package=glue>.
-
-</div>
-
 <div id="ref-prismatic" class="csl-entry">
 
 Hvitfeldt, Emil. 2021. *Prismatic: Color Manipulation Tools*.
 <https://CRAN.R-project.org/package=prismatic>.
-
-</div>
-
-<div id="ref-tibble" class="csl-entry">
-
-Müller, Kirill, and Hadley Wickham. 2021. *Tibble: Simple Data Frames*.
-<https://CRAN.R-project.org/package=tibble>.
 
 </div>
 
@@ -458,80 +399,12 @@ Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-testthat" class="csl-entry">
+<div id="ref-tidyverse" class="csl-entry">
 
-Wickham, Hadley. 2011. “Testthat: Get Started with Testing.” *The R
-Journal* 3: 5–10.
-<https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf>.
-
-</div>
-
-<div id="ref-ggplot2" class="csl-entry">
-
-———. 2016. *Ggplot2: Elegant Graphics for Data Analysis*.
-Springer-Verlag New York. <https://ggplot2.tidyverse.org>.
-
-</div>
-
-<div id="ref-stringr" class="csl-entry">
-
-———. 2019. *Stringr: Simple, Consistent Wrappers for Common String
-Operations*. <https://CRAN.R-project.org/package=stringr>.
-
-</div>
-
-<div id="ref-tidyr" class="csl-entry">
-
-———. 2021. *Tidyr: Tidy Messy Data*.
-<https://CRAN.R-project.org/package=tidyr>.
-
-</div>
-
-<div id="ref-usethis" class="csl-entry">
-
-Wickham, Hadley, Jennifer Bryan, and Malcolm Barrett. 2021. *Usethis:
-Automate Package and Project Setup*.
-<https://CRAN.R-project.org/package=usethis>.
-
-</div>
-
-<div id="ref-dplyr" class="csl-entry">
-
-Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021.
-*Dplyr: A Grammar of Data Manipulation*.
-<https://CRAN.R-project.org/package=dplyr>.
-
-</div>
-
-<div id="ref-pkgdown" class="csl-entry">
-
-Wickham, Hadley, and Jay Hesselberth. 2020. *Pkgdown: Make Static HTML
-Documentation for a Package*.
-<https://CRAN.R-project.org/package=pkgdown>.
-
-</div>
-
-<div id="ref-scales" class="csl-entry">
-
-Wickham, Hadley, and Dana Seidel. 2020. *Scales: Scale Functions for
-Visualization*. <https://CRAN.R-project.org/package=scales>.
-
-</div>
-
-<div id="ref-knitr" class="csl-entry">
-
-Xie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research
-in R.” In *Implementing Reproducible Computational Research*, edited by
-Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman;
-Hall/CRC. <http://www.crcpress.com/product/isbn/9781466561595>.
-
-</div>
-
-<div id="ref-rmarkdown" class="csl-entry">
-
-Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. *R Markdown
-Cookbook*. Boca Raton, Florida: Chapman; Hall/CRC.
-<https://bookdown.org/yihui/rmarkdown-cookbook>.
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy
+D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.
+“Welcome to the <span class="nocase">tidyverse</span>.” *Journal of Open
+Source Software* 4 (43): 1686. <https://doi.org/10.21105/joss.01686>.
 
 </div>
 
