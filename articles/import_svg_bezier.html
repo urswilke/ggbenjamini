@@ -52,7 +52,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/urswilke/ggbenjamini/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -66,7 +73,7 @@
       <img src="" class="logo" alt=""><h1>Import bezier pathes from svg files</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/urswilke/ggbenjamini/blob/HEAD/vignettes/import_svg_bezier.Rmd" class="external-link"><code>vignettes/import_svg_bezier.Rmd</code></a></small>
       <div class="d-none name"><code>import_svg_bezier.Rmd</code></div>
     </div>
 
@@ -75,7 +82,7 @@
 <p><em>Hacky and a bit off-topic…</em></p>
 <p>This vignette shows how you can import bezier path data from an svg file and then transform the format to the one needed by <code><a href="https://ggforce.data-imaginist.com/reference/geom_bezier.html" class="external-link">ggforce::geom_bezier()</a></code>. Unless you really want to import bezier pathes from your svg file s, it might not be of huge interest. What’s cool is that you can then draw pathes with svg software such as inkscape. The resulting dataframe <code>df_bezier_skeleton</code> of this vignette is also included in the package. If you’re not interested in importing shapes from svg files you can just have a look how this data can be used in <code><a href="../articles/create_benjamini_svg.html">vignette("create_benjamini_svg")</a></code> very result in a data frame of the svg file</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ggbenjamini</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://urswilke.github.io/ggbenjamini">ggbenjamini</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span>
