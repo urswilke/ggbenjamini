@@ -180,14 +180,7 @@ simplex noise to make them look more interesting:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    x2 <span class="op">=</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://ambient.data-imaginist.com/reference/noise_simplex.html" class="external-link">gen_simplex</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, frequency <span class="op">=</span> <span class="fl">0.05</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span>,</span>
 <span>    y2 <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="fu"><a href="https://ambient.data-imaginist.com/reference/noise_simplex.html" class="external-link">gen_simplex</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, frequency <span class="op">=</span> <span class="fl">0.05</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
-<span><span class="co">#&gt; dplyr 1.1.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `reframe()` instead.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> When switching from `summarise()` to `reframe()`, remember that `reframe()`</span></span>
-<span><span class="co">#&gt;   always returns an ungrouped data frame and adjust accordingly.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">ggbenjamini</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue to the authors.</span></span></code></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p>Now we can plot them with <code>ggplot2</code>s
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_path()</a></code> for the branch and the leaf stalks and
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon()</a></code> for the 2 leaf halves.</p>
