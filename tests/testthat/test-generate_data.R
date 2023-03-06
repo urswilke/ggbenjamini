@@ -22,7 +22,7 @@ test_that("bezier elements to polygons transformations work", {
 })
 
 test_that("generated polygon ggplot object still the same", {
-  skip_on_ci()
+  # skip_on_ci()
   ggraph_fun <- df_polygon %>%
     ggplot(aes(x = x, y = y, group = element, fill = element)) + geom_polygon()
   vdiffr::expect_doppelganger(
@@ -31,7 +31,7 @@ test_that("generated polygon ggplot object still the same", {
   )
 })
 test_that("generated branch ggplot object still the same", {
-  skip_on_ci()
+  # skip_on_ci()
   ggraph_fun <- df_branch %>%
     ggplot2::ggplot() +
     ggforce::geom_bezier(ggplot2::aes(x = x, y = y, group = b)) +
