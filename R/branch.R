@@ -99,7 +99,7 @@ benjamini_branch <- function(
       add_bezier_point_type_column(),
     leaves
   ) %>%
-    dplyr::relocate(.data$i_leaf, .data$element, .data$i_part)
+    dplyr::relocate(c("i_leaf", "element", "i_part"))
 
 }
 

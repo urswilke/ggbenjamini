@@ -264,7 +264,7 @@ benjamini_leaf <- function(
     upper_half,
     lower_half
   ) %>%
-    dplyr::relocate(.data$element, .data$i_part)
+    dplyr::relocate(c("element", "i_part"))
   if (omega %% 360 != 0) {
     return(
       rotate_bezier_df(df, alpha = omega, xrot = xrot, yrot = yrot, precision = precision)
@@ -288,7 +288,7 @@ rotate_bezier_df <- function(bezier_df, alpha = 30, xrot = bezier_df$x[1], yrot 
   #shift, rotate, shift back
 
   M <- bezier_df %>%
-    dplyr::select(.data$x, .data$y) %>%
+    dplyr::select(c("x", "y")) %>%
     as.matrix()
 
   bezier_df[c("x", "y")] <-
