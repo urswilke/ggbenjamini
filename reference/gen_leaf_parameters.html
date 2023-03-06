@@ -3,7 +3,7 @@
 (arbitrarily set to 10 and 40) all coordinates are relative to this origin.
 Most of the parameters are random generated, except for some of them (e.g.,
 to close polygons, or to keep the stalk and the mid vein on the same
-line)."><title>Generate bezier coordinates of a leaf — gen_leaf_parameters • ggbenjamini</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Generate bezier coordinates of a leaf — gen_leaf_parameters"><meta property="og:description" content="Except the start point coordinates of the leaf origin x0 &amp;amp; y0
+line)."><title>Generate bezier coordinates of a leaf — gen_leaf_parameters • ggbenjamini</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Generate bezier coordinates of a leaf — gen_leaf_parameters"><meta property="og:description" content="Except the start point coordinates of the leaf origin x0 &amp;amp; y0
 (arbitrarily set to 10 and 40) all coordinates are relative to this origin.
 Most of the parameters are random generated, except for some of them (e.g.,
 to close polygons, or to keep the stalk and the mid vein on the same
@@ -69,56 +69,67 @@ line).</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gen_leaf_parameters</span><span class="op">(</span>
-  x0 <span class="op">=</span> <span class="fl">10</span>,
-  y0 <span class="op">=</span> <span class="fl">40</span>,
-  dx10 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">8</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span>,
-  dy10 <span class="op">=</span> <span class="fl">0</span>,
-  dx21 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">12</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">)</span>,
-  dy21 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span>,
-  dx32 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">18</span>, <span class="fl">1</span><span class="op">)</span>,
-  dy32 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.92</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="va">dy21</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>, <span class="fl">0.95</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="va">dy21</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
-  dx43 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,
-  dy43 <span class="op">=</span> <span class="va">y0</span> <span class="op">+</span> <span class="va">dy10</span> <span class="op">+</span> <span class="va">dy21</span> <span class="op">+</span> <span class="va">dy32</span>,
-  sx0 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>,
-  sx1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>,
-  sx2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,
-  sx3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span>,
-  sx4 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0.2</span><span class="op">)</span>,
-  sy0 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>,
-  sy1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="op">-</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,
-  sy2 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,
-  sy3 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">1.5</span><span class="op">)</span>,
-  sy4 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.2</span>, <span class="fl">0.7</span><span class="op">)</span>,
-  smx1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">1</span><span class="op">)</span>,
-  smx2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">1</span><span class="op">)</span>,
-  smy1 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,
-  smy2 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gen_leaf_parameters</span><span class="op">(</span></span>
+<span>  x0 <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  y0 <span class="op">=</span> <span class="fl">40</span>,</span>
+<span>  dx10 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">8</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  dy10 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  dx21 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">12</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  dy21 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  dx32 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">18</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  dy32 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.92</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="va">dy21</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>, <span class="fl">0.95</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="va">dy21</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  dx43 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  dy43 <span class="op">=</span> <span class="va">y0</span> <span class="op">+</span> <span class="va">dy10</span> <span class="op">+</span> <span class="va">dy21</span> <span class="op">+</span> <span class="va">dy32</span>,</span>
+<span>  sx0 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>,</span>
+<span>  sx1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  sx2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  sx3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  sx4 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>  sy0 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  sy1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="op">-</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  sy2 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  sy3 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">1.5</span><span class="op">)</span>,</span>
+<span>  sy4 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.2</span>, <span class="fl">0.7</span><span class="op">)</span>,</span>
+<span>  smx1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  smx2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  smy1 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  smy2 <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x0, y0</dt>
 <dd><p>coordinates of the leaf origin</p></dd>
+
+
 <dt>dx10, dy10, dx21, dy21, dx32, dy32, dx43, dy43</dt>
 <dd><p>coordinates of the other
 bezier start &amp; end points</p></dd>
+
+
 <dt>sx0, sx1, sx2, sx3, sx4</dt>
 <dd><p>x coordinates of the control points</p></dd>
+
+
 <dt>sy0, sy1, sy2, sy3, sy4</dt>
 <dd><p>y coordinates of the control points</p></dd>
+
+
 <dt>smx1, smx2, smy1, smy2</dt>
 <dd><p>x &amp; y coordinates of the mid vein control points</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>named list of all parameters</p>
+    
+
+<p>named list of all parameters</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">gen_leaf_parameters</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">gen_leaf_parameters</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $x0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -126,70 +137,70 @@ bezier start &amp; end points</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dx10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dy10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dx21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dy21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dx32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dy32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.785381</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7.459669</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dx43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dy43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 38.78538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sx0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.09344825</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sx1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sx2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dy43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 38.45967</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sx0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0956329</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sx1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sx2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sx3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sx4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1817656</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1558788</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sy0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6393504</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6602528</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sy1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sy2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1346153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1712685</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sy3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9237242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6763944</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sy4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3936333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5584436</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $smx1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $smx2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $smy1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.03678217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.5322117</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $smy2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.7270442</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2425358</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
@@ -202,7 +213,7 @@ bezier start &amp; end points</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
