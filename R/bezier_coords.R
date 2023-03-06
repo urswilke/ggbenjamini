@@ -45,8 +45,7 @@ bezier_to_polygon <- function(df_benjamini_leaf, ..., n = 100) {
   group_variables <- rlang::enquos(...)
   df_benjamini_leaf %>%
     dplyr::group_by(!!!group_variables) %>%
-    dplyr::summarise(gen_bezier_lin_interp(dplyr::cur_data(), n)) %>%
-    dplyr::ungroup()
+    dplyr::reframe(gen_bezier_lin_interp(dplyr::pick(dplyr::everything()), n))
 }
 
 

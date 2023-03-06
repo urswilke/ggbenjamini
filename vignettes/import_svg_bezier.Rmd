@@ -106,7 +106,7 @@ split_beziers <- function(df_bezier) {
 
 (df_svg_skeleton <- df_raw %>%
   group_by(row) %>% 
-  summarise(split_beziers(cur_data()))
+  summarise(split_beziers(pick(dplyr::everything())))
 )
 ```
 
