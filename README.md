@@ -293,28 +293,26 @@ pkgs <- scan_packages()
 pkgs <- pkgs[!pkgs %in% c("R", "ggbenjamini")] %>% c("magick")
 cites <- get_citations(pkgs)
 rmd <- create_rmd(cites)
-
--> then copy the list in the created refs.Rmd below
-
--->
+&#10;-> then copy the list in the created refs.Rmd below
+&#10;-->
 
 ## R packages used
 
 This package stands on the shoulders of giants. It was only possible
 thanks to the following libraries:
 
--   base (R Core Team 2021a)
--   tidyverse (Wickham et al. 2019)
--   ggforce (Pedersen 2021)
--   grid (R Core Team 2021b)
--   prismatic (Hvitfeldt 2021)
--   flametree (Navarro 2021)
--   rsvg (Ooms 2021b)
--   minisvg (FC 2021)
--   ambient (Pedersen and Peck 2020)
--   covr (Hester 2020)
--   stats (R Core Team 2021c)
--   magick (Ooms 2021a)
+- base (R Core Team 2021a)
+- tidyverse (Wickham et al. 2019)
+- ggforce (Pedersen 2021)
+- grid (R Core Team 2021b)
+- prismatic (Hvitfeldt 2021)
+- flametree (Navarro 2021)
+- rsvg (Ooms 2021b)
+- minisvg (FC 2021)
+- ambient (Pedersen and Peck 2020)
+- covr (Hester 2020)
+- stats (R Core Team 2021c)
+- magick (Ooms 2021a)
 
 ## References
 

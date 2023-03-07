@@ -234,6 +234,7 @@ If you want to know more have a look in `vignette("create_benjamini_polygons")` 
 You can also transform the leaf data to svgs. Have a look in `vignette("create_benjamini_svg")` for an example to generate svg images.
 
 
+
 <!-- 
 The following as well as the bibtex file "pkg-refs.bib" were automatically
 created with the commands:
