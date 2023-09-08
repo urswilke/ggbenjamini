@@ -12,6 +12,7 @@ status](https://www.r-pkg.org/badges/version/ggbenjamini)](https://CRAN.R-projec
 [![R-CMD-check](https://github.com/urswilke/ggbenjamini/workflows/R-CMD-check/badge.svg)](https://github.com/urswilke/ggbenjamini/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/urswilke/ggbenjamini/branch/main/graph/badge.svg)](https://codecov.io/gh/urswilke/ggbenjamini?branch=main)
+[![R-CMD-check](https://github.com/urswilke/ggbenjamini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/urswilke/ggbenjamini/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Generate benjamini leaves with bezier curves
