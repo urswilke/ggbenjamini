@@ -16,7 +16,7 @@
        8 half 2       1  34    35   bezier end point      
        9 half 2       2  34    35   bezier start point    
       10 half 2       2  39    34.8 bezier control point 1
-      # ... with 26 more rows
+      # i 26 more rows
 
 # generated bezier branch dataframe still the same
 
@@ -36,7 +36,7 @@
        8 0_1_stalk       1 stalk        0  83.0  267. leaf_bezier bezier end point    
        9 1_1_half 2      1 half 2       1  83.0  267. leaf_bezier bezier start point  
       10 1_1_half 2      1 half 2       1  83.0  264. leaf_bezier bezier control poin~
-      # ... with 426 more rows
+      # i 426 more rows
 
 # bezier elements to polygons transformations work
 
@@ -56,5 +56,5 @@
        8 0_stalk      0 stalk    10.2  40.2
        9 0_stalk      0 stalk    10.2  40.2
       10 0_stalk      0 stalk    10.2  40.2
-      # ... with 890 more rows
+      # i 890 more rows
 
