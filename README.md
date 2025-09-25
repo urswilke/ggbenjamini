@@ -31,7 +31,7 @@ You can install the newest version of **ggbenjamini** from github with:
 # install.packages("remotes")
 # (if not installed yet)
 
-remotes::install_github("urswilke/ggbenjamini")
+devtools::install_git("https://codeberg.org/urswilke/ggbenjamini")
 ```
 
 ## Usage
@@ -317,7 +317,8 @@ thanks to the following libraries:
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-minisvg" class="csl-entry">
 

@@ -42,7 +42,7 @@ You can install the newest version of **ggbenjamini** from github with:
 # install.packages("remotes")
 # (if not installed yet)
 
-remotes::install_github("urswilke/ggbenjamini")
+devtools::install_git("https://codeberg.org/urswilke/ggbenjamini")
 ```
 
 ## Usage
