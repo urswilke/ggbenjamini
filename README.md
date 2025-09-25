@@ -25,10 +25,11 @@ It is heavily inspired by the awesome
 
 ## Installation
 
-You can install the newest version of **ggbenjamini** from github with:
+You can install the newest version of **ggbenjamini** from codeberg
+with:
 
 ``` r
-# install.packages("remotes")
+# install.packages("devtools")
 # (if not installed yet)
 
 devtools::install_git("https://codeberg.org/urswilke/ggbenjamini")
