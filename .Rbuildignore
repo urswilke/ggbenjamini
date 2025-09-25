@@ -4,6 +4,7 @@
 ^README\.Rmd$
 ^cran-comments\.md$
 ^\.github$
+^\.woodpecker
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
