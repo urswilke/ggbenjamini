@@ -17,7 +17,7 @@ variables:
 
   r_envvars: &r_envvars
     R_NCPU: 1
-    RCMDCHECK_ERROR_ON: "note"
+    RCMDCHECK_ERROR_ON: "warning"
 
     _R_CHECK_FORCE_SUGGESTS_: "false"
     _R_CHECK_CRAN_INCOMING_: "false"
@@ -202,7 +202,7 @@ variables:
         
 steps:
   - <<: *setup
-  #- <<: *check
+  - <<: *check
   - <<: *test
   - <<: *pkgdown
   - <<: *deploy
