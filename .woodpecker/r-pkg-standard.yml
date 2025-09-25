@@ -205,6 +205,6 @@ steps:
   - <<: *check
   - <<: *test
   - <<: *pkgdown
-  # - <<: *deploy
+  - <<: *deploy
 
 
