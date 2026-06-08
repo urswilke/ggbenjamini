@@ -24,7 +24,6 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Imports: 
     stringr,
@@ -37,10 +36,12 @@ Imports:
     tibble,
     rlang,
     grid,
-    prismatic
+    prismatic,
+    bezier
 Remotes:
     coolbutuseless/minisvg,
     djnavarro/flametree
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5)
 URL: https://urswilke.codeberg.page/ggbenjamini/, https://codeberg.org/urswilke/ggbenjamini/
+Config/roxygen2/version: 8.0.0

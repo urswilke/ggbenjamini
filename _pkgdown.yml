@@ -1,4 +1,12 @@
-url: ~
+# _pkgdown.yml
+url: https://urswilke.codeberg.page/ggbenjamini
+repo:
+  url:
+    home: https://codeberg.org/urswilke/ggbenjamini/
+    source: https://codeberg.org/urswilke/ggbenjamini/src/branch/main/
+    issue: https://codeberg.org/urswilke/ggbenjamini/issues/
+    user: https://codeberg.org/
 template:
   bootstrap: 5
-  bootswatch: united
+  light-switch: true
+destination: public/
