@@ -43,5 +43,8 @@ Remotes:
     djnavarro/flametree
 Depends: 
     R (>= 3.5)
-URL: https://urswilke.codeberg.page/ggbenjamini/, https://codeberg.org/urswilke/ggbenjamini/
+URL: 
+    https://urswilke.codeberg.page/ggbenjamini/, 
+    https://codeberg.org/urswilke/ggbenjamini/,
+    https://urswilke.r-universe.dev/ggbenjamini
 Config/roxygen2/version: 8.0.0
