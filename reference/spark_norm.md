@@ -28,6 +28,6 @@ spark_norm()
 #> {
 #>     stats::rnorm(n_leaves, mean = mean, sd = sd)
 #> }
-#> <bytecode: 0x55f66f3efb30>
-#> <environment: 0x55f678ca19a8>
+#> <bytecode: 0x5580fc789318>
+#> <environment: 0x558106268c18>
 ```
