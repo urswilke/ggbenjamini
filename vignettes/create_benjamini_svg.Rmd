@@ -37,7 +37,7 @@ We'll use the package example dataframe `df_bezier_skeleton` with the bezier pat
 ```{r}
 df_branches_and_leaves <- df_bezier_skeleton %>%
   group_by(i_branch) %>% 
-  summarise(benjamini_branch(
+  reframe(benjamini_branch(
     df_branch = tibble(x, y), 
     leaf_size_multiplicator = 0.5, 
     leaf_mean_dist_approx = 20, 

@@ -125,7 +125,7 @@
   </radialGradient>
   <radialGradient id="gradient32" cx="0.35" cy="0.63" r="0.7">
     <stop offset="0%" stop-color="#D68824" />
-    <stop offset="100%" stop-color="#6C4100FF" />
+    <stop offset="100%" stop-color="#6C4101FF" />
   </radialGradient>
   <radialGradient id="gradient33" cx="0.35" cy="0.63" r="0.7">
     <stop offset="0%" stop-color="#FFA30F" />
@@ -305,7 +305,7 @@
   </radialGradient>
   <radialGradient id="gradient77" cx="0.35" cy="0.63" r="0.7">
     <stop offset="0%" stop-color="#DEC44D" />
-    <stop offset="100%" stop-color="#6C5D03FF" />
+    <stop offset="100%" stop-color="#6C5D04FF" />
   </radialGradient>
   <radialGradient id="gradient78" cx="0.35" cy="0.63" r="0.7">
     <stop offset="0%" stop-color="#C4A13A" />
@@ -313,7 +313,7 @@
   </radialGradient>
   <radialGradient id="gradient79" cx="0.35" cy="0.63" r="0.7">
     <stop offset="0%" stop-color="#9A691C" />
-    <stop offset="100%" stop-color="#503401FF" />
+    <stop offset="100%" stop-color="#503402FF" />
   </radialGradient>
   <radialGradient id="gradient80" cx="0.35" cy="0.63" r="0.7">
     <stop offset="0%" stop-color="#925E16" />

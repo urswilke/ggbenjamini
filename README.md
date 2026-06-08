@@ -60,7 +60,9 @@ df <- benjamini_leaf()
 ```
 
 <details>
+
 <summary>
+
 Show generated dataframe `df` of benjamini leaf bezier curve parameters
 </summary>
 
@@ -121,7 +123,9 @@ in the bezier curve.
 The meaning is best illustrated with a plot:
 
 <details>
+
 <summary>
+
 Show code to generate plot
 </summary>
 
@@ -175,7 +179,7 @@ p <- ggplot(df, aes(x = x, y = y)) +
 
 </details>
 
-<img src="man/figures/README-def-1.png" width="100%" />
+<img src="man/figures/README-def-1.png" alt="" width="100%" />
 
 The black point represents the leaf origin. Together with the blue
 points they denote the start/end points of the bezier curves, and the
@@ -213,7 +217,7 @@ ggplot(dfb) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-plotlotsofbenjamini-1.png" width="100%" />
+<img src="man/figures/README-plotlotsofbenjamini-1.png" alt="" width="100%" />
 
 ## Branches
 
@@ -253,7 +257,7 @@ df_branch %>%
   coord_equal()
 ```
 
-<img src="man/figures/README-branch2-1.png" width="100%" />
+<img src="man/figures/README-branch2-1.png" alt="" width="100%" />
 
 ## Polygons
 
@@ -265,7 +269,7 @@ polygons:
 df_polygons <- df_branch %>% 
   filter(str_detect(element, "^half [12]$")) %>%
   unite(idx, i_leaf, element, remove = FALSE) %>%
-  bezier_to_polygon(idx, i_leaf, element, i_part, n = 100)
+  bezier_to_polygon(idx, i_leaf, element, i_part)
 ggplot(
   data = df_polygons,
   aes(x = x, y = y, group = idx, fill = i_leaf)
@@ -275,7 +279,7 @@ ggplot(
   theme_void() 
 ```
 
-<img src="man/figures/README-polygon-1.png" width="100%" />
+<img src="man/figures/README-polygon-1.png" alt="" width="100%" />
 
 If you want to know more have a look in
 `vignette("create_benjamini_polygons")` .

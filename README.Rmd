@@ -217,7 +217,7 @@ If you want to fill the leaves with color, you can use `bezier_to_polygon()` to 
 df_polygons <- df_branch %>% 
   filter(str_detect(element, "^half [12]$")) %>%
   unite(idx, i_leaf, element, remove = FALSE) %>%
-  bezier_to_polygon(idx, i_leaf, element, i_part, n = 100)
+  bezier_to_polygon(idx, i_leaf, element, i_part)
 ggplot(
   data = df_polygons,
   aes(x = x, y = y, group = idx, fill = i_leaf)

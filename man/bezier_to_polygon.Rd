@@ -4,14 +4,12 @@
 \alias{bezier_to_polygon}
 \title{Transform bezier dataframe to dataframe with path coordinates}
 \usage{
-bezier_to_polygon(df_benjamini_leaf, ..., n = 100)
+bezier_to_polygon(df_benjamini_leaf, ...)
 }
 \arguments{
 \item{df_benjamini_leaf}{Dataframe returned by \code{benjamini_leaf()}}
 
 \item{...}{grouping variables in \code{df_benjamini_leaf} that will be kept in the transformation.}
-
-\item{n}{number of points per bezier}
 }
 \value{
 Dataframe with the coordinates of the bezier curve interpolations.
